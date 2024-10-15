@@ -16,7 +16,7 @@
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
         .gradient {
-            background: linear-gradient(90deg, #88c0d0 0%, #5e81ac 100%);
+            background: linear-gradient(90deg, #2e3440 0%, #4c566a 100%);
         }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -49,18 +49,18 @@
                     </svg>
                 </button>
             </div>
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a>
+                        <a class="inline-block py-2 px-4 text-nord6 font-bold no-underline" href="#">Active</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                        <a class="inline-block text-nord6 no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
                             href="#">link</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                        <a class="inline-block text-nord6 no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
                             href="#">link</a>
                     </li>
                 </ul>
