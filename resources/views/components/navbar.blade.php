@@ -1,8 +1,8 @@
-<nav class="bg-nord4 text-nord0" x-data="{ isOpen: false }">
+<nav class="bg-nord4 text-nord0  dark:bg-nord3 dark:text-nord6" x-data="{ isOpen: false }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center -ml-28">
-                <span class="font-bold ml-3">SiMeja 💻 | BMPR SULTENG</span>
+                <span class="hidden md:block font-bold ml-3">SiMeja 💻 | BMPR SULTENG</span>
                 <div class="ml-3 flex-shrink-0">
                     <img class=" w-8" src="{{ asset('assets/images/logo.png') }}" alt="Your Company">
                 </div>
@@ -13,24 +13,24 @@
                     <a href="#" class="rounded-md bg-nord7 px-3 py-2 text-sm font-medium text-white"
                         aria-current="page">Dashboard</a>
                     <a href="#"
-                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 hover:bg-nord9 hover:text-white">Team</a>
+                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Team</a>
                     <a href="#"
-                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 hover:bg-nord9 hover:text-white">Projects</a>
+                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Projects</a>
                     <a href="#"
-                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 hover:bg-nord9 hover:text-white">Calendar</a>
+                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Calendar</a>
                     <a href="#"
-                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 hover:bg-nord9 hover:text-white">Reports</a>
+                        class="rounded-md px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Reports</a>
                 </div>
             </div>
             <div class="hidden md:block">
-                <div class="ml-4 flex items-center md:ml-6 hover:border-2 hover:border-white rounded-md p-2">
-                    <div class="text-nord1">{{ auth()->user()->email }}</div>
+                <div class="ml-4 flex items-center md:ml-6 ">
+                    <div class="text-nord0 dark:text-nord6">{{ auth()->user()->email }}</div>
 
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
                         <div>
                             <button type="button" @click="isOpen = !isOpen"
-                                class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                class="relative flex max-w-xs items-center rounded-full bg-nord6 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nord6"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
@@ -54,22 +54,22 @@
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-75 transform"
                             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-nord6 dark:bg-nord0 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            <a href="#" class="block px-4 py-2 text-sm text-nord0 dark:text-nord6" role="menuitem"
                                 tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            <a href="#" class="block px-4 py-2 text-sm text-nord0 dark:text-nord6" role="menuitem"
                                 tabindex="-1" id="user-menu-item-1">Settings</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                    id="user-menu-item-2">
+                                <button class="block px-4 py-2 text-sm text-nord0 dark:text-nord6" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-2">
                                     Sign out
                                 </button>
                             </form>
-                            {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            {{-- <a href="#" class="block px-4 py-2 text-sm text-nord0 dark:text-nord6" role="menuitem"
                                 tabindex="-1" id="user-menu-item-2">Sign out</a> --}}
                             {{-- <form action="{{ route('logout') }}" method="post">
                                     @csrf
@@ -92,7 +92,7 @@
             <div class="-mr-2 flex md:hidden">
                 <!-- Mobile menu button -->
                 <button type="button" @click="isOpen = !isOpen"
-                    class="relative inline-flex items-center justify-center rounded-md bg-nord7 p-2 text-nord1 hover:bg-nord8 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    class="relative inline-flex items-center justify-center rounded-md bg-nord7 p-2 text-nord0 dark:text-nord6 hover:bg-nord8 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nord6"
                     aria-controls="mobile-menu" aria-expanded="false">
                     <span class="absolute -inset-0.5"></span>
                     <span class="sr-only">Open main menu</span>
@@ -122,13 +122,13 @@
             <a href="#" class="block rounded-md bg-nord7 px-3 py-2 text-base font-medium text-white"
                 aria-current="page">Dashboard</a>
             <a href="#"
-                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 hover:bg-nord9 hover:text-white">Team</a>
+                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Team</a>
             <a href="#"
-                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 hover:bg-nord9 hover:text-white">Projects</a>
+                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Projects</a>
             <a href="#"
-                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 hover:bg-nord9 hover:text-white">Calendar</a>
+                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Calendar</a>
             <a href="#"
-                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 hover:bg-nord9 hover:text-white">Reports</a>
+                class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Reports</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-4">
@@ -140,19 +140,20 @@
                 <div class="ml-3">
                     <div class="text-base font-medium leading-none text-white">
                         {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
-                    <div class="text-sm font-medium leading-none text-nord1">{{ auth()->user()->email }}
+                    <div class="text-sm font-medium leading-none text-nord0 dark:text-nord6">
+                        {{ auth()->user()->email }}
                     </div>
                 </div>
 
             </div>
             <div class="mt-3 space-y-1 px-2">
                 <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-nord1 hover:bg-nord9 hover:text-white">Your
+                    class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Your
                     Profile</a>
                 <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-nord1 hover:bg-nord9 hover:text-white">Settings</a>
+                    class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Settings</a>
                 <a href="#"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-nord1 hover:bg-nord9 hover:text-white">Sign
+                    class="block rounded-md px-3 py-2 text-base font-medium text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white">Sign
                     out</a>
             </div>
         </div>
