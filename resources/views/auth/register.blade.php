@@ -96,18 +96,6 @@
                             <input type="password" id="PasswordConfirmation" name="password_confirmation"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                         </div>
-
-                        <div class="col-span-6">
-                            <label for="MarketingAccept" class="flex gap-4">
-                                <input type="checkbox" id="MarketingAccept" name="marketing_accept"
-                                    class="size-5 rounded-md border-gray-200 bg-white shadow-sm" />
-
-                                <span class="text-sm text-gray-700">
-                                    I want to receive emails about events, product updates and company announcements.
-                                </span>
-                            </label>
-                        </div>
-
                         <div class="col-span-6">
                             <p class="text-sm text-gray-500">
                                 By creating an account, you agree to our
