@@ -16,7 +16,6 @@
                 <img alt=""
                     src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                     class="absolute inset-0 h-full w-full object-cover opacity-80" />
-
                 <div class="hidden lg:relative lg:block lg:p-12">
                     <a class="block text-white" href="#">
                         <span class="sr-only">Home</span>
@@ -28,7 +27,7 @@
                     </a>
 
                     <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                        Welcome to SiMeja 💻
+                        Welcome to SiMeja 💻 BMPR Sulawesi Tengah
                     </h2>
 
                     <p class="mt-4 leading-relaxed text-white/90">
@@ -54,12 +53,11 @@
                         </a>
                     </div>
 
-                    <form action="{{ route('login') }}" method="POST" class="mt-8 grid grid-cols-6 gap-6">
+                    <form action="{{ route('login') }}" method="POST" class="mt-8 grid grid-cols-3 gap-6">
                         @csrf
-
-
-
-
+                        <div class="w-24 mx-auto my-auto col-span-6 flex justify-center">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="">
+                        </div>
                         <div class="col-span-6">
                             <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
 
