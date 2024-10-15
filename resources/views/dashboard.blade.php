@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-nord6 text-nord0">
+<html lang="en" class="h-full">
 
 <head>
     <meta charset="UTF-8">
@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="{{ asset('components/css/bootstrap.min.css') }}">
 </head>
 
-<body class="h-full">
-    <div class="min-h-full">
+<body class="h-full light">
+    <div class="min-h-full dark:bg-nord0 dark:text-nord6 bg-nord6 text-nord0">
         <x-navbar></x-navbar>
         <x-header></x-header>
-        <main>
+        <main class="dark:text-black">
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <div class="rounded-2xl mt-5">
                     <div class="container-fluid">
@@ -27,7 +27,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title mb-4">Laporan Masyarakat</h6>
                                         <div class="table-responsive mt-2">
-                                            <table id="dataTableExample" class="table ">
+                                            <table id="dataTableExample" class="table dark:table-dark">
                                                 <thead>
                                                     <tr class="text-xs lg:text-base">
                                                         <th>No</th>
