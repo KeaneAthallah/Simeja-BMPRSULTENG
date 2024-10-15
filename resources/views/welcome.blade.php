@@ -22,22 +22,22 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+<body class="leading-normal tracking-normal text-nord6 gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
-    <nav id="header" class="fixed w-full z-30 top-0 text-white">
+    <nav id="header" class="fixed w-full z-30 top-0 text-nord6">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
-                <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+                <a class="toggleColour text-nord6 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                     href="#">
                     <!--Icon from: http://www.potlabicons.com/ -->
-                    <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg"
+                    {{-- <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512.005 512.005">
                         <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502"
                             transform="matrix(1,0,0,1,0,0)" />
                         <path class="plane-take-off"
                             d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z " />
-                    </svg>
-                    LANDING
+                    </svg> --}}
+                    SIMEJA 💻
                 </a>
             </div>
             <div class="block lg:hidden pr-4">
@@ -49,24 +49,26 @@
                     </svg>
                 </button>
             </div>
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-nord4 lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-nord6 font-bold no-underline" href="#">Active</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-nord6 no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                            href="#">link</a>
-                    </li>
-                    <li class="mr-3">
-                        <a class="inline-block text-nord6 no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                            href="#">link</a>
+                        {{-- <button onclick="(() => document.body.classList.toggle('dark'))()"
+                            class="h-10 w-10 rounded-lg p-2 hover:bg-nord4 dark:hover:bg-gray-700">
+                            <svg class="fill-violet-700 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg class="fill-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                    fill-rule="evenodd" clip-rule="evenodd"></path>
+                            </svg>
+                        </button> --}}
                     </li>
                 </ul>
 
                 <a href="{{ route('login') }}" id="navAction"
-                    class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                    class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                     Login
                 </a>
 
@@ -87,7 +89,7 @@
                     Sub-hero message, not too long and not too short. Make it just right!
                 </p>
                 <button
-                    class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                    class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                     Subscribe
                 </button>
             </div>
@@ -120,9 +122,9 @@
             </g>
         </svg>
     </div>
-    <section class="bg-white border-b py-8">
+    <section class="bg-nord4 border-b py-8">
         <div class="container max-w-5xl mx-auto m-8">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord0">
                 Title
             </h1>
             <div class="w-full mb-4">
@@ -130,7 +132,7 @@
             </div>
             <div class="flex flex-wrap">
                 <div class="w-5/6 sm:w-1/2 p-6">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                    <h3 class="text-3xl text-nord0 font-bold leading-none mb-3">
                         Lorem ipsum dolor sit amet
                     </h3>
                     <p class="text-gray-600 mb-8">
@@ -370,7 +372,7 @@
                 </div>
                 <div class="w-full sm:w-1/2 p-6 mt-6">
                     <div class="align-middle">
-                        <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                        <h3 class="text-3xl text-nord0 font-bold leading-none mb-3">
                             Lorem ipsum dolor sit amet
                         </h3>
                         <p class="text-gray-600 mb-8">
@@ -387,81 +389,81 @@
             </div>
         </div>
     </section>
-    <section class="bg-white border-b py-8">
+    <section class="bg-nord4 border-b py-8">
         <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord0">
                 Title
             </h1>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="flex-1 bg-nord4 rounded-t rounded-b-none overflow-hidden shadow">
                     <a href="#" class="flex flex-wrap no-underline hover:no-underline">
                         <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                             xGETTING STARTED
                         </p>
-                        <div class="w-full font-bold text-xl text-gray-800 px-6">
+                        <div class="w-full font-bold text-xl text-nord0 px-6">
                             Lorem ipsum dolor sit amet.
                         </div>
-                        <p class="text-gray-800 text-base px-6 mb-5">
+                        <p class="text-nord0 text-base px-6 mb-5">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo
                             posuere et sit amet ligula.
                         </p>
                     </a>
                 </div>
-                <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="flex items-center justify-start">
                         <button
-                            class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                            class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                             Action
                         </button>
                     </div>
                 </div>
             </div>
             <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="flex-1 bg-nord4 rounded-t rounded-b-none overflow-hidden shadow">
                     <a href="#" class="flex flex-wrap no-underline hover:no-underline">
                         <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                             xGETTING STARTED
                         </p>
-                        <div class="w-full font-bold text-xl text-gray-800 px-6">
+                        <div class="w-full font-bold text-xl text-nord0 px-6">
                             Lorem ipsum dolor sit amet.
                         </div>
-                        <p class="text-gray-800 text-base px-6 mb-5">
+                        <p class="text-nord0 text-base px-6 mb-5">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo
                             posuere et sit amet ligula.
                         </p>
                     </a>
                 </div>
-                <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="flex items-center justify-center">
                         <button
-                            class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                            class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                             Action
                         </button>
                     </div>
                 </div>
             </div>
             <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="flex-1 bg-nord4 rounded-t rounded-b-none overflow-hidden shadow">
                     <a href="#" class="flex flex-wrap no-underline hover:no-underline">
                         <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                             xGETTING STARTED
                         </p>
-                        <div class="w-full font-bold text-xl text-gray-800 px-6">
+                        <div class="w-full font-bold text-xl text-nord0 px-6">
                             Lorem ipsum dolor sit amet.
                         </div>
-                        <p class="text-gray-800 text-base px-6 mb-5">
+                        <p class="text-nord0 text-base px-6 mb-5">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo
                             posuere et sit amet ligula.
                         </p>
                     </a>
                 </div>
-                <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                     <div class="flex items-center justify-end">
                         <button
-                            class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                            class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                             Action
                         </button>
                     </div>
@@ -469,17 +471,17 @@
             </div>
         </div>
     </section>
-    <section class="bg-gray-100 py-8">
-        <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+    <section class="bg-nord4 py-8">
+        <div class="container mx-auto px-2 pt-4 pb-12 text-nord0">
+            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord0">
                 Pricing
             </h1>
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             <div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
-                <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
-                    <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-nord4 mt-4">
+                    <div class="flex-1 bg-nord4 text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
                         <div class="p-8 text-3xl font-bold text-center border-b-4">
                             Free
                         </div>
@@ -489,22 +491,22 @@
                             <li class="border-b py-4">Thing</li>
                         </ul>
                     </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                    <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                         <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
                             £0
                             <span class="text-base">for one user</span>
                         </div>
                         <div class="flex items-center justify-center">
                             <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Sign Up
                             </button>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10">
-                    <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                    class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-nord4 mt-4 sm:-mt-6 shadow-lg z-10">
+                    <div class="flex-1 bg-nord4 rounded-t rounded-b-none overflow-hidden shadow">
                         <div class="w-full p-8 text-3xl font-bold text-center">Basic</div>
                         <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
                         <ul class="w-full text-center text-base font-bold">
@@ -514,21 +516,21 @@
                             <li class="border-b py-4">Thing</li>
                         </ul>
                     </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                    <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                         <div class="w-full pt-6 text-4xl font-bold text-center">
                             £x.99
                             <span class="text-base">/ per user</span>
                         </div>
                         <div class="flex items-center justify-center">
                             <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Sign Up
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
-                    <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-nord4 mt-4">
+                    <div class="flex-1 bg-nord4 text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
                         <div class="p-8 text-3xl font-bold text-center border-b-4">
                             Pro
                         </div>
@@ -538,14 +540,14 @@
                             <li class="border-b py-4">Thing</li>
                         </ul>
                     </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                    <div class="flex-none mt-auto bg-nord4 rounded-b rounded-t-none overflow-hidden shadow p-6">
                         <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
                             £x.99
                             <span class="text-base">/ per user</span>
                         </div>
                         <div class="flex items-center justify-center">
                             <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                class="mx-auto lg:mx-0 hover:underline gradient text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Sign Up
                             </button>
                         </div>
@@ -582,22 +584,22 @@
         </g>
     </svg>
     <section class="container mx-auto text-center py-6 mb-12">
-        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
+        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord6">
             Call to Action
         </h1>
         <div class="w-full mb-4">
-            <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+            <div class="h-1 mx-auto bg-nord4 w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
         <h3 class="my-4 text-3xl leading-tight">
             Main Hero Message to sell yourself!
         </h3>
         <button
-            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Action!
         </button>
     </section>
     <!--Footer-->
-    <footer class="bg-white">
+    <footer class="bg-nord4">
         <div class="container mx-auto px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6 text-black">
@@ -619,15 +621,15 @@
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">FAQ</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Help</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Support</a>
                         </li>
                     </ul>
                 </div>
@@ -636,11 +638,11 @@
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Terms</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Privacy</a>
                         </li>
                     </ul>
                 </div>
@@ -649,15 +651,15 @@
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Facebook</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Linkedin</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Twitter</a>
                         </li>
                     </ul>
                 </div>
@@ -666,16 +668,16 @@
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Official
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Official
                                 Blog</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">About Us</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a href="#"
-                                class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -704,38 +706,38 @@
             scrollpos = window.scrollY;
 
             if (scrollpos > 10) {
-                header.classList.add("bg-white");
-                navaction.classList.remove("bg-white");
+                header.classList.add("bg-nord4");
+                navaction.classList.remove("bg-nord4");
                 navaction.classList.add("gradient");
-                navaction.classList.remove("text-gray-800");
-                navaction.classList.add("text-white");
+                navaction.classList.remove("text-nord0");
+                navaction.classList.add("text-nord6");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
-                    toToggle[i].classList.add("text-gray-800");
-                    toToggle[i].classList.remove("text-white");
+                    toToggle[i].classList.add("text-nord0");
+                    toToggle[i].classList.remove("text-nord6");
                 }
                 header.classList.add("shadow");
-                navcontent.classList.remove("bg-gray-100");
-                navcontent.classList.add("bg-white");
+                navcontent.classList.remove("bg-nord4");
+                navcontent.classList.add("bg-nord4");
             } else {
-                header.classList.remove("bg-white");
+                header.classList.remove("bg-nord4");
                 navaction.classList.remove("gradient");
-                navaction.classList.add("bg-white");
-                navaction.classList.remove("text-white");
-                navaction.classList.add("text-gray-800");
+                navaction.classList.add("bg-nord4");
+                navaction.classList.remove("text-nord6");
+                navaction.classList.add("text-nord0");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
-                    toToggle[i].classList.add("text-white");
-                    toToggle[i].classList.remove("text-gray-800");
+                    toToggle[i].classList.add("text-nord6");
+                    toToggle[i].classList.remove("text-nord0");
                 }
 
                 header.classList.remove("shadow");
-                navcontent.classList.remove("bg-white");
-                navcontent.classList.add("bg-gray-100");
+                navcontent.classList.remove("bg-nord4");
+                navcontent.classList.add("bg-nord4");
             }
         });
     </script>
-    <script>
+    {{-- <script>
         /*Toggle dropdown list*/
         /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
 
@@ -773,7 +775,7 @@
             }
             return false;
         }
-    </script>
+    </script> --}}
 </body>
 
 </html>
