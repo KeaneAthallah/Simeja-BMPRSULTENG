@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ComplainController::class, 'index'])->name('complain.index');
+Route::post('/complain', [ComplainController::class, 'store'])->name('complain.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
