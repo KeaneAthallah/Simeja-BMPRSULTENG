@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('components/css/bootstrap.min.css') }}">
 </head>
 
-<body class="h-full light">
+<body class="h-full">
     <div class="min-h-full dark:bg-nord0 dark:text-nord6 bg-nord6 text-nord0">
         <x-navbar></x-navbar>
         <x-header></x-header>
