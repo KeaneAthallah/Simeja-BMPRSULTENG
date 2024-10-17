@@ -161,6 +161,12 @@
                     </div>
                 </div>
             </div>
+            <div class="flex justify-center">
+                <button
+                    class="bg-nord0 text-nord6 font-bold rounded-full my-auto py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mx-auto">
+                    Submit
+                </button>
+            </div>
         </form>
     </section>
 
