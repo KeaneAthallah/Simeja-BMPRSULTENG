@@ -57,7 +57,9 @@
                     class="bg-nord0 text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                     id="find-my-location">Temukan saya</button></div>
         </div>
-        <form action="#" method="POST" class="w-full mx-auto max-w-5xl">
+        <form action="{{ route('complain.store') }}" method="POST" class="w-full mx-auto max-w-5xl"
+            enctype="multipart/form-data">
+            @csrf
             <div class="flex flex-wrap md:flex-nowrap gap-6">
                 <div class="mx-16 lg:mx-1 w-full">
                     <div id="map" class="w-full rounded-lg"></div>
@@ -68,95 +70,121 @@
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                for="nik">
                                 ID/NIK
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-first-name" type="text" name="nik">
-                            {{-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> --}}
+                                id="nik" type="text" name="nik" value="{{ old('nik') }}">
+                            @error('nik')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                for="name">
                                 Nama lengkap
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="text" name="name">
+                                id="name" type="text" name="name" value="{{ old('name') }}">
+                            @error('name')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-password">
+                                for="email">
                                 Email
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-password" type="email" name="email">
+                                id="email" type="email" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                for="phone">
                                 No. Hp
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-first-name" type="text" name="phone">
+                                id="phone" type="text" name="phone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                for="address">
                                 Alamat
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="text" name="address">
+                                id="address" type="text" name="address" value="{{ old('address') }}">
+                            @error('address')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                for="lat">
                                 Latitude
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="lat" type="text" name="lat">
+                                id="lat" type="text" name="lat" value="{{ old('lat') }}" readonly>
+                            @error('lat')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
+                                for="long">
                                 Longitude
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="long" type="text" name="long">
+                                id="long" type="text" name="long" value="{{ old('long') }}" readonly>
+                            @error('long')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-password">
+                                for="aspirasi">
                                 Aspirasi
                             </label>
                             <textarea
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-password" type="tel" name="aspirasi"></textarea>
+                                id="aspirasi" name="aspirasi">{{ old('aspirasi') }}</textarea>
+                            @error('aspirasi')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-password">
+                                for="image">
                                 Foto kerusakan
                             </label>
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="image" type="file" name="image">
+                            @error('image')
+                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -168,6 +196,7 @@
                 </button>
             </div>
         </form>
+
     </section>
 
     <!-- Change the colour #f8fafc to match the previous section colour -->

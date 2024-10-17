@@ -12,7 +12,7 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        //
+        return view("welcome");
     }
 
     /**
@@ -28,7 +28,25 @@ class ComplainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            "name" => "required|string|max:255",
+            "email" => "required|email|max:255",
+            "nik" => "required|numeric",
+            "phone" => "required|numeric|min:11",
+            "lat" => "required",
+            "long" => "required",
+            "address" => "required|string|max:255",
+            "aspirasi" => "required|string",
+            "image" => "required|max:2048",
+        ]);
+        if ($request->hasFile('image')) {
+            // Process the file
+            $data['image'] = $request->file('image')->store('complain_images');
+        } else {
+            dd('No file uploaded'); // Or log this message
+        }
+        Complain::create($data);
+        return redirect(route("complain.index"));
     }
 
     /**
