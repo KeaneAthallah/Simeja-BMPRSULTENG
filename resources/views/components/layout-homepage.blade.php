@@ -50,8 +50,31 @@
             </div>
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-nord4 lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
                 id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center">
-
+                <ul class="list-reset lg:flex justify-end flex-1 items-center mr-8">
+                    <li class="mr-6">
+                        <a href="#"
+                            class="text-white text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                            Profil
+                        </a>
+                    </li>
+                    <li class="mr-6">
+                        <a href="#"
+                            class="text-white text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                            Webgis
+                        </a>
+                    </li>
+                    <li class="mr-6">
+                        <a href="#"
+                            class="text-white text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                            Aspirasi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="text-white text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                            Kontak
+                        </a>
+                    </li>
                 </ul>
                 <a href="{{ route('login') }}" id="navAction"
                     class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
