@@ -61,9 +61,9 @@
             enctype="multipart/form-data">
             @csrf
             <div class="flex flex-wrap md:flex-nowrap gap-6">
-                <div class="mx-16 lg:mx-1 w-full mt-18">
+                <div class="mx-16 lg:mx-1 w-full ">
                     <div id="map" class="w-full rounded-lg"></div>
-                    <img id="preview-image" class="mt-4 mx-auto rounded-lg"
+                    <img id="preview-image" class="z-10 mt-5 sm:mt-28 mx-auto rounded-lg"
                         src="{{ asset('assets/images/no_image.jpg') }} " alt="">
                 </div>
                 <div class="mx-16 lg:mx-1 w-full">

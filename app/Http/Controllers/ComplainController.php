@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class ComplainController extends Controller
 {
+    protected $complain;
+    public function __construct()
+    {
+        $this->complain = new Complain();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $complains = Complain::all();
         return view("welcome");
     }
 
@@ -52,10 +58,7 @@ class ComplainController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Complain $complain)
-    {
-        //
-    }
+    public function show(Complain $complain) {}
 
     /**
      * Show the form for editing the specified resource.

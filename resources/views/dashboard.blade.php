@@ -16,8 +16,7 @@
                                                 <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>Hp</th>
-                                                <th>Latitude</th>
-                                                <th>Longitude</th>
+                                                <th>Lokasi</th>
                                                 <th>Foto</th>
                                                 <th>Action</th>
                                             </tr>
@@ -40,9 +39,6 @@
                                                     </td>
                                                     <td class="text-center content-center text-sm">
                                                         {{ $data->lat ? $data->lat : 'Belum di isi' }}
-                                                    </td>
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $data->long ? $data->long : 'Belum di isi' }}
                                                     </td>
                                                     <td class="w-48 h-auto flex justify-center content-center"><img
                                                             src="{{ asset('storage/' . $data->image) }}" alt="">
