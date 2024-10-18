@@ -18,15 +18,14 @@
         .gradient {
             background: linear-gradient(90deg, #2e3440 0%, #4c566a 100%);
         }
-    </style>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('assets/leaflet.css') }}">
-    <script src="{{ asset('assets/leaflet.js') }}"></script>
-    <style>
+
         #map {
             height: 315px;
         }
     </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('assets/leaflet.css') }}">
+    <script src="{{ asset('assets/leaflet.js') }}"></script>
 </head>
 
 <body class="leading-normal tracking-normal text-nord6 gradient" style="font-family: 'Source Sans Pro', sans-serif;">
@@ -85,7 +84,7 @@
                     @else
                         <a href="{{ route('login') }}"
                             class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                            Log in
+                            Log In
                         </a>
                     @endauth
                 @endif
@@ -176,21 +175,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
     <script>
-        const fileInput = document.getElementById('image');
-        const previewImage = document.getElementById('preview-image');
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0]; // Get the uploaded file
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(event) {
-                    previewImage.src = event.target.result; // Set the image preview src
-                };
-                reader.readAsDataURL(file); // Read the file as a data URL
-            }
-        });
-    </script>
-    <script>
         var scrollpos = window.scrollY;
         var header = document.getElementById("header");
         var navcontent = document.getElementById("nav-content");
@@ -234,7 +218,6 @@
             }
         });
     </script>
-    <script src="{{ asset('assets/main.js') }}"></script>
     <script>
         /*Toggle dropdown list*/
         /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
