@@ -18,10 +18,6 @@
         .gradient {
             background: linear-gradient(90deg, #2e3440 0%, #4c566a 100%);
         }
-
-        #map {
-            height: 315px;
-        }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('assets/leaflet.css') }}">

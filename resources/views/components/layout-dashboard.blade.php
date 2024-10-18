@@ -11,6 +11,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="{{ asset('components/datatables.net-bs5/dataTables.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ asset('components/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/leaflet.css') }}">
+    <script src="{{ asset('assets/leaflet.js') }}"></script>
 </head>
 
 <body class="h-full">
