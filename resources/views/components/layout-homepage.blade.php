@@ -45,28 +45,28 @@
             </div>
             <div class="toggleColour w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-nord4 lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
                 id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center mr-8 mb-10 lg:mb-0 ">
+                <ul class="list-reset lg:flex justify-end flex-1 items-center mr-8 mb-10 lg:mb-0">
                     <li class="mr-6">
-                        <a href="#"
-                            class="text-nord0 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                        <a href="#" id="nav-menu1"
+                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Profil
                         </a>
                     </li>
                     <li class="mr-6">
-                        <a href="#"
-                            class="text-nord0 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                        <a href="#" id="nav-menu2"
+                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Webgis
                         </a>
                     </li>
                     <li class="mr-6">
-                        <a href="#"
-                            class="text-nord0 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                        <a href="#" id="nav-menu3"
+                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Aspirasi
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="text-nord0 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline">
+                        <a href="#" id="nav-menu4"
+                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Kontak
                         </a>
                     </li>
@@ -157,7 +157,8 @@
                                 Blog</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-nord0 hover:text-pink-500">About
+                            <a href="#"
+                                class="no-underline hover:underline text-nord0 hover:text-pink-500">About
                                 Us</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -180,6 +181,10 @@
         var navaction = document.getElementById("navAction");
         var brandname = document.getElementById("brandname");
         var toToggle = document.querySelectorAll(".toggleColour");
+        var sreveve1 = document.getElementById("nav-menu1");
+        var sreveve2 = document.getElementById("nav-menu2");
+        var sreveve3 = document.getElementById("nav-menu3");
+        var sreveve4 = document.getElementById("nav-menu4");
 
         document.addEventListener("scroll", function() {
             /*Apply classes for slide in bar*/
@@ -191,15 +196,31 @@
                 navaction.classList.add("gradient");
                 navaction.classList.remove("text-nord0");
                 navaction.classList.add("text-nord6");
+                sreveve1.classList.remove("text-nord6");
+                sreveve1.classList.add("text-nord0");
+                sreveve2.classList.remove("text-nord6");
+                sreveve2.classList.add("text-nord0");
+                sreveve3.classList.remove("text-nord6");
+                sreveve3.classList.add("text-nord0");
+                sreveve4.classList.remove("text-nord6");
+                sreveve4.classList.add("text-nord0");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
                     toToggle[i].classList.add("text-nord0");
                     toToggle[i].classList.remove("text-nord6");
                 }
                 header.classList.add("shadow");
-                navcontent.classList.remove("bg-nord4");
+                navcontent.classList.remove("bg-nord0");
                 navcontent.classList.add("bg-nord4");
             } else {
+                sreveve1.classList.remove("text-nord0");
+                sreveve1.classList.add("text-nord6");
+                sreveve2.classList.remove("text-nord0");
+                sreveve2.classList.add("text-nord6");
+                sreveve3.classList.remove("text-nord0");
+                sreveve3.classList.add("text-nord6");
+                sreveve4.classList.remove("text-nord0");
+                sreveve4.classList.add("text-nord6");
                 header.classList.remove("bg-nord4");
                 navaction.classList.remove("gradient");
                 navaction.classList.add("bg-nord4");
@@ -213,7 +234,7 @@
 
                 header.classList.remove("shadow");
                 navcontent.classList.remove("bg-nord4");
-                navcontent.classList.add("bg-nord4");
+                navcontent.classList.add("bg-nord0");
             }
         });
     </script>
