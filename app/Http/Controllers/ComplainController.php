@@ -17,8 +17,7 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        $complains = Complain::all();
-        return view("welcome");
+        return view('pages.aspirasi.index', ['datas' => Complain::all()]);
     }
 
     /**
@@ -26,7 +25,7 @@ class ComplainController extends Controller
      */
     public function create()
     {
-        //
+        return view("welcome");
     }
 
     /**
