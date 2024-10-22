@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('long');
             $table->string('aspirasi');
             $table->string('image');
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

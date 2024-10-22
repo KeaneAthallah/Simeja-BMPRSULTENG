@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('ukuran_terbanyak');
             $table->string('tebal_lapis');
             $table->string('distribusi');
+            $table->string('perkerasan_kondisi');
+            $table->string('perkerasan_turunan');
+
             $table->timestamps();
         });
     }
