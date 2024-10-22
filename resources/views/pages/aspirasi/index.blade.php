@@ -16,32 +16,28 @@
                             <tr>
                                 <th data-priority="1">NIK</th>
                                 <th data-priority="2">Nama</th>
-                                <th data-priority="3">Lat</th>
-                                <th data-priority="4">Long</th>
-                                <th data-priority="5">Alamat</th>
-                                <th data-priority="6">Status</th>
+                                <th data-priority="3">Alamat</th>
+                                <th data-priority="4">Status</th>
+                                <th data-priority="5">Waktu</th>
                             </tr>
                         </thead>
                         <tbody class="">
                             @foreach ($datas as $data)
                                 <tr class="text-center">
                                     <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->nik }}
+                                        <a href="{{ route('complain.show', $data->id) }}" class="text-nord14">
+                                            {{ $data->nik }}</a>
                                     </td>
                                     <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
                                         {{ $data->name }}
                                     </td>
                                     <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->lat }}
-                                    </td>
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->long }}
-                                    </td>
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
                                         {{ $data->address }}
                                     </td>
                                     <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->status }}
+                                        @if ($data->status == 'Pending')
+                                            <span class="bg-nord16 font-bold rounded-md p-2 text-nord0 ">Pending</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
