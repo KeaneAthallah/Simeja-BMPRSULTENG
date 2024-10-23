@@ -106,7 +106,7 @@
         <main class="dark:text-black">
             {{ $slot }}
         </main>
-        <x-footer></x-footer>
+        {{-- <x-footer></x-footer> --}}
     </div>
 
     <!-- jQuery -->

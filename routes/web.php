@@ -10,7 +10,11 @@ Route::post('/laporan', [ComplainController::class, 'store'])->name('complain.st
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard',);
+    return view('dashboard', [
+        'newComplains' => Complain::where('status', '=', 'Pending')->count(),
+        'onProgressComplains' => Complain::where('status', '=', 'On Progress')->count(),
+        'completedComplains' => Complain::where('status', '=', 'Completed')->count()
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
