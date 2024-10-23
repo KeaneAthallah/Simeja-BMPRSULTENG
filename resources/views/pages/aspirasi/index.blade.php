@@ -1,63 +1,83 @@
 <x-layout-dashboard>
-    <div class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8">
-        <div class="rounded-2xl mt-5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="card-title mb-4">Laporan Masyarakat</h6>
-                                <div class="table-responsive mt-2">
-                                    <table id="dataTableExample" class="table dark:table-dark">
-                                        <thead>
-                                            <tr class="text-xs lg:text-base">
-                                                <th>No</th>
-                                                <th>NIK</th>
-                                                <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Hp</th>
-                                                <th>Lokasi</th>
-                                                <th>Foto</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($datas as $data)
-                                                <tr class="text-center content-center text-sm">
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td class="text-center content-center text-sm"
-                                                        class="text-center content-center text-sm">
-                                                        {{ $data->nik }}</td>
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $data->name }}</td>
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $data->email }}</td>
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $data->phone ? $data->phone : 'Belum di isi' }}
-                                                    </td>
-                                                    <td class="text-center content-center text-sm">
-                                                        {{ $data->lat ? $data->lat : 'Belum di isi' }}
-                                                    </td>
-                                                    <td class="w-48 h-auto flex justify-center content-center"><img
-                                                            src="{{ asset('storage/' . $data->image) }}" alt="">
-                                                    </td>
-                                                    <td class="text-center content-center text-sm max-w-32">
-                                                        <div class="grid lg:flex gap-1 justify-center">
-                                                            <a href="#" class="btn btn-info">Info</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="mx-auto min-h-[120vh] px-4 py-6 sm:px-6 lg:px-8">
+        <div class="rounded-2xl">
+            <!--Container-->
+            <div class="container w-full max-w-full mx-auto px-2">
+                <!--Title-->
+                <h1
+                    class="flex items-center font-sans font-bold break-normal text-nord0 dark:text-nord6 px-2 py-2 text-xl md:text-2xl">
+                    Aspirasi
+                </h1>
+                <!--Card-->
+                <div id='recipients'
+                    class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
+                    <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">NIK</th>
+                                <th data-priority="2">Nama</th>
+                                <th data-priority="3">Alamat</th>
+                                <th data-priority="4">Status</th>
+                                <th data-priority="5">Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            @foreach ($datas as $data)
+                                <tr class="text-center">
+                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
+                                        <a href="{{ route('complain.show', $data->id) }}"
+                                            class="text-nord14 dark:text-nord16">
+                                            {{ $data->nik }}</a>
+                                    </td>
+                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
+                                        {{ $data->name }}
+                                    </td>
+                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
+                                        {{ $data->address }}
+                                    </td>
+                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6 text-center">
+                                        <div class="flex justify-center">
+                                            @if ($data->status == 'Pending')
+                                                <span
+                                                    class="bg-nord16 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Pending</span>
+                                            @endif
+                                            @if ($data->status == 'On Progress')
+                                                <span
+                                                    class="bg-nord20 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">On
+                                                    Progress</span>
+                                            @endif
+                                            @if ($data->status == 'Completed')
+                                                <span
+                                                    class="bg-nord7 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Completed</span>
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
+                                        {{ $data->created_at->diffForHumans() }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+
+
                 </div>
             </div>
+            <!--/container-->
         </div>
     </div>
+    <script>
+        map = L.map("map").setView([-0.8898015139606371, 119.85738857328762], 13); // Set zoom level
+
+        // Add Google streets layer to the map
+        let googleStreets = L.tileLayer(
+            "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
+                maxZoom: 20,
+                subdomains: ["mt0", "mt1", "mt2", "mt3"],
+            }
+        );
+        googleStreets.addTo(map);
+    </script>
 </x-layout-dashboard>

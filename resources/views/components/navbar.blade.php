@@ -1,12 +1,14 @@
 <nav class="bg-nord4 text-nord0  dark:bg-nord3 dark:text-nord6" x-data="{ isOpen: false }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
-            <div class="flex items-center -ml-28">
-                <span class="hidden md:block font-bold ml-3">SiMeja 💻 | BMPR SULTENG</span>
-                <div class="ml-3 flex-shrink-0">
-                    <img class=" w-8" src="{{ asset('assets/images/logo.png') }}" alt="Your Company">
+            <a href="{{ url('/') }}">
+                <div class="flex items-center -ml-28">
+                    <span class="hidden md:block font-bold ml-3">SiMeja 💻 | BMPR SULTENG</span>
+                    <div class="ml-3 flex-shrink-0">
+                        <img class=" w-8" src="{{ asset('assets/images/logo.png') }}" alt="Your Company">
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6 ">

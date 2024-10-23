@@ -51,13 +51,16 @@ class ComplainController extends Controller
             dd('No file uploaded'); // Or log this message
         }
         Complain::create($data);
-        return redirect(route("complain.index"));
+        return redirect(route("complain.create"));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Complain $complain) {}
+    public function show(Complain $complain)
+    {
+        return 123123;
+    }
 
     /**
      * Show the form for editing the specified resource.

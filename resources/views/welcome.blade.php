@@ -9,7 +9,8 @@
                     SiMeja 💻 | BMPR SULTENG
                 </h1>
                 <p class="leading-normal text-2xl mb-8">
-                    Sub-hero message, not too long and not too short. Make it just right!
+                    Simeja BMPR Sulteng mempermudah pelaporan harian Dinas Bina Marga, memastikan pelacakan kerja yang
+                    efisien dan transparan.
                 </p>
                 <a href="#pengaduan"
                     class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">

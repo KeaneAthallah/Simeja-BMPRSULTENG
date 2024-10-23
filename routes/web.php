@@ -6,10 +6,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainController;
 
 Route::get('/', [ComplainController::class, 'create'])->name('complain.create');
+Route::post('/laporan', [ComplainController::class, 'store'])->name('complain.store');
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard',);
+    return view('dashboard', [
+        'newComplains' => Complain::where('status', '=', 'Pending')->count(),
+        'onProgressComplains' => Complain::where('status', '=', 'On Progress')->count(),
+        'completedComplains' => Complain::where('status', '=', 'Completed')->count()
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -17,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/aspirasi', [ComplainController::class, 'index'])->name('complain.index');
-    Route::post('/', [ComplainController::class, 'store'])->name('complain.store');
+    Route::get('/aspirasi/{id}', [ComplainController::class, 'show'])->name('complain.show');
 });
 
 require __DIR__ . '/auth.php';
