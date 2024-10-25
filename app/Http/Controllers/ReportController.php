@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SurveyData;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
-class SurveyDataController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.surveydata.index');
+        //
+        return view('pages.report.index');
     }
 
     /**
@@ -34,7 +35,7 @@ class SurveyDataController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SurveyData $surveyData)
+    public function show(Report $report)
     {
         //
     }
@@ -42,7 +43,7 @@ class SurveyDataController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SurveyData $surveyData)
+    public function edit(Report $report)
     {
         //
     }
@@ -50,7 +51,7 @@ class SurveyDataController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SurveyData $surveyData)
+    public function update(Request $request, Report $report)
     {
         //
     }
@@ -58,7 +59,7 @@ class SurveyDataController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SurveyData $surveyData)
+    public function destroy(Report $report)
     {
         //
     }

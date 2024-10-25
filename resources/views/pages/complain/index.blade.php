@@ -25,7 +25,7 @@
                             @foreach ($datas as $data)
                                 <tr class="text-center">
                                     <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        <a href="{{ route('complain.show', $data->id) }}"
+                                        <a href="{{ route('aspirasi.show', $data->id) }}"
                                             class="text-nord14 dark:text-nord16">
                                             {{ $data->nik }}</a>
                                     </td>
@@ -39,16 +39,15 @@
                                         <div class="flex justify-center">
                                             @if ($data->status == 'Pending')
                                                 <span
-                                                    class="bg-nord16 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Pending</span>
+                                                    class="bg-nord16 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Baru</span>
                                             @endif
                                             @if ($data->status == 'On Progress')
                                                 <span
-                                                    class="bg-nord20 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">On
-                                                    Progress</span>
+                                                    class="bg-nord20 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Dikerjakan</span>
                                             @endif
                                             @if ($data->status == 'Completed')
                                                 <span
-                                                    class="bg-nord7 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Completed</span>
+                                                    class="bg-nord7 font-bold rounded-md px-4 py-2 text-nord0 w-44 text-center">Selesai</span>
                                             @endif
                                         </div>
                                     </td>
