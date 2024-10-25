@@ -17,7 +17,7 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        return view('pages.aspirasi.index', ['datas' => Complain::all()]);
+        return view('pages.complain.index', ['datas' => Complain::all()]);
     }
 
     /**
@@ -51,7 +51,7 @@ class ComplainController extends Controller
             dd('No file uploaded'); // Or log this message
         }
         Complain::create($data);
-        return redirect(route("complain.create"));
+        return redirect(route("aspirasi.create"));
     }
 
     /**

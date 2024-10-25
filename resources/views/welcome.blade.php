@@ -58,7 +58,7 @@
                     class="bg-nord0 text-nord6 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                     id="find-my-location">Temukan saya</button></div>
         </div>
-        <form action="{{ route('complain.store') }}" method="POST" class="w-full mx-auto max-w-5xl"
+        <form action="{{ route('aspirasi.store') }}" method="POST" class="w-full mx-auto max-w-5xl"
             enctype="multipart/form-data">
             @csrf
             <div class="flex flex-wrap md:flex-nowrap gap-6">
