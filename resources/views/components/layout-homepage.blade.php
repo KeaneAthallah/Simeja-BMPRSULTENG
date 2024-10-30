@@ -184,9 +184,9 @@
 
             // Add Google streets layer to the map
             let googleStreets = L.tileLayer(
-                "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                     maxZoom: 20,
-                    subdomains: ["mt0", "mt1", "mt2", "mt3"],
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }
             );
             googleStreets.addTo(map);
@@ -238,9 +238,9 @@
                 // Reinitialize the map with the new location
                 map = L.map("map").setView([latitude, longitude], 18);
                 let googleStreets = L.tileLayer(
-                    "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
+                    "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                         maxZoom: 20,
-                        subdomains: ["mt0", "mt1", "mt2", "mt3"],
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }
                 );
                 googleStreets.addTo(map);
