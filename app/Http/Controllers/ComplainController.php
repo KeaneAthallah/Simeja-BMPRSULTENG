@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 
 class ComplainController extends Controller
 {
-    protected $complain;
-    public function __construct()
-    {
-        $this->complain = new Complain();
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         return view('pages.complain.index', ['datas' => Complain::all()]);
+    }
+
+    public function json()
+    {
+        $datas = Complain::all();
+        return json_encode($datas);
     }
 
     /**

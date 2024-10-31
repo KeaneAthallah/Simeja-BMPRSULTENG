@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'lat' => '-0.8955705206557044',
             'long' => '119.857693823503',
             'address' => 'Jl. Imam Bonjol, No. 123',
+            'image' => 'complain_images/ZvfEZFgztRYEwEQyNpoupuDZow9PWqKJd5ReJD1O.jpg',
             'aspirasi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'status' => 'Pending'
         ]);
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'Lm7j7@example.com',
             'lat' => '-0.9004837239838827',
             'long' => '119.85073080899366',
+            'image' => 'complain_images/ZvfEZFgztRYEwEQyNpoupuDZow9PWqKJd5ReJD1O.jpg',
             'address' => 'Jl. Kangkung, No. 123',
             'aspirasi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'status' => 'On Progress'
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '08123456789',
             'email' => 'Lm7j7@example.com',
             'lat' => '-0.8881773583581348',
+            'image' => 'complain_images/ZvfEZFgztRYEwEQyNpoupuDZow9PWqKJd5ReJD1O.jpg',
             'long' => '119.84236245317493',
             'address' => 'Jl. Lasoso, No. 123',
             'aspirasi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
