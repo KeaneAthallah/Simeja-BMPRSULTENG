@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class AsphaltStreet extends Model
 {
+    protected $guarded = [];
     use HasFactory;
 }

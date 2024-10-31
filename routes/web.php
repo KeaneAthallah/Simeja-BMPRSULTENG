@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\HandlingController;
 use App\Models\Complain;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\WebgisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainController;
-use App\Http\Controllers\ReportController;
+use App\Http\Controllers\HandlingController;
 use App\Http\Controllers\SurveyDataController;
+use App\Http\Controllers\AsphaltStreetController;
 
 Route::get('/', [ComplainController::class, 'create'])->name('aspirasi.create');
 Route::post('/laporan', [ComplainController::class, 'store'])->name('aspirasi.store');
@@ -27,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/dashboard/aspirasi', ComplainController::class)->only(['index', 'show', 'edit', 'update', 'destroy']);
     Route::get('/dashboard/webgis/json', [ComplainController::class, 'json'])->name('dashboard.webgis.json');
-    Route::resource('/dashboard/survey', SurveyDataController::class);
     Route::resource('/dashboard/webgis', WebgisController::class);
     Route::resource('/dasboard/handling', HandlingController::class);
     Route::resource('/dashboard/laporan', ReportController::class);
+    Route::resource('/dashboard/jalanAspal', AsphaltStreetController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -12,7 +12,7 @@ class AsphaltStreetController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.jalanAspal.index");
     }
 
     /**
