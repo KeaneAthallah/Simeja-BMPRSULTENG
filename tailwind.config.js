@@ -1,6 +1,5 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
-
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: "selector",
@@ -10,7 +9,6 @@ export default {
         "./resources/views/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -42,6 +40,10 @@ export default {
             },
         },
     },
-
-    plugins: [forms, require("flowbite/plugin")],
+    plugins: [
+        forms,
+        require("flowbite/plugin")({
+            datatables: true,
+        }),
+    ],
 };

@@ -1,4 +1,5 @@
 <x-layout-dashboard>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <div class="mx-auto min-h-[120vh] px-4 py-6 sm:px-6 lg:px-8">
         <div class="rounded-2xl">
             <!--Container-->
@@ -67,16 +68,4 @@
             <!--/container-->
         </div>
     </div>
-    <script>
-        map = L.map("map").setView([-0.8898015139606371, 119.85738857328762], 13); // Set zoom level
-
-        // Add Google streets layer to the map
-        let googleStreets = L.tileLayer(
-            "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
-                maxZoom: 20,
-                subdomains: ["mt0", "mt1", "mt2", "mt3"],
-            }
-        );
-        googleStreets.addTo(map);
-    </script>
 </x-layout-dashboard>

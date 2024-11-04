@@ -10,10 +10,10 @@
                  class="{{ request()->routeIs('webgis.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">WebGis</a>
              <a href="{{ route('laporan.index') }}"
                  class="{{ request()->routeIs('laporan.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">Laporan</a>
-             <a href="{{ route('handling.index') }}"
-                 class="{{ request()->routeIs('handling.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">Penanganan</a>
+             <a href="{{ route('penanganan.index') }}"
+                 class="{{ request()->routeIs('penanganan.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">Penanganan</a>
              <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown"
-                 class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('survey.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+                 class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspal.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
                  type="button">Data Survey <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +44,7 @@
                                          jaringan</a>
                                  </li>
                                  <li>
-                                     <a href="#"
+                                     <a href="{{ route('jalanAspal.index') }}"
                                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Jalan
                                          aspal</a>
                                  </li>

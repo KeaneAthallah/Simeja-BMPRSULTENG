@@ -12,7 +12,8 @@ class AsphaltStreetController extends Controller
      */
     public function index()
     {
-        return view("pages.jalanAspal.index");
+        $data = AsphaltStreet::all();
+        return view("pages.jalanAspal.index", ["datas" => $data, 'title' => 'Jalan Aspal']);
     }
 
     /**
@@ -36,7 +37,7 @@ class AsphaltStreetController extends Controller
      */
     public function show(AsphaltStreet $asphaltStreet)
     {
-        //
+        return view('pages.jalanAspal.show', ['data' => $asphaltStreet, 'title' => 'Jalan Aspal']);
     }
 
     /**

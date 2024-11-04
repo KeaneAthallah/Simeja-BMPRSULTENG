@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('penurunan');
             $table->string('tambalan');
             $table->string('jenis');
+            $table->string('lebar');
+            $table->string('luas');
+            $table->string('jumlahLubang');
             $table->string('ukuranLubang');
             $table->string('bekasRoda');
             $table->string('kerusakanTepiKiri');

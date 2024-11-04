@@ -5,32 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SiMeja || Dashboard</title>
-
-    <!-- Theme script applied early -->
-
-
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
+    <title>SiMeja | {{ $title }}</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/leaflet.css') }}">
     <script src="{{ asset('assets/leaflet.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <style>
-        /* Additional styling for dark mode and data tables */
-        body.dark .dataTables_wrapper select,
-        body.dark .dataTables_wrapper .dataTables_filter input {
-            background-color: #2D3748;
-            color: #A0AEC0;
-            border-color: #4A5568;
-        }
-
-        body.dark .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #4A5568 !important;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </head>
 
 <body class="h-full tracking-wider leading-normal">
@@ -40,22 +24,8 @@
         <main class="dark:text-black">
             {{ $slot }}
         </main>
-        {{-- <x-footer></x-footer> --}}
     </div>
-
-    <!-- Datatables Scripts -->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                    responsive: true
-                })
-                .columns.adjust()
-                .responsive.recalc();
-        });
-    </script>
-
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <!-- Map Initialization Script -->
     <script>
         let latitude = -0.9029821741503987,
@@ -93,6 +63,7 @@
             document.body.classList.remove('dark');
         }
     </script>
+
 </body>
 
 </html>

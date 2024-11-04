@@ -1,4 +1,5 @@
 <x-layout-dashboard>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <div class="flex flex-col items-center justify-center m-10">
         <div class="w-full p-8 bg-nord5 text-nord0 dark:bg-nord2 dark:text-nord6 rounded-lg shadow-lg">
             <h1 class="text-4xl font-extrabold text-center text-nord0 dark:text-nord6">Welcome to
