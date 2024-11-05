@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AsphaltStreet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AsphaltStreetController extends Controller
 {
@@ -166,7 +167,8 @@ class AsphaltStreetController extends Controller
      */
     public function show(AsphaltStreet $asphaltStreet)
     {
-        return view('pages.jalanAspal.show', ['data' => $asphaltStreet, 'title' => 'Detail Jalan Aspal', 'users' => User::all()]);
+        $pdf = Pdf::loadView('pages.jalanAspal.show', ['data' => $asphaltStreet, 'title' => 'Detail Jalan Aspal', 'users' => User::all()]);
+        return $pdf->stream('invoice.pdf');
     }
 
     /**
