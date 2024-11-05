@@ -25,27 +25,6 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
-    <!-- Map Initialization Script -->
-    <script>
-        let latitude = -0.9029821741503987,
-            longitude = 119.85871178991329;
-        let map, marker;
-
-        function initMap() {
-            map = L.map("map").setView([latitude, longitude], 13);
-
-            let googleStreets = L.tileLayer(
-                "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
-                    maxZoom: 20,
-                    subdomains: ["mt0", "mt1", "mt2", "mt3"],
-                }
-            );
-            googleStreets.addTo(map);
-        }
-
-        initMap();
-    </script>
 
     <!-- Theme Toggle Script -->
     <script>
