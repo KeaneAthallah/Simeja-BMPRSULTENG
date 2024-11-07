@@ -45,13 +45,11 @@
                                  </li>
                                  <li>
                                      <a href="{{ route('jalanAspal.index') }}"
-                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Jalan
-                                         aspal</a>
+                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Aspal</a>
                                  </li>
                                  <li>
                                      <a href="#"
-                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Jalan
-                                         tanah/kerikil</a>
+                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tanah/Kerikil</a>
                                  </li>
                              </ul>
                          </div>
