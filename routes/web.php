@@ -8,7 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\HandlingController;
 use App\Http\Controllers\SurveyDataController;
+use App\Http\Controllers\SoilsStreetController;
 use App\Http\Controllers\AsphaltStreetController;
+use App\Http\Controllers\RoadInventoryController;
 
 Route::get('/', [ComplainController::class, 'create'])->name('aspirasi.create');
 Route::post('/laporan', [ComplainController::class, 'store'])->name('aspirasi.store');
@@ -33,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dasboard/penanganan', HandlingController::class)->parameter('penanganan', 'handling');
     Route::resource('/dashboard/laporan', ReportController::class)->parameter('laporan', 'report');
     Route::resource('/dashboard/jalanAspal', AsphaltStreetController::class)->parameter('jalanAspal', 'asphaltStreet');
+    Route::resource('/dashboard/jalanTanah', SoilsStreetController::class)->parameter('jalanTanah', 'soilsStreet');
+    Route::resource('/dashboard/inventarisJalan', RoadInventoryController::class)->parameter('inventarisJalan', 'roadInventory');
 });
 
 require __DIR__ . '/auth.php';

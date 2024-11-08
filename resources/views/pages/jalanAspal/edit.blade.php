@@ -411,7 +411,8 @@
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
-                                                    <input id="vue-checkbox" type="radio" value=1" name="lebar"
+                                                    <input id="vue-checkbox" type="radio" value="1"
+                                                        name="lebar"
                                                         {{ old('lebar', $data->lebar) == '1' ? 'checked' : '' }}
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"
@@ -658,7 +659,7 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('bekasRoda', $data->bekasRoda) == '5' ? 'checked' : '' }}
+                                                        {{ old('bekasRoda', $data->bekasRoda) == '1' ? 'checked' : '' }}
                                                         name="bekasRoda"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"

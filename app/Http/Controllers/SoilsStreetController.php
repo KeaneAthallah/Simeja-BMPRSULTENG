@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsphaltStreet;
 use App\Models\User;
+use App\Models\SoilsStreet;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class AsphaltStreetController extends Controller
+class SoilsStreetController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = AsphaltStreet::all();
-        return view("pages.jalanAspal.index", ["datas" => $data, 'title' => 'Jalan Aspal']);
+        return view("pages.jalanTanah.index", ["datas" => SoilsStreet::all(), 'title' => 'Jalan Tanah/Kerikil']);
     }
 
     /**
@@ -23,7 +22,7 @@ class AsphaltStreetController extends Controller
      */
     public function create()
     {
-        return view('pages.jalanAspal.create', ['title' => 'Tambah Jalan Aspal', 'users' => User::all()]);
+        return view('pages.jalanTanah.create', ['title' => 'Tambah Jalan Tanah/Kerikil', 'users' => User::all()]);
     }
 
     /**
@@ -31,6 +30,7 @@ class AsphaltStreetController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -44,18 +44,16 @@ class AsphaltStreetController extends Controller
             'kePatok' => 'required|string|max:255',
             'surveyor' => 'required|array|min:1',
             'surveyor.*' => 'integer',
-            'permukaanPerkerasan' => 'required|integer|in:1,2',
-            'kondisi' => 'required|integer|in:1,2,3,4,5',
+            'kemiringan' => 'required|integer|in:1,2',
             'penurunan' => 'required|integer|in:1,2,3,4,5',
-            'tambalan' => 'required|integer|in:1,2,3,4,5',
-            'jenis' => 'required|integer|in:1,2,3,4,5',
-            'lebar' => 'required|integer|min:1',
-            'luas' => 'required|integer|min:1',
+            'erosi' => 'required|integer|in:1,2,3,4,5',
+            'ukuranTerbanyak' => 'required|integer|min:1',
+            'tebalLapisan' => 'required|integer|min:1',
+            'distribusi' => 'required|integer|min:1',
             'jumlahLubang' => 'required|integer|in:1,2,3,4,5',
             'ukuranLubang' => 'required|integer|in:1,2,3,4,5',
             'bekasRoda' => 'required|integer|in:1,2,3,4,5',
-            'kerusakanTepiKiri' => 'required|integer|in:1,2,3,4,5',
-            'kerusakanTepiKanan' => 'required|integer|in:1,2,3,4,5',
+            'bergelombang' => 'required|integer|in:1,2,3,4,5',
             'kondisiBahuKiri' => 'required|integer|in:1,2,3,4,5',
             'kondisiBahuKanan' => 'required|integer|in:1,2,3,4,5',
             'permukaanBahuKiri' => 'required|integer|in:1,2,3,4,5',
@@ -89,27 +87,24 @@ class AsphaltStreetController extends Controller
             'surveyor.required' => 'Surveyor harus dipilih.',
             'surveyor.array' => 'Surveyor harus berupa array.',
             'surveyor.min' => 'Minimal satu surveyor harus dipilih.',
-            'permukaanPerkerasan.required' => 'Permukaan perkerasan harus diisi.',
-            'permukaanPerkerasan.integer' => 'Permukaan perkerasan harus berupa angka.',
-            'permukaanPerkerasan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
-            'kondisi.required' => 'Kondisi harus diisi.',
-            'kondisi.integer' => 'Kondisi harus berupa angka.',
-            'kondisi.in' => 'Kondisi harus salah satu dari: 1, 2, 3, 4, 5.',
+            'kemiringan.required' => 'Permukaan perkerasan harus diisi.',
+            'kemiringan.integer' => 'Permukaan perkerasan harus berupa angka.',
+            'kemiringan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
             'penurunan.required' => 'Penurunan harus diisi.',
             'penurunan.integer' => 'Penurunan harus berupa angka.',
             'penurunan.in' => 'Penurunan harus salah satu dari: 1, 2, 3, 4, 5.',
-            'tambalan.required' => 'Tambalan harus diisi.',
-            'tambalan.integer' => 'Tambalan harus berupa angka.',
-            'tambalan.in' => 'Tambalan harus salah satu dari: 1, 2, 3, 4, 5.',
-            'jenis.required' => 'Jenis harus diisi.',
-            'jenis.integer' => 'Jenis harus berupa angka.',
-            'jenis.in' => 'Jenis harus salah satu dari: 1, 2, 3, 4, 5.',
-            'lebar.required' => 'Lebar harus diisi.',
-            'lebar.integer' => 'Lebar harus berupa angka.',
-            'lebar.min' => 'Lebar harus lebih dari 0.',
-            'luas.required' => 'Luas harus diisi.',
-            'luas.integer' => 'Luas harus berupa angka.',
-            'luas.min' => 'Luas harus lebih dari 0.',
+            'erosi.required' => 'erosi harus diisi.',
+            'erosi.integer' => 'erosi harus berupa angka.',
+            'erosi.in' => 'erosi harus salah satu dari: 1, 2, 3, 4, 5.',
+            'ukuranTerbanyak.required' => 'Ukuran Terbanyak harus diisi.',
+            'ukuranTerbanyak.integer' => 'Ukuran Terbanyak harus berupa angka.',
+            'ukuranTerbanyak.in' => 'Ukuran Terbanyak harus salah satu dari: 1, 2, 3, 4, 5.',
+            'tebalLapisan.required' => 'tebal Lapisan harus diisi.',
+            'tebalLapisan.integer' => 'tebal Lapisan harus berupa angka.',
+            'tebalLapisan.min' => 'tebal Lapisan harus lebih dari 0.',
+            'distribusi.required' => 'distribusi harus diisi.',
+            'distribusi.integer' => 'distribusi harus berupa angka.',
+            'distribusi.min' => 'distribusi harus lebih dari 0.',
             'jumlahLubang.required' => 'Jumlah lubang harus diisi.',
             'jumlahLubang.integer' => 'Jumlah lubang harus berupa angka.',
             'jumlahLubang.in' => 'Jumlah lubang harus salah satu dari: 1, 2, 3, 4, 5.',
@@ -119,12 +114,9 @@ class AsphaltStreetController extends Controller
             'bekasRoda.required' => 'Bekas roda harus diisi.',
             'bekasRoda.integer' => 'Bekas roda harus berupa angka.',
             'bekasRoda.in' => 'Bekas roda harus salah satu dari: 1, 2, 3, 4, 5.',
-            'kerusakanTepiKiri.required' => 'Kerusakan tepi kiri harus diisi.',
-            'kerusakanTepiKiri.integer' => 'Kerusakan tepi kiri harus berupa angka.',
-            'kerusakanTepiKiri.in' => 'Kerusakan tepi kiri harus salah satu dari: 1, 2, 3, 4, 5.',
-            'kerusakanTepiKanan.required' => 'Kerusakan tepi kanan harus diisi.',
-            'kerusakanTepiKanan.integer' => 'Kerusakan tepi kanan harus berupa angka.',
-            'kerusakanTepiKanan.in' => 'Kerusakan tepi kanan harus salah satu dari: 1, 2, 3, 4, 5.',
+            'bergelombang.required' => 'Bergelombang harus diisi.',
+            'bergelombang.integer' => 'Bergelombang harus berupa angka.',
+            'bergelombang.in' => 'Bergelombang harus salah satu dari: 1, 2, 3, 4, 5.',
             'kondisiBahuKiri.required' => 'Kondisi bahu kiri harus diisi.',
             'kondisiBahuKiri.integer' => 'Kondisi bahu kiri harus berupa angka.',
             'kondisiBahuKiri.in' => 'Kondisi bahu kiri harus salah satu dari: 1, 2, 3, 4, 5.',
@@ -157,38 +149,37 @@ class AsphaltStreetController extends Controller
             'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
         ]);
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
-        AsphaltStreet::create($validatedData);
-
-        return redirect()->route('jalanAspal.index');
+        SoilsStreet::create($validatedData);
+        return redirect(route("jalanTanah.index"));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(AsphaltStreet $asphaltStreet)
+    public function show(SoilsStreet $soilsStreet)
     {
-        $pdf = Pdf::loadView('pages.jalanAspal.show', ['data' => $asphaltStreet, 'title' => 'Detail Jalan Aspal', 'users' => User::all()]);
-        return $pdf->stream('DetailJalanAspal.pdf');
+        $pdf = Pdf::loadView('pages.jalanTanah.show', ['data' => $soilsStreet, 'title' => 'Detail Jalan Aspal', 'users' => User::all()]);
+        return $pdf->stream('DetailJalanTanah-Kerikil.pdf');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AsphaltStreet $asphaltStreet)
+    public function edit(SoilsStreet $soilsStreet)
     {
-        // Display the names
-        return view('pages.jalanAspal.edit', [
-            'title' => 'Edit Jalan Aspal',
+        return view('pages.jalanTanah.edit', [
+            'title' => 'Edit Jalan Tanah/Kerikil',
             'users' => User::all(),
-            'data' => $asphaltStreet,
+            'data' => $soilsStreet,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AsphaltStreet $asphaltStreet)
+    public function update(Request $request, SoilsStreet $soilsStreet)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -202,18 +193,16 @@ class AsphaltStreetController extends Controller
             'kePatok' => 'required|string|max:255',
             'surveyor' => 'required|array|min:1',
             'surveyor.*' => 'integer',
-            'permukaanPerkerasan' => 'required|integer|in:1,2',
-            'kondisi' => 'required|integer|in:1,2,3,4,5',
+            'kemiringan' => 'required|integer|in:1,2',
             'penurunan' => 'required|integer|in:1,2,3,4,5',
-            'tambalan' => 'required|integer|in:1,2,3,4,5',
-            'jenis' => 'required|integer|in:1,2,3,4,5',
-            'lebar' => 'required|integer|min:1',
-            'luas' => 'required|integer|min:1',
+            'erosi' => 'required|integer|in:1,2,3,4,5',
+            'ukuranTerbanyak' => 'required|integer|min:1',
+            'tebalLapisan' => 'required|integer|min:1',
+            'distribusi' => 'required|integer|min:1',
             'jumlahLubang' => 'required|integer|in:1,2,3,4,5',
             'ukuranLubang' => 'required|integer|in:1,2,3,4,5',
             'bekasRoda' => 'required|integer|in:1,2,3,4,5',
-            'kerusakanTepiKiri' => 'required|integer|in:1,2,3,4,5',
-            'kerusakanTepiKanan' => 'required|integer|in:1,2,3,4,5',
+            'bergelombang' => 'required|integer|in:1,2,3,4,5',
             'kondisiBahuKiri' => 'required|integer|in:1,2,3,4,5',
             'kondisiBahuKanan' => 'required|integer|in:1,2,3,4,5',
             'permukaanBahuKiri' => 'required|integer|in:1,2,3,4,5',
@@ -247,27 +236,24 @@ class AsphaltStreetController extends Controller
             'surveyor.required' => 'Surveyor harus dipilih.',
             'surveyor.array' => 'Surveyor harus berupa array.',
             'surveyor.min' => 'Minimal satu surveyor harus dipilih.',
-            'permukaanPerkerasan.required' => 'Permukaan perkerasan harus diisi.',
-            'permukaanPerkerasan.integer' => 'Permukaan perkerasan harus berupa angka.',
-            'permukaanPerkerasan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
-            'kondisi.required' => 'Kondisi harus diisi.',
-            'kondisi.integer' => 'Kondisi harus berupa angka.',
-            'kondisi.in' => 'Kondisi harus salah satu dari: 1, 2, 3, 4, 5.',
+            'kemiringan.required' => 'Permukaan perkerasan harus diisi.',
+            'kemiringan.integer' => 'Permukaan perkerasan harus berupa angka.',
+            'kemiringan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
             'penurunan.required' => 'Penurunan harus diisi.',
             'penurunan.integer' => 'Penurunan harus berupa angka.',
             'penurunan.in' => 'Penurunan harus salah satu dari: 1, 2, 3, 4, 5.',
-            'tambalan.required' => 'Tambalan harus diisi.',
-            'tambalan.integer' => 'Tambalan harus berupa angka.',
-            'tambalan.in' => 'Tambalan harus salah satu dari: 1, 2, 3, 4, 5.',
-            'jenis.required' => 'Jenis harus diisi.',
-            'jenis.integer' => 'Jenis harus berupa angka.',
-            'jenis.in' => 'Jenis harus salah satu dari: 1, 2, 3, 4, 5.',
-            'lebar.required' => 'Lebar harus diisi.',
-            'lebar.integer' => 'Lebar harus berupa angka.',
-            'lebar.min' => 'Lebar harus lebih dari 0.',
-            'luas.required' => 'Luas harus diisi.',
-            'luas.integer' => 'Luas harus berupa angka.',
-            'luas.min' => 'Luas harus lebih dari 0.',
+            'erosi.required' => 'erosi harus diisi.',
+            'erosi.integer' => 'erosi harus berupa angka.',
+            'erosi.in' => 'erosi harus salah satu dari: 1, 2, 3, 4, 5.',
+            'ukuranTerbanyak.required' => 'Ukuran Terbanyak harus diisi.',
+            'ukuranTerbanyak.integer' => 'Ukuran Terbanyak harus berupa angka.',
+            'ukuranTerbanyak.in' => 'Ukuran Terbanyak harus salah satu dari: 1, 2, 3, 4, 5.',
+            'tebalLapisan.required' => 'tebal Lapisan harus diisi.',
+            'tebalLapisan.integer' => 'tebal Lapisan harus berupa angka.',
+            'tebalLapisan.min' => 'tebal Lapisan harus lebih dari 0.',
+            'distribusi.required' => 'distribusi harus diisi.',
+            'distribusi.integer' => 'distribusi harus berupa angka.',
+            'distribusi.min' => 'distribusi harus lebih dari 0.',
             'jumlahLubang.required' => 'Jumlah lubang harus diisi.',
             'jumlahLubang.integer' => 'Jumlah lubang harus berupa angka.',
             'jumlahLubang.in' => 'Jumlah lubang harus salah satu dari: 1, 2, 3, 4, 5.',
@@ -277,12 +263,9 @@ class AsphaltStreetController extends Controller
             'bekasRoda.required' => 'Bekas roda harus diisi.',
             'bekasRoda.integer' => 'Bekas roda harus berupa angka.',
             'bekasRoda.in' => 'Bekas roda harus salah satu dari: 1, 2, 3, 4, 5.',
-            'kerusakanTepiKiri.required' => 'Kerusakan tepi kiri harus diisi.',
-            'kerusakanTepiKiri.integer' => 'Kerusakan tepi kiri harus berupa angka.',
-            'kerusakanTepiKiri.in' => 'Kerusakan tepi kiri harus salah satu dari: 1, 2, 3, 4, 5.',
-            'kerusakanTepiKanan.required' => 'Kerusakan tepi kanan harus diisi.',
-            'kerusakanTepiKanan.integer' => 'Kerusakan tepi kanan harus berupa angka.',
-            'kerusakanTepiKanan.in' => 'Kerusakan tepi kanan harus salah satu dari: 1, 2, 3, 4, 5.',
+            'bergelombang.required' => 'Bergelombang harus diisi.',
+            'bergelombang.integer' => 'Bergelombang harus berupa angka.',
+            'bergelombang.in' => 'Bergelombang harus salah satu dari: 1, 2, 3, 4, 5.',
             'kondisiBahuKiri.required' => 'Kondisi bahu kiri harus diisi.',
             'kondisiBahuKiri.integer' => 'Kondisi bahu kiri harus berupa angka.',
             'kondisiBahuKiri.in' => 'Kondisi bahu kiri harus salah satu dari: 1, 2, 3, 4, 5.',
@@ -315,14 +298,14 @@ class AsphaltStreetController extends Controller
             'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
         ]);
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
-        $asphaltStreet->update($validatedData);
-        return redirect()->route('jalanAspal.edit');
+        $soilsStreet->update($validatedData);
+        return redirect()->route('jalanTanah.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AsphaltStreet $asphaltStreet)
+    public function destroy(SoilsStreet $soilsStreet)
     {
         //
     }

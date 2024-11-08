@@ -13,7 +13,7 @@
              <a href="{{ route('penanganan.index') }}"
                  class="{{ request()->routeIs('penanganan.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">Penanganan</a>
              <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown"
-                 class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspal.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
+                 class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspal.index') || request()->routeIs('jalanTanah.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
                  type="button">Data Survey <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,7 +39,7 @@
                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                  aria-labelledby="doubleDropdownButton">
                                  <li>
-                                     <a href="#"
+                                     <a href="{{ route('inventarisJalan.index') }}"
                                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventarisasi
                                          jaringan</a>
                                  </li>
@@ -48,7 +48,7 @@
                                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Aspal</a>
                                  </li>
                                  <li>
-                                     <a href="#"
+                                     <a href="{{ route('jalanTanah.index') }}"
                                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tanah/Kerikil</a>
                                  </li>
                              </ul>
