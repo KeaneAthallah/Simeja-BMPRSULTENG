@@ -14,7 +14,12 @@ class SoilsStreetController extends Controller
      */
     public function index()
     {
-        return view("pages.jalanTanah.index", ["datas" => SoilsStreet::all(), 'title' => 'Jalan Tanah/Kerikil']);
+        if(auth()->user()->role == "admin") {
+            return view("pages.jalanTanah.index", ["datas" => SoilsStreet::all(), 'title' => 'Jalan Tanah/Kerikil']);
+        } else {
+            return view('401');
+        }
+       
     }
 
     /**
@@ -22,7 +27,12 @@ class SoilsStreetController extends Controller
      */
     public function create()
     {
-        return view('pages.jalanTanah.create', ['title' => 'Tambah Jalan Tanah/Kerikil', 'users' => User::all()]);
+        if(auth()->user()->role == 'admin') {
+            return view('pages.jalanTanah.create', ['title' => 'Tambah Jalan Tanah/Kerikil', 'users' => User::all()]);
+        } else {
+            return view('401');
+        }
+       
     }
 
     /**
@@ -30,7 +40,7 @@ class SoilsStreetController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        if(auth()->user()->role == 'admin') {
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -151,6 +161,9 @@ class SoilsStreetController extends Controller
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
         SoilsStreet::create($validatedData);
         return redirect(route("jalanTanah.index"));
+    } else {
+        return view('401');
+    }
     }
 
     /**
@@ -167,11 +180,17 @@ class SoilsStreetController extends Controller
      */
     public function edit(SoilsStreet $soilsStreet)
     {
-        return view('pages.jalanTanah.edit', [
-            'title' => 'Edit Jalan Tanah/Kerikil',
-            'users' => User::all(),
-            'data' => $soilsStreet,
-        ]);
+        if(auth()->user()->role == 'admin') {
+            return view('pages.jalanTanah.edit', [
+                'title' => 'Edit Jalan Tanah/Kerikil',
+                'users' => User::all(),
+                'data' => $soilsStreet,
+            ]);
+        }
+        else {
+            return view('401');
+        }
+       
     }
 
     /**
@@ -179,7 +198,7 @@ class SoilsStreetController extends Controller
      */
     public function update(Request $request, SoilsStreet $soilsStreet)
     {
-        // dd($request->all());
+        if(auth()->user()->role == 'admin') {
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -300,6 +319,10 @@ class SoilsStreetController extends Controller
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
         $soilsStreet->update($validatedData);
         return redirect()->route('jalanTanah.index');
+    }
+    else {
+        return view('401');
+    }
     }
 
     /**

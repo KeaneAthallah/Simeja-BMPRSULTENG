@@ -14,8 +14,12 @@ class AsphaltStreetController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->role == "admin") {
         $data = AsphaltStreet::all();
         return view("pages.jalanAspal.index", ["datas" => $data, 'title' => 'Jalan Aspal']);
+        } else {
+            return view('401');
+        }
     }
 
     /**
@@ -23,7 +27,11 @@ class AsphaltStreetController extends Controller
      */
     public function create()
     {
-        return view('pages.jalanAspal.create', ['title' => 'Tambah Jalan Aspal', 'users' => User::all()]);
+        if(auth()->user()->role == 'admin') {
+            return view('pages.jalanAspal.create', ['title' => 'Buyer Jalan Aspal', 'users' => User::all()]);
+        } else {
+            return view('401');
+        }
     }
 
     /**
@@ -31,6 +39,7 @@ class AsphaltStreetController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->role == 'admin') {
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -158,8 +167,10 @@ class AsphaltStreetController extends Controller
         ]);
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
         AsphaltStreet::create($validatedData);
-
-        return redirect()->route('jalanAspal.index');
+        return redirect()->route('jalanAspal.index');}
+        else {
+            return view('401');
+        }
     }
 
     /**
@@ -176,12 +187,15 @@ class AsphaltStreetController extends Controller
      */
     public function edit(AsphaltStreet $asphaltStreet)
     {
+        if(auth()->user()->role == 'admin') {
         // Display the names
         return view('pages.jalanAspal.edit', [
             'title' => 'Edit Jalan Aspal',
             'users' => User::all(),
             'data' => $asphaltStreet,
-        ]);
+        ]);} else {
+            return view('401');
+        }
     }
 
     /**
@@ -189,6 +203,7 @@ class AsphaltStreetController extends Controller
      */
     public function update(Request $request, AsphaltStreet $asphaltStreet)
     {
+        if(auth()->user()->role == 'admin') {
         $validatedData = $request->validate([
             '_token' => 'required|string',
             'noProvinsi' => 'required|numeric',
@@ -317,6 +332,9 @@ class AsphaltStreetController extends Controller
         $validatedData['surveyor'] = implode(',', $validatedData['surveyor']);
         $asphaltStreet->update($validatedData);
         return redirect()->route('jalanAspal.edit');
+    } else {
+        return view('401');
+    }
     }
 
     /**

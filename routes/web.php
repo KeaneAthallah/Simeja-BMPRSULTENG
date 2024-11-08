@@ -7,7 +7,6 @@ use App\Http\Controllers\WebgisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\HandlingController;
-use App\Http\Controllers\SurveyDataController;
 use App\Http\Controllers\SoilsStreetController;
 use App\Http\Controllers\AsphaltStreetController;
 use App\Http\Controllers\RoadInventoryController;
@@ -24,7 +23,6 @@ Route::get('/dashboard', function () {
         'completedComplains' => Complain::where('status', '=', 'Completed')->count()
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

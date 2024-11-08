@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'nip' => '11111111111',
             'email' => 'admin@test.com',
+            'role' => 'admin',
             'password' => bcrypt('password'),
         ]);
         User::create([
@@ -70,40 +71,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Lasoso, No. 123',
             'aspirasi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'status' => 'Completed'
-        ]);
-        AsphaltStreet::create([
-            'noProvinsi' => '72',
-            'namaProvinsi' => 'SULAWESI TENGAH',
-            'kabupaten' => 'SIGI',
-            'dariPatok' => '0+000',
-            'kePatok' => '0+100',
-            'noRuas' => '01423',
-            'namaRuas' => 'SP. KULAWI - GIMPU',
-            'fungsi' => 'KP-2',
-            'date' => '2023-08-18',
-            'surveyor' => '1,2',
-            'permukaanPerkerasan' => '2',
-            'kondisi' => '4',
-            'penurunan' => '4',
-            'tambalan' => '1',
-            'jenis' => '4',
-            'lebar' => '3',
-            'luas' => '4',
-            'jumlahLubang' => '4',
-            'ukuranLubang' => '4,5',
-            'bekasRoda' => '1',
-            'kerusakanTepiKiri' => '3',
-            'kerusakanTepiKanan' => '3',
-            'kondisiBahuKiri' => '3',
-            'kondisiBahuKanan' => '3',
-            'permukaanBahuKiri' => '3',
-            'permukaanBahuKanan' => '3',
-            'kondisiSaluranKiri' => '3',
-            'kondisiSaluranKanan' => '3',
-            'kerusakanLerengKiri' => '3',
-            'kerusakanLerengKanan' => '3',
-            'trotoarKiri' => '3',
-            'trotoarKanan' => '3',
         ]);
     }
 }
