@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('road_inventories', function (Blueprint $table) {
             $table->id();
-            $table->string('Provinsi');
-            $table->string('Kabupaten');
+            $table->string('namaProvinsi');
+            $table->string('kabupaten');
             $table->string('noProvinsi');
-            $table->string('referensi');
+            $table->string('DRP')->nullable();
+            $table->string('LRP')->nullable();
+            $table->string('CHN')->nullable();
             $table->string('noRuas');
             $table->string('namaRuas');
             $table->string('dariPatokKm');
             $table->string('kePatokKm');
-            $table->string('user_id');
+            $table->string('surveyor');
             $table->string('date');
             $table->timestamps();
         });

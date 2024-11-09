@@ -7,7 +7,7 @@
                 <!--Title-->
                 <h1
                     class="flex items-center font-sans font-bold break-normal text-nord0 dark:text-nord6 px-2 py-2 text-xl md:text-2xl">
-                    FORMULIR SURVEI KONDISI JALAN ASPAL PER-100 METER
+                    FORMULIR SURVEI KONDISI JALAN TANAH/KERIKIL PER-100 METER
                 </h1>
                 @if ($errors->any())
                     <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -31,20 +31,20 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <form action="{{ route('dataJalanAspal.update', $data->id) }}" method="POST">
+                    <form action="{{ route('dataJalanTanah.update', $data->id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <label for="asphalt_street_id"
+                                <label for="soils_street_id"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Survey Jalan
-                                    Aspal</label>
-                                <select id="asphalt_street_id" name="asphalt_street_id"
+                                    Tanah / Kerikil</label>
+                                <select id="soils_street_id" name="soils_street_id"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" disabled selected>Pilih Jalan Aspal</option>
-                                    @foreach ($jalanAspals as $street)
+                                    <option value="" disabled selected>Pilih Jalan Tanah / Kerikil</option>
+                                    @foreach ($jalanTanahs as $street)
                                         <option value="{{ $street->id }}"
-                                            {{ old('asphalt_street_id', $data->asphalt_street_id) == $street->id ? 'selected' : '' }}>
+                                            {{ old('soils_street_id', $data->soils_street_id) == $street->id ? 'selected' : '' }}>
                                             {{ $street->noRuas }} - {{ $street->namaRuas }} - ({{ $street->dariPatok }}
                                             -
                                             {{ $street->kePatok }})
@@ -63,85 +63,53 @@
                                         class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
                                         <h3
                                             class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            Permukaan Perkerasan</h3>
+                                            Kemiringan Melintang</h3>
                                         <ul
                                             class=" w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="baik/rapat" type="radio" value="1"
-                                                        {{ old('permukaanPerkerasan', $data->permukaanPerkerasan) == '1' ? 'checked' : '' }}
-                                                        name="permukaanPerkerasan"
+                                                        {{ old('kemiringan', $data->kemiringan) == '1' ? 'checked' : '' }}
+                                                        name="kemiringan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="baik/rapat"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Baik/Rapat</label>
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
+                                                        5%</label>
                                                 </div>
                                             </li>
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="rusakPengkerasan" type="radio" value="2"
-                                                        {{ old('permukaanPerkerasan', $data->permukaanPerkerasan) == '2' ? 'checked' : '' }}
-                                                        name="permukaanPerkerasan"
+                                                        {{ old('kemiringan', $data->kemiringan) == '2' ? 'checked' : '' }}
+                                                        name="kemiringan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="rusakPengkerasan"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kasar</label>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div
-                                        class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
-                                        <h3
-                                            class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            Kondisi/Keadaan</h3>
-                                        <ul
-                                            class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="baik2" type="radio" value="1"
-                                                        {{ old('kondisi', $data->kondisi) == '1' ? 'checked' : '' }}
-                                                        name="kondisi"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="baik2"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Baik/tidak
-                                                        ada kelainan</label>
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">3
+                                                        - 5%</label>
                                                 </div>
                                             </li>
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
-                                                    <input id="react-checkbox" type="radio" value="2"
-                                                        {{ old('kondisi', $data->kondisi) == '2' ? 'checked' : '' }}
-                                                        name="kondisi"
+                                                    <input id="rusakPengkerasan" type="radio" value="3"
+                                                        {{ old('kemiringan', $data->kemiringan) == '3' ? 'checked' : '' }}
+                                                        name="kemiringan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="react-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Aspal
-                                                        Berlebihan</label>
+                                                    <label for="rusakPengkerasan"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rata</label>
                                                 </div>
                                             </li>
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
-                                                    <input id="angular-checkbox" type="radio" value="3"
-                                                        {{ old('kondisi', $data->kondisi) == '3' ? 'checked' : '' }}
-                                                        name="kondisi"
+                                                    <input id="rusakPengkerasan" type="radio" value="4"
+                                                        {{ old('kemiringan', $data->kemiringan) == '4' ? 'checked' : '' }}
+                                                        name="kemiringan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="angular-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lepas-lepas</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="laravel-checkbox" type="radio" value="4"
-                                                        {{ old('kondisi', $data->kondisi) == '4' ? 'checked' : '' }}
-                                                        name="kondisi"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="laravel-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hancur</label>
+                                                    <label for="rusakPengkerasan"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cekung</label>
                                                 </div>
                                             </li>
                                         </ul>
@@ -207,15 +175,16 @@
                                         class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
                                         <h3
                                             class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            % Tambalan</h3>
+                                            Erosi Permukaan
+                                        </h3>
                                         <ul
                                             class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('tambalan', $data->tambalan) == '1' ? 'checked' : '' }}
-                                                        name="tambalan"
+                                                        {{ old('erosi', $data->erosi) == '1' ? 'checked' : '' }}
+                                                        name="erosi"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
@@ -226,8 +195,8 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="react-checkbox" type="radio" value="2"
-                                                        {{ old('tambalan', $data->tambalan) == '2' ? 'checked' : '' }}
-                                                        name="tambalan"
+                                                        {{ old('erosi', $data->erosi) == '2' ? 'checked' : '' }}
+                                                        name="erosi"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="react-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -238,8 +207,8 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="angular-checkbox" type="radio" value="3"
-                                                        {{ old('tambalan', $data->tambalan) == '3' ? 'checked' : '' }}
-                                                        name="tambalan"
+                                                        {{ old('erosi', $data->erosi) == '3' ? 'checked' : '' }}
+                                                        name="erosi"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="angular-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10
@@ -250,8 +219,8 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="laravel-checkbox" type="radio" value="4"
-                                                        {{ old('tambalan', $data->tambalan) == '4' ? 'checked' : '' }}
-                                                        name="tambalan"
+                                                        {{ old('erosi', $data->erosi) == '4' ? 'checked' : '' }}
+                                                        name="erosi"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="laravel-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
@@ -265,21 +234,21 @@
                             <div class="border border-black dark:border-white rounded-md p-6">
                                 <h2
                                     class="text-lg  h-16 content-center font-semibold text-center mb-6 text-gray-900 dark:text-white border-b border-black dark:border-white">
-                                    Retak-retak</h2>
+                                    Kerikil / Batu</h2>
                                 <div class="grid gap-6 mb-6 md:grid-cols-1">
                                     <div
                                         class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
                                         <h3
                                             class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            Jenis</h3>
+                                            Ukuran Terbanyak</h3>
                                         <ul
                                             class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('jenis', $data->jenis) == '1' ? 'checked' : '' }}
-                                                        name="jenis"
+                                                        {{ old('ukuranTerbanyak', $data->ukuranTerbanyak) == '1' ? 'checked' : '' }}
+                                                        name="ukuranTerbanyak"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
@@ -290,150 +259,174 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="react-checkbox" type="radio" value="2"
-                                                        {{ old('jenis', $data->jenis) == '2' ? 'checked' : '' }}
-                                                        name="jenis"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="react-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
-                                                        berhubungan</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="angular-checkbox" type="radio" value="3"
-                                                        {{ old('jenis', $data->jenis) == '3' ? 'checked' : '' }}
-                                                        name="jenis"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="angular-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Saling
-                                                        berhubungan (Bidang luas)</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="laravel-checkbox" type="radio" value="4"
-                                                        {{ old('jenis', $data->jenis) == '4' ? 'checked' : '' }}
-                                                        name="jenis"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="laravel-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Saling
-                                                        Berhubungan (Bidang sempit)</label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div
-                                        class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
-                                        <h3
-                                            class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            Lebar</h3>
-                                        <ul
-                                            class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="vue-checkbox" type="radio" value="1"
-                                                        name="lebar"
-                                                        {{ old('lebar', $data->lebar) == '1' ? 'checked' : '' }}
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="vue-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
-                                                        ada</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="react-checkbox" type="radio" value="2"
-                                                        {{ old('lebar', $data->lebar) == '2' ? 'checked' : '' }}
-                                                        name="lebar"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="react-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Halus
-                                                        < 1 mm</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="angular-checkbox" type="radio" value="3"
-                                                        {{ old('lebar', $data->lebar) == '3' ? 'checked' : '' }}
-                                                        name="lebar"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="angular-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sedang
-                                                        1-5 mm</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="laravel-checkbox" type="radio" value="4"
-                                                        {{ old('lebar', $data->lebar) == '4' ? 'checked' : '' }}
-                                                        name="lebar"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="laravel-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lebar
-                                                        > 5 mm</label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div
-                                        class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
-                                        <h3
-                                            class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            % Luas</h3>
-                                        <ul
-                                            class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('luas', $data->luas) == '1' ? 'checked' : '' }}
-                                                        name="luas"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="vue-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
-                                                        ada</label>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center ps-3">
-                                                    <input id="react-checkbox" type="radio" value="2"
-                                                        {{ old('luas', $data->luas) == '2' ? 'checked' : '' }}
-                                                        name="luas"
+                                                        {{ old('ukuranTerbanyak', $data->ukuranTerbanyak) == '2' ? 'checked' : '' }}
+                                                        name="ukuranTerbanyak"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="react-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                        < 10% luas</label>
+                                                        < 1 cm</label>
                                                 </div>
                                             </li>
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="angular-checkbox" type="radio" value="3"
-                                                        {{ old('luas', $data->luas) == '3' ? 'checked' : '' }}
-                                                        name="luas"
+                                                        {{ old('ukuranTerbanyak', $data->ukuranTerbanyak) == '3' ? 'checked' : '' }}
+                                                        name="ukuranTerbanyak"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="angular-checkbox"
-                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10
-                                                        - 30% luas</label>
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">1
+                                                        - 5 cm</label>
                                                 </div>
                                             </li>
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="laravel-checkbox" type="radio" value="4"
-                                                        {{ old('luas', $data->luas) == '4' ? 'checked' : '' }}
-                                                        name="luas"
+                                                        {{ old('ukuranTerbanyak', $data->ukuranTerbanyak) == '4' ? 'checked' : '' }}
+                                                        name="ukuranTerbanyak"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="laravel-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
-                                                        30% luas</label>
+                                                        5 cm</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="laravel-checkbox" type="radio" value="5"
+                                                        {{ old('ukuranTerbanyak', $data->ukuranTerbanyak) == '5' ? 'checked' : '' }}
+                                                        name="ukuranTerbanyak"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="laravel-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
+                                                        Tentu</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div
+                                        class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
+                                        <h3
+                                            class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
+                                            Tebal Lapisan</h3>
+                                        <ul
+                                            class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="vue-checkbox" type="radio" value="1"
+                                                        name="tebalLapisan"
+                                                        {{ old('tebalLapisan', $data->tebalLapisan) == '1' ? 'checked' : '' }}
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="vue-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
+                                                        ada</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="react-checkbox" type="radio" value="2"
+                                                        {{ old('tebalLapisan', $data->tebalLapisan) == '2' ? 'checked' : '' }}
+                                                        name="tebalLapisan"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="react-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        < 5 cm</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="angular-checkbox" type="radio" value="3"
+                                                        {{ old('tebalLapisan', $data->tebalLapisan) == '3' ? 'checked' : '' }}
+                                                        name="tebalLapisan"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="angular-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">5
+                                                        - 10 cm</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="laravel-checkbox" type="radio" value="4"
+                                                        {{ old('tebalLapisan', $data->tebalLapisan) == '4' ? 'checked' : '' }}
+                                                        name="tebalLapisan"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="laravel-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10
+                                                        - 20 cm</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="laravel-checkbox" type="radio" value="5"
+                                                        {{ old('tebalLapisan', $data->tebalLapisan) == '5' ? 'checked' : '' }}
+                                                        name="tebalLapisan"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="laravel-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
+                                                        20 cm</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div
+                                        class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
+                                        <h3
+                                            class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
+                                            Distribusi</h3>
+                                        <ul
+                                            class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="vue-checkbox" type="radio" value="1"
+                                                        {{ old('distribusi', $data->distribusi) == '1' ? 'checked' : '' }}
+                                                        name="distribusi"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="vue-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
+                                                        ada</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="react-checkbox" type="radio" value="2"
+                                                        {{ old('distribusi', $data->distribusi) == '2' ? 'checked' : '' }}
+                                                        name="distribusi"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="react-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        Rata</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="angular-checkbox" type="radio" value="3"
+                                                        {{ old('distribusi', $data->distribusi) == '3' ? 'checked' : '' }}
+                                                        name="distribusi"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="angular-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
+                                                        rata</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="laravel-checkbox" type="radio" value="4"
+                                                        {{ old('distribusi', $data->distribusi) == '4' ? 'checked' : '' }}
+                                                        name="distribusi"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="laravel-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gundukan
+                                                        memanjang</label>
                                                 </div>
                                             </li>
                                         </ul>
@@ -599,7 +592,7 @@
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="react-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                        < 5cm dalam</label>
+                                                        < 5 cm dalam</label>
                                                 </div>
                                             </li>
                                             <li
@@ -612,7 +605,7 @@
                                                     <label for="angular-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">5
                                                         -
-                                                        15cm dalam</label>
+                                                        15 cm dalam</label>
                                                 </div>
                                             </li>
                                             <li
@@ -624,7 +617,7 @@
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="laravel-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
-                                                        15cm dalam</label>
+                                                        15 cm dalam</label>
                                                 </div>
                                             </li>
                                         </ul>
@@ -633,52 +626,56 @@
                                         class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
                                         <h3
                                             class="mb-4 font-semibold text-gray-900 dark:text-white border-b border-black dark:border-white w-full text-center">
-                                            KR | Kerusakan tepi | KN
-                                        </h3>
+                                            Bergelombaang</h3>
                                         <ul
                                             class="w-full h-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                             <li
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                                <div class="flex items-center justify-between px-3">
-                                                    <input id="vue-checkbox-left" type="radio" value="1"
-                                                        {{ old('kerusakanTepiKiri', $data->kerusakanTepiKiri) == '1' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKiri"
+                                                <div class="flex items-center ps-3">
+                                                    <input id="vue-checkbox" type="radio" value="1"
+                                                        {{ old('bergelombang', $data->bergelombang) == '1' ? 'checked' : '' }}
+                                                        name="bergelombang"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="vue-checkbox-left"
-                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
+                                                    <label for="vue-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak
                                                         ada</label>
-                                                    <input id="vue-checkbox-right" type="radio" value="1"
-                                                        {{ old('kerusakanTepiKanan', $data->kerusakanTepiKanan) == '1' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKanan"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 </div>
                                             </li>
-                                            <li class="w-full border-b border-gray-200 dark:border-gray-600">
-                                                <div class="flex items-center justify-between px-3">
-                                                    <input id="react-checkbox-left" type="radio" value="2"
-                                                        {{ old('kerusakanTepiKiri', $data->kerusakanTepiKiri) == '2' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKiri"
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="react-checkbox" type="radio" value="2"
+                                                        {{ old('bergelombang', $data->bergelombang) == '2' ? 'checked' : '' }}
+                                                        name="bergelombang"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="react-checkbox-left"
-                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Ringan</label>
-                                                    <input id="react-checkbox-right" type="radio" value="2"
-                                                        {{ old('kerusakanTepiKanan', $data->kerusakanTepiKanan) == '2' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKanan"
-                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="react-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        < 10% luas</label>
                                                 </div>
                                             </li>
-                                            <li class="w-full border-b border-gray-200 dark:border-gray-600">
-                                                <div class="flex items-center justify-between px-3">
-                                                    <input id="angular-checkbox-left" type="radio" value="3"
-                                                        {{ old('kerusakanTepiKiri', $data->kerusakanTepiKiri) == '3' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKiri"
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="angular-checkbox" type="radio" value="3"
+                                                        {{ old('bergelombang', $data->bergelombang) == '3' ? 'checked' : '' }}
+                                                        name="bergelombang"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                                    <label for="angular-checkbox-left"
-                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Berat</label>
-                                                    <input id="angular-checkbox-right" type="radio" value="3"
-                                                        {{ old('kerusakanTepiKanan', $data->kerusakanTepiKanan) == '3' ? 'checked' : '' }}
-                                                        name="kerusakanTepiKanan"
+                                                    <label for="angular-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">10
+                                                        -
+                                                        30% luas</label>
+                                                </div>
+                                            </li>
+                                            <li
+                                                class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                <div class="flex items-center ps-3">
+                                                    <input id="laravel-checkbox" type="radio" value="4"
+                                                        {{ old('bergelombang', $data->bergelombang) == '4' ? 'checked' : '' }}
+                                                        name="bergelombang"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    <label for="laravel-checkbox"
+                                                        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">>
+                                                        30% luas</label>
                                                 </div>
                                             </li>
                                         </ul>

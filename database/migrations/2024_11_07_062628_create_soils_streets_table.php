@@ -23,26 +23,6 @@ return new class extends Migration
             $table->string('fungsi');
             $table->string('date');
             $table->string('surveyor');
-            $table->string('kemiringan');
-            $table->string('penurunan');
-            $table->string('erosi');
-            $table->string('ukuranTerbanyak');
-            $table->string('tebalLapisan');
-            $table->string('distribusi');
-            $table->string('jumlahLubang');
-            $table->string('ukuranLubang');
-            $table->string('bekasRoda');
-            $table->string('bergelombang');
-            $table->string('kondisiBahuKiri');
-            $table->string('kondisiBahuKanan');
-            $table->string('permukaanBahuKiri');
-            $table->string('permukaanBahuKanan');
-            $table->string('kondisiSaluranKiri');
-            $table->string('kondisiSaluranKanan');
-            $table->string('kerusakanLerengKiri');
-            $table->string('kerusakanLerengKanan');
-            $table->string('trotoarKiri');
-            $table->string('trotoarKanan');
             $table->timestamps();
         });
     }

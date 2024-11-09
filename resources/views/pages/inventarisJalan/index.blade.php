@@ -14,7 +14,7 @@
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
                     <button
                         class="text-nord0 bg-nord7 border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-nord7  dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
-                        <a href="{{ route('jalanTanah.create') }}">Tambah</a>
+                        <a href="{{ route('inventarisJalan.create') }}">Tambah</a>
                     </button>
                     <table id="export-table">
                         <thead>
@@ -80,15 +80,25 @@
                                     <td>{{ $data->namaRuas }}</td>
                                     <td>{{ $data->dariPatok }} - {{ $data->kePatok }}</td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
-                                    <td>
+                                    <td class="flex space-x-2">
                                         <button
-                                            class="focus:outline-none text-white bg-nord8 hover:bg-nord8 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-nord8 dark:hover:bg-nord8 dark:focus:ring-nord8">
-                                            <a href="{{ route('jalanTanah.edit', $data->id) }}">Ubah</a>
+                                            class="focus:outline-none text-white bg-nord8 hover:bg-nord8 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord8 dark:hover:bg-nord8 dark:focus:ring-nord8">
+                                            <a href="{{ route('inventarisJalan.edit', $data->id) }}">Ubah</a>
                                         </button>
                                         <button
-                                            class="focus:outline-none text-white bg-nord7 hover:bg-nord7 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-nord7 dark:hover:bg-nord7 dark:focus:ring-nord7">
-                                            <a href="{{ route('jalanTanah.show', $data->id) }}">PDF</a>
+                                            class="focus:outline-none text-white bg-nord7 hover:bg-nord7 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord7 dark:hover:bg-nord7 dark:focus:ring-nord7">
+                                            <a href="{{ route('inventarisJalan.show', $data->id) }}">PDF</a>
                                         </button>
+                                        <form action="{{ route('inventarisJalan.destroy', $data->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="focus:outline-none text-white bg-nord19 hover:bg-nord19 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord19 dark:hover:bg-nord19 dark:focus:ring-nord7"
+                                                onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -11,4 +11,8 @@ class SoilsStreet extends Model
 {
     protected $guarded = [];
     use HasFactory;
+    public function soilsStreetData(): HasMany
+    {
+        return $this->hasMany(SoilsStreetData::class)->cascadeOnDelete();
+    }
 }

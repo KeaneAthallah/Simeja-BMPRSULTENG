@@ -87,7 +87,7 @@
                                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                      aria-labelledby="doubleDropdownButton">
                                      <li>
-                                         <a href="#"
+                                         <a href="{{ route('inventarisJalan.index') }}"
                                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inventarisasi
                                              jaringan</a>
                                      </li>
@@ -96,7 +96,7 @@
                                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Aspal</a>
                                      </li>
                                      <li>
-                                         <a href="#"
+                                         <a href="{{ route('dataJalanTanah.index') }}"
                                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tanah/Kerikil</a>
                                      </li>
                                  </ul>

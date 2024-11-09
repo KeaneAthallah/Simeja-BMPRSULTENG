@@ -28,7 +28,7 @@ class AsphaltStreetController extends Controller
     public function create()
     {
         if (auth()->user()->role == 'admin') {
-            return view('pages.jalanAspal.create', ['title' => 'Tambah Jalan Aspal', 'users' => User::all()]);
+            return view('pages.jalanAspal.create', ['title' => 'Tambah Jalan Aspal', 'users' =>  User::where('role', '!=', 'admin')->get()]);
         } else {
             return view('401');
         }
@@ -43,7 +43,7 @@ class AsphaltStreetController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 'noProvinsi' => 'required|numeric',
-                'noRuas' => 'required|string|max:5',
+                'noRuas' => 'required|string|max:9',
                 'namaProvinsi' => 'required|string|max:255',
                 'namaRuas' => 'required|string|max:255',
                 'kabupaten' => 'required|string|max:255',
@@ -58,7 +58,7 @@ class AsphaltStreetController extends Controller
                 'noProvinsi.required' => 'Nomor provinsi harus diisi.',
                 'noProvinsi.numeric' => 'Nomor provinsi harus berupa angka.',
                 'noRuas.required' => 'Nomor ruas harus diisi.',
-                'noRuas.max' => 'Nomor ruas maksimal 5 karakter.',
+                'noRuas.max' => 'Nomor ruas maksimal 9 karakter.',
                 'namaProvinsi.required' => 'Nama provinsi harus diisi.',
                 'namaProvinsi.max' => 'Nama provinsi maksimal 255 karakter.',
                 'namaRuas.required' => 'Nama ruas harus diisi.',
@@ -105,7 +105,7 @@ class AsphaltStreetController extends Controller
             // Display the names
             return view('pages.jalanAspal.edit', [
                 'title' => 'Edit Jalan Aspal',
-                'users' => User::all(),
+                'users' =>  User::where('role', '!=', 'admin')->get(),
                 'data' => $asphaltStreet,
             ]);
         } else {
@@ -122,7 +122,7 @@ class AsphaltStreetController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 'noProvinsi' => 'required|numeric',
-                'noRuas' => 'required|string|max:5',
+                'noRuas' => 'required|string|max:9',
                 'namaProvinsi' => 'required|string|max:255',
                 'namaRuas' => 'required|string|max:255',
                 'kabupaten' => 'required|string|max:255',
@@ -138,7 +138,7 @@ class AsphaltStreetController extends Controller
                 'noProvinsi.required' => 'Nomor provinsi harus diisi.',
                 'noProvinsi.numeric' => 'Nomor provinsi harus berupa angka.',
                 'noRuas.required' => 'Nomor ruas harus diisi.',
-                'noRuas.max' => 'Nomor ruas maksimal 5 karakter.',
+                'noRuas.max' => 'Nomor ruas maksimal 9 karakter.',
                 'namaProvinsi.required' => 'Nama provinsi harus diisi.',
                 'namaProvinsi.max' => 'Nama provinsi maksimal 255 karakter.',
                 'namaRuas.required' => 'Nama ruas harus diisi.',
@@ -172,6 +172,6 @@ class AsphaltStreetController extends Controller
     public function destroy(AsphaltStreet $asphaltStreet)
     {
         $asphaltStreet->delete();
-        return redirect()->route('JalanAspal.index');
+        return redirect()->route('jalanAspal.index');
     }
 }
