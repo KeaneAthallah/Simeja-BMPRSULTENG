@@ -39,7 +39,7 @@
                         <td>Nomor Provinsi</td>
                         <td>:
                             <span>
-                                {{ $data->noProvinsi }}
+                                {{ $data->soilsStreet->noProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
                         <td>Nama Provinsi</td>
                         <td>:
                             <span>
-                                {{ $data->namaProvinsi }}
+                                {{ $data->soilsStreet->namaProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -55,7 +55,7 @@
                         <td>Kabupaten/Kota</td>
                         <td>:
                             <span>
-                                {{ $data->kabupaten }}
+                                {{ $data->soilsStreet->kabupaten }}
                             </span>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
                         <td>Nomor Ruas</td>
                         <td>:
                             <span>
-                                {{ $data->noRuas }}
+                                {{ $data->soilsStreet->noRuas }}
                             </span>
                         </td>
 
@@ -94,7 +94,7 @@
                         <td>Nama Ruas</td>
                         <td>:
                             <span>
-                                {{ $data->namaRuas }}
+                                {{ $data->soilsStreet->namaRuas }}
                             </span>
                         </td>
                     </tr>
@@ -102,7 +102,7 @@
                         <td>Status/Fungsi</td>
                         <td>:
                             <span>
-                                {{ $data->fungsi }}
+                                {{ $data->soilsStreet->fungsi }}
                             </span>
                         </td>
 
@@ -111,7 +111,7 @@
                         <td>Tanggal</td>
                         <td>:
                             <span>
-                                {{ \Carbon\Carbon::parse($data->date)->format('d/m/Y') }}
+                                {{ \Carbon\Carbon::parse($data->soilsStreet->date)->format('d/m/Y') }}
                             </span>
                         </td>
                     </tr>
@@ -121,7 +121,7 @@
                             <ul
                                 style="list-style: none; position: absolute; top: 68px; left: 54px;font-weight: bold;width: 50px">
                                 @php
-                                    $selectedSurveyors = explode(',', $data->surveyor);
+                                    $selectedSurveyors = explode(',', $data->soilsStreet->surveyor);
                                 @endphp
 
                                 @foreach ($users as $user)

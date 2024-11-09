@@ -83,14 +83,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="KP-2" value="{{ old('fungsi', $data->fungsi) }}" />
                             </div>
-                            <div>
-                                <label for="dariPatok"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dari Patok
-                                    Sta</label>
-                                <input type="text" id="dariPatok" name="dariPatok"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="0+000" value="{{ old('dariPatok', $data->dariPatok) }}" />
-                            </div>
+
                             <div>
                                 <label for="date"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
@@ -98,14 +91,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value="{{ old('date', $data->date) }}" />
                             </div>
-                            <div>
-                                <label for="kePatok"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ke Patok
-                                    Sta</label>
-                                <input type="text" id="kePatok" name="kePatok"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="0+100" value="{{ old('kePatok', $data->kePatok) }}" />
-                            </div>
+
                             <div class="mb-4">
                                 <label for="surveyor"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surveyor</label>

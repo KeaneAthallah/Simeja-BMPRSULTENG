@@ -35,6 +35,14 @@
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
+                                <label for="dariPatok"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dari Patok
+                                    Km</label>
+                                <input type="text" id="dariPatok" name="dariPatok"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="0+000" value="{{ old('dariPatok') }}" />
+                            </div>
+                            <div>
                                 <label for="asphalt_street_id"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Survey Jalan
                                     Aspal</label>
@@ -44,12 +52,18 @@
                                     @foreach ($jalanAspals as $street)
                                         <option value="{{ $street->id }}"
                                             {{ old('asphalt_street_id') == $street->id ? 'selected' : '' }}>
-                                            {{ $street->noRuas }} - {{ $street->namaRuas }} - ({{ $street->dariPatok }}
-                                            -
-                                            {{ $street->kePatok }})
+                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div>
+                                <label for="kePatok"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ke Patok
+                                    Km</label>
+                                <input type="text" id="kePatok" name="kePatok"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="0+100" value="{{ old('kePatok') }}" />
                             </div>
                         </div>
 
@@ -153,7 +167,8 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('penurunan') == '1' ? 'checked' : '' }} name="penurunan"
+                                                        {{ old('penurunan') == '1' ? 'checked' : '' }}
+                                                        name="penurunan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak

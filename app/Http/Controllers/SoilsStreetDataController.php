@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SoilsStreet;
 use App\Models\User;
+use App\Models\SoilsStreet;
 use Illuminate\Http\Request;
 use App\Models\SoilsStreetData;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SoilsStreetDataController extends Controller
 {
@@ -65,6 +66,8 @@ class SoilsStreetDataController extends Controller
                 'distribusi' => 'required|integer|min:1',
                 'jumlahLubang' => 'required|integer|in:1,2,3,4,5',
                 'ukuranLubang' => 'required|integer|in:1,2,3,4,5',
+                'dariPatok' => 'required|string|max:255',
+                'kePatok' => 'required|string|max:255',
                 'bekasRoda' => 'required|integer|in:1,2,3,4,5',
                 'bergelombang' => 'required|integer|in:1,2,3,4,5',
                 'kondisiBahuKiri' => 'required|integer|in:1,2,3,4,5',
@@ -79,6 +82,10 @@ class SoilsStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'dariPatok.required' => 'Dari patok harus diisi.',
+                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
+                'kePatok.required' => 'Ke patok harus diisi.',
+                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
                 'kemiringan.required' => 'Permukaan perkerasan harus diisi.',
                 'kemiringan.integer' => 'Permukaan perkerasan harus berupa angka.',
                 'kemiringan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
@@ -152,7 +159,8 @@ class SoilsStreetDataController extends Controller
      */
     public function show(SoilsStreetData $soilsStreetData)
     {
-        //
+        $pdf = Pdf::loadView('pages.jalanTanah.show', ['data' => $soilsStreetData, 'title' => 'Detail Jalan Aspal', 'users' =>  User::where('role', '!=', 'admin')->get()]);
+        return $pdf->stream('DetailJalanTanah-Kerikil.pdf');
     }
 
     /**
@@ -192,7 +200,9 @@ class SoilsStreetDataController extends Controller
                 'tebalLapisan' => 'required|integer|min:1',
                 'distribusi' => 'required|integer|min:1',
                 'jumlahLubang' => 'required|integer|in:1,2,3,4,5',
+                'dariPatok' => 'required|string|max:255',
                 'ukuranLubang' => 'required|integer|in:1,2,3,4,5',
+                'kePatok' => 'required|string|max:255',
                 'bekasRoda' => 'required|integer|in:1,2,3,4,5',
                 'bergelombang' => 'required|integer|in:1,2,3,4,5',
                 'kondisiBahuKiri' => 'required|integer|in:1,2,3,4,5',
@@ -211,10 +221,14 @@ class SoilsStreetDataController extends Controller
                 'kemiringan.integer' => 'Permukaan perkerasan harus berupa angka.',
                 'kemiringan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2, 3, 4.',
                 'penurunan.required' => 'Penurunan harus diisi.',
+                'dariPatok.required' => 'Dari patok harus diisi.',
+                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'penurunan.integer' => 'Penurunan harus berupa angka.',
                 'penurunan.in' => 'Penurunan harus salah satu dari: 1, 2, 3, 4, 5.',
                 'erosi.required' => 'erosi harus diisi.',
                 'erosi.integer' => 'erosi harus berupa angka.',
+                'kePatok.required' => 'Ke patok harus diisi.',
+                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
                 'erosi.in' => 'erosi harus salah satu dari: 1, 2, 3, 4, 5.',
                 'ukuranTerbanyak.required' => 'Ukuran Terbanyak harus diisi.',
                 'ukuranTerbanyak.integer' => 'Ukuran Terbanyak harus berupa angka.',

@@ -58,7 +58,8 @@
                          </li>
                      </ul>
                  </div>
-             @else
+             @endif
+             @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
                  <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown1"
                      class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspalData.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
                      type="button">Penanganan <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
@@ -67,7 +68,6 @@
                              d="m1 1 4 4 4-4" />
                      </svg>
                  </button>
-
                  <!-- Dropdown menu -->
                  <div id="multi-dropdown1"
                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
@@ -109,9 +109,6 @@
                      </ul>
                  </div>
              @endif
-
-
-
          </div>
      </div>
  </header>

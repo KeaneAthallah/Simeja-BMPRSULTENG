@@ -39,7 +39,7 @@
                         <td>Nomor Provinsi</td>
                         <td>:
                             <span>
-                                {{ $data->noProvinsi }}
+                                {{ $data->asphaltStreet->noProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
                         <td>Nama Provinsi</td>
                         <td>:
                             <span>
-                                {{ $data->namaProvinsi }}
+                                {{ $data->asphaltStreet->namaProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -55,7 +55,7 @@
                         <td>Kabupaten/Kota</td>
                         <td>:
                             <span>
-                                {{ $data->kabupaten }}
+                                {{ $data->asphaltStreet->kabupaten }}
                             </span>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
                         <td>Nomor Ruas</td>
                         <td>:
                             <span>
-                                {{ $data->noRuas }}
+                                {{ $data->asphaltStreet->noRuas }}
                             </span>
                         </td>
 
@@ -94,7 +94,7 @@
                         <td>Nama Ruas</td>
                         <td>:
                             <span>
-                                {{ $data->namaRuas }}
+                                {{ $data->asphaltStreet->namaRuas }}
                             </span>
                         </td>
                     </tr>
@@ -102,7 +102,7 @@
                         <td>Status/Fungsi</td>
                         <td>:
                             <span>
-                                {{ $data->fungsi }}
+                                {{ $data->asphaltStreet->fungsi }}
                             </span>
                         </td>
 
@@ -111,7 +111,7 @@
                         <td>Tanggal</td>
                         <td>:
                             <span>
-                                {{ \Carbon\Carbon::parse($data->date)->format('d/m/Y') }}
+                                {{ \Carbon\Carbon::parse($data->asphaltStreet->date)->format('d/m/Y') }}
                             </span>
                         </td>
                     </tr>
@@ -121,7 +121,7 @@
                             <ul
                                 style="list-style: none; position: absolute; top: 68px; left: 54px;font-weight: bold;width: 50px">
                                 @php
-                                    $selectedSurveyors = explode(',', $data->surveyor);
+                                    $selectedSurveyors = explode(',', $data->asphaltStreet->surveyor);
                                 @endphp
 
                                 @foreach ($users as $user)
@@ -148,7 +148,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanPerkerasan == 1)
+                                    @if ($data->permukaanPerkerasan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -161,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanPerkerasan == 2)
+                                    @if ($data->permukaanPerkerasan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -185,7 +185,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisi == 1)
+                                    @if ($data->kondisi == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -198,7 +198,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisi == 2)
+                                    @if ($data->kondisi == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -210,7 +210,7 @@
                                 </td>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisi == 3)
+                                    @if ($data->kondisi == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -223,7 +223,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisi == 4)
+                                    @if ($data->kondisi == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -247,7 +247,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->penurunan == 1)
+                                    @if ($data->penurunan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -260,7 +260,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->penurunan == 2)
+                                    @if ($data->penurunan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -271,7 +271,7 @@
                                 <td> 2. < 10% luas </td>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->penurunan == 3)
+                                    @if ($data->penurunan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -284,7 +284,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->penurunan == 4)
+                                    @if ($data->penurunan == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -308,7 +308,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->tambalan == 1)
+                                    @if ($data->tambalan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -321,7 +321,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->tambalan == 2)
+                                    @if ($data->tambalan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -332,7 +332,7 @@
                                 <td> 2. < 10% luas </td>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->tambalan == 3)
+                                    @if ($data->tambalan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -345,7 +345,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->tambalan == 4)
+                                    @if ($data->tambalan == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -376,7 +376,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jenis == 1)
+                                @if ($data->jenis == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -389,7 +389,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jenis == 2)
+                                @if ($data->jenis == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -401,7 +401,7 @@
                             </td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jenis == 3)
+                                @if ($data->jenis == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -414,7 +414,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jenis == 4)
+                                @if ($data->jenis == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -438,7 +438,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->lebar == 1)
+                                @if ($data->lebar == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -451,7 +451,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->lebar == 2)
+                                @if ($data->lebar == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -462,7 +462,7 @@
                             <td> 2. Halus < 1 mm </td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->lebar == 3)
+                                @if ($data->lebar == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -475,7 +475,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->lebar == 4)
+                                @if ($data->lebar == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -499,7 +499,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->luas == 1)
+                                @if ($data->luas == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -512,7 +512,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->luas == 2)
+                                @if ($data->luas == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -523,7 +523,7 @@
                             <td> 2. < 10% luas </td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->luas == 3)
+                                @if ($data->luas == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -536,7 +536,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->luas == 4)
+                                @if ($data->luas == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -566,7 +566,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jumlahLubang == 1)
+                                @if ($data->jumlahLubang == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -579,7 +579,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jumlahLubang == 2)
+                                @if ($data->jumlahLubang == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -591,7 +591,7 @@
                             </td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jumlahLubang == 3)
+                                @if ($data->jumlahLubang == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -604,7 +604,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->jumlahLubang == 4)
+                                @if ($data->jumlahLubang == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -628,7 +628,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->ukuranLubang == 1)
+                                @if ($data->ukuranLubang == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -641,7 +641,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->ukuranLubang == 2)
+                                @if ($data->ukuranLubang == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -652,7 +652,7 @@
                             <td> 2. Kecil dan dangkal</td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->ukuranLubang == 3)
+                                @if ($data->ukuranLubang == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -665,7 +665,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->ukuranLubang == 4)
+                                @if ($data->ukuranLubang == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -678,7 +678,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->ukuranLubang == 5)
+                                @if ($data->ukuranLubang == 5)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -702,7 +702,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->bekasRoda == 1)
+                                @if ($data->bekasRoda == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -715,7 +715,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->bekasRoda == 2)
+                                @if ($data->bekasRoda == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -726,7 +726,7 @@
                             <td> 2. < 10 cm dalam </td>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->bekasRoda == 3)
+                                @if ($data->bekasRoda == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -739,7 +739,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->bekasRoda == 4)
+                                @if ($data->bekasRoda == 4)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -763,7 +763,7 @@
                     <table class="titikkoma" align="left" cellpadding='1' width=50">
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKiri == 1)
+                                @if ($data->kerusakanTepiKiri == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -774,7 +774,7 @@
                             <td> 1. Tidak ada
                             </td>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKanan == 1)
+                                @if ($data->kerusakanTepiKanan == 1)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -785,7 +785,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKiri == 2)
+                                @if ($data->kerusakanTepiKiri == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -796,7 +796,7 @@
                             <td> 2. Ringan
                             </td>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKanan == 2)
+                                @if ($data->kerusakanTepiKanan == 2)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -807,7 +807,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKiri == 3)
+                                @if ($data->kerusakanTepiKiri == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -818,7 +818,7 @@
                             <td> 3. Berat
                             </td>
                             <td>
-                                @if ($data->asphaltStreetData[0]->kerusakanTepiKanan == 3)
+                                @if ($data->kerusakanTepiKanan == 3)
                                     <img src="{{ asset('assets/images/check.png') }}" alt=""
                                         style="width: 20px">
                                 @else
@@ -845,7 +845,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKiri == 1)
+                                    @if ($data->kondisiBahuKiri == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -856,7 +856,7 @@
                                 <td> 1. Tidak ada
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKanan == 1)
+                                    @if ($data->kondisiBahuKanan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -867,7 +867,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKiri == 2)
+                                    @if ($data->kondisiBahuKiri == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -878,7 +878,7 @@
                                 <td> 2. Baik/Rata
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKanan == 2)
+                                    @if ($data->kondisiBahuKanan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -889,7 +889,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKiri == 3)
+                                    @if ($data->kondisiBahuKiri == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -900,7 +900,7 @@
                                 <td> 3. Bekas rd./Erosi ringan
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKanan == 3)
+                                    @if ($data->kondisiBahuKanan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -911,7 +911,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKiri == 4)
+                                    @if ($data->kondisiBahuKiri == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -922,7 +922,7 @@
                                 <td> 4. Bekas rd./Erosi berat
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiBahuKanan == 4)
+                                    @if ($data->kondisiBahuKanan == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -944,7 +944,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKiri == 1)
+                                    @if ($data->permukaanBahuKiri == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -955,7 +955,7 @@
                                 <td> 1. Tidak ada
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKanan == 1)
+                                    @if ($data->permukaanBahuKanan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -966,7 +966,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKiri == 2)
+                                    @if ($data->permukaanBahuKiri == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -977,7 +977,7 @@
                                 <td> 2. Diatas permukaan jalan
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKanan == 2)
+                                    @if ($data->permukaanBahuKanan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -988,7 +988,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKiri == 3)
+                                    @if ($data->permukaanBahuKiri == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -999,7 +999,7 @@
                                 <td> 3. Rata dengan permukaan jalan
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKanan == 3)
+                                    @if ($data->permukaanBahuKanan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1010,7 +1010,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKiri == 4)
+                                    @if ($data->permukaanBahuKiri == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1021,7 +1021,7 @@
                                 <td> 4. Dibawah permukaan jalan
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKanan == 4)
+                                    @if ($data->permukaanBahuKanan == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1032,7 +1032,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKiri == 5)
+                                    @if ($data->permukaanBahuKiri == 5)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1043,7 +1043,7 @@
                                 <td> 5. > 10 cm dibawah permukaan jalan
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->permukaanBahuKanan == 5)
+                                    @if ($data->permukaanBahuKanan == 5)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1065,7 +1065,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKiri == 1)
+                                    @if ($data->kondisiSaluranKiri == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1076,7 +1076,7 @@
                                 <td> 1. Tidak ada
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKanan == 1)
+                                    @if ($data->kondisiSaluranKanan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1087,7 +1087,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKiri == 2)
+                                    @if ($data->kondisiSaluranKiri == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1098,7 +1098,7 @@
                                 <td> 2. Bersih
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKanan == 2)
+                                    @if ($data->kondisiSaluranKanan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1109,7 +1109,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKiri == 3)
+                                    @if ($data->kondisiSaluranKiri == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1120,7 +1120,7 @@
                                 <td> 3. Tertutup/Tersumbat
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKanan == 3)
+                                    @if ($data->kondisiSaluranKanan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1131,7 +1131,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKiri == 4)
+                                    @if ($data->kondisiSaluranKiri == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1142,7 +1142,7 @@
                                 <td> 4. Erosi
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kondisiSaluranKanan == 4)
+                                    @if ($data->kondisiSaluranKanan == 4)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1164,7 +1164,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kerusakanLerengKiri == 1)
+                                    @if ($data->kerusakanLerengKiri == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1175,7 +1175,7 @@
                                 <td> 1. Tidak ada
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kerusakanLerengKanan == 1)
+                                    @if ($data->kerusakanLerengKanan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1186,7 +1186,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kerusakanLerengKiri == 2)
+                                    @if ($data->kerusakanLerengKiri == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1197,7 +1197,7 @@
                                 <td> 2. Longsor/Runtuh
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->kerusakanLerengKanan == 2)
+                                    @if ($data->kerusakanLerengKanan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1219,7 +1219,7 @@
                         <table class="titikkoma" align="left" cellpadding='1' width=50">
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKiri == 1)
+                                    @if ($data->trotoarKiri == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1230,7 +1230,7 @@
                                 <td> 1. Tidak ada
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKanan == 1)
+                                    @if ($data->trotoarKanan == 1)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1241,7 +1241,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKiri == 2)
+                                    @if ($data->trotoarKiri == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1252,7 +1252,7 @@
                                 <td> 2. Baik/Aman
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKanan == 2)
+                                    @if ($data->trotoarKanan == 2)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1263,7 +1263,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKiri == 3)
+                                    @if ($data->trotoarKiri == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else
@@ -1274,7 +1274,7 @@
                                 <td> 3. Berbahaya
                                 </td>
                                 <td>
-                                    @if ($data->asphaltStreetData[0]->trotoarKanan == 3)
+                                    @if ($data->trotoarKanan == 3)
                                         <img src="{{ asset('assets/images/check.png') }}" alt=""
                                             style="width: 20px">
                                     @else

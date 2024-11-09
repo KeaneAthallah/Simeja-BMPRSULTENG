@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\AsphaltStreet;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\AsphaltStreetData;
 
 class AsphaltStreetDataController extends Controller
@@ -15,7 +16,7 @@ class AsphaltStreetDataController extends Controller
     public function index()
     {
 
-        if (auth()->user()->role == "staff") {
+        if (auth()->user()->role == "staff" || auth()->user()->role == "admin") {
             $userId = auth()->user()->id;
             $asphaltStreets = AsphaltStreet::all()->filter(function ($asphaltStreet) use ($userId) {
                 $surveyors = explode(',', $asphaltStreet->surveyor); // Split surveyors into an array
@@ -59,6 +60,8 @@ class AsphaltStreetDataController extends Controller
                 '_token' => 'required|string',
                 'asphalt_street_id' => 'required|integer',
                 'permukaanPerkerasan' => 'required|integer|in:1,2',
+                'dariPatok' => 'required|string|max:255',
+                'kePatok' => 'required|string|max:255',
                 'kondisi' => 'required|integer|in:1,2,3,4,5',
                 'penurunan' => 'required|integer|in:1,2,3,4,5',
                 'tambalan' => 'required|integer|in:1,2,3,4,5',
@@ -82,6 +85,10 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'dariPatok.required' => 'Dari patok harus diisi.',
+                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
+                'kePatok.required' => 'Ke patok harus diisi.',
+                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
                 'permukaanPerkerasan.required' => 'Permukaan perkerasan harus diisi.',
                 'permukaanPerkerasan.integer' => 'Permukaan perkerasan harus berupa angka.',
                 'permukaanPerkerasan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',
@@ -161,7 +168,11 @@ class AsphaltStreetDataController extends Controller
      */
     public function show(AsphaltStreetData $asphaltStreetData)
     {
-        //
+        // dd($asphaltStreetData->asphaltStreet->surveyor);
+        $surveyorIds = explode(',', $asphaltStreetData->asphaltStreet->surveyor);
+        $users = User::whereIn('id', $surveyorIds)->get();
+        $pdf = Pdf::loadView('pages.jalanAspal.show', ['data' => $asphaltStreetData, 'title' => 'Detail Jalan Aspal', 'users' => $users]);
+        return $pdf->stream('DetailJalanAspal.pdf');
     }
 
     /**
@@ -197,6 +208,8 @@ class AsphaltStreetDataController extends Controller
                 'asphalt_streets_id' => 'required|integer',
                 'permukaanPerkerasan' => 'required|integer|in:1,2',
                 'kondisi' => 'required|integer|in:1,2,3,4,5',
+                'dariPatok' => 'required|string|max:255',
+                'kePatok' => 'required|string|max:255',
                 'penurunan' => 'required|integer|in:1,2,3,4,5',
                 'tambalan' => 'required|integer|in:1,2,3,4,5',
                 'jenis' => 'required|integer|in:1,2,3,4,5',
@@ -219,6 +232,10 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'kePatok.required' => 'Ke patok harus diisi.',
+                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
+                'dariPatok.required' => 'Dari patok harus diisi.',
+                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'permukaanPerkerasan.required' => 'Permukaan perkerasan harus diisi.',
                 'permukaanPerkerasan.integer' => 'Permukaan perkerasan harus berupa angka.',
                 'permukaanPerkerasan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2.',

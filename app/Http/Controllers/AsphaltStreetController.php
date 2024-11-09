@@ -48,9 +48,7 @@ class AsphaltStreetController extends Controller
                 'namaRuas' => 'required|string|max:255',
                 'kabupaten' => 'required|string|max:255',
                 'fungsi' => 'required|string|max:255',
-                'dariPatok' => 'required|string|max:255',
                 'date' => 'required|date',
-                'kePatok' => 'required|string|max:255',
                 'surveyor' => 'required|array|min:1',
                 'surveyor.*' => 'integer',
             ], [
@@ -67,12 +65,8 @@ class AsphaltStreetController extends Controller
                 'kabupaten.max' => 'Kabupaten maksimal 255 karakter.',
                 'fungsi.required' => 'Fungsi harus diisi.',
                 'fungsi.max' => 'Fungsi maksimal 255 karakter.',
-                'dariPatok.required' => 'Dari patok harus diisi.',
-                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'date.required' => 'Tanggal harus diisi.',
                 'date.date' => 'Format tanggal tidak valid.',
-                'kePatok.required' => 'Ke patok harus diisi.',
-                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
                 'surveyor.required' => 'Surveyor harus dipilih.',
                 'surveyor.array' => 'Surveyor harus berupa array.',
                 'surveyor.min' => 'Minimal satu surveyor harus dipilih.',
@@ -88,13 +82,7 @@ class AsphaltStreetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AsphaltStreet $asphaltStreet)
-    {
-        $surveyorIds = explode(',', $asphaltStreet->surveyor);
-        $users = User::whereIn('id', $surveyorIds)->get();
-        $pdf = Pdf::loadView('pages.jalanAspal.show', ['data' => $asphaltStreet, 'title' => 'Detail Jalan Aspal', 'users' => $users]);
-        return $pdf->stream('DetailJalanAspal.pdf');
-    }
+    public function show(AsphaltStreet $asphaltStreet) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -127,9 +115,7 @@ class AsphaltStreetController extends Controller
                 'namaRuas' => 'required|string|max:255',
                 'kabupaten' => 'required|string|max:255',
                 'fungsi' => 'required|string|max:255',
-                'dariPatok' => 'required|string|max:255',
                 'date' => 'required|date',
-                'kePatok' => 'required|string|max:255',
                 'surveyor' => 'required|array|min:1',
                 'surveyor.*' => 'integer',
 
@@ -147,12 +133,8 @@ class AsphaltStreetController extends Controller
                 'kabupaten.max' => 'Kabupaten maksimal 255 karakter.',
                 'fungsi.required' => 'Fungsi harus diisi.',
                 'fungsi.max' => 'Fungsi maksimal 255 karakter.',
-                'dariPatok.required' => 'Dari patok harus diisi.',
-                'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'date.required' => 'Tanggal harus diisi.',
                 'date.date' => 'Format tanggal tidak valid.',
-                'kePatok.required' => 'Ke patok harus diisi.',
-                'kePatok.max' => 'Ke patok maksimal 255 karakter.',
                 'surveyor.required' => 'Surveyor harus dipilih.',
                 'surveyor.array' => 'Surveyor harus berupa array.',
                 'surveyor.min' => 'Minimal satu surveyor harus dipilih.',

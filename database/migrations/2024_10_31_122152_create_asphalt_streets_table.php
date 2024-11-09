@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('noProvinsi');
             $table->string('namaProvinsi');
             $table->string('kabupaten');
-            $table->string('dariPatok');
-            $table->string('kePatok');
             $table->string('noRuas');
             $table->string('namaRuas');
             $table->string('fungsi');

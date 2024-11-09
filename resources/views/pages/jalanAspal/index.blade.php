@@ -41,16 +41,6 @@
                                 </th>
                                 <th>
                                     <span class="flex items-center">
-                                        Patok
-                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                        </svg>
-                                    </span>
-                                </th>
-                                <th>
-                                    <span class="flex items-center">
                                         Update
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -78,16 +68,11 @@
                                         {{ $data->noRuas }}
                                     </td>
                                     <td>{{ $data->namaRuas }}</td>
-                                    <td>{{ $data->dariPatok }} - {{ $data->kePatok }}</td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
                                         <button
                                             class="focus:outline-none text-white bg-nord8 hover:bg-nord8 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord8 dark:hover:bg-nord8 dark:focus:ring-nord8">
                                             <a href="{{ route('jalanAspal.edit', $data->id) }}">Ubah</a>
-                                        </button>
-                                        <button
-                                            class="focus:outline-none text-white bg-nord7 hover:bg-nord7 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord7 dark:hover:bg-nord7 dark:focus:ring-nord7">
-                                            <a href="{{ route('jalanAspal.show', $data->id) }}">PDF</a>
                                         </button>
                                         <form action="{{ route('jalanAspal.destroy', $data->id) }}" method="POST">
                                             @csrf

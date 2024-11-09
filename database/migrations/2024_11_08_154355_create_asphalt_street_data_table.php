@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('kondisi');
             $table->string('penurunan');
             $table->string('tambalan');
+            $table->string('dariPatok');
+            $table->string('kePatok');
             $table->string('jenis');
             $table->string('lebar');
             $table->string('luas');
