@@ -1,4 +1,5 @@
 <x-layout-dashboard>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <div class="mx-auto min-h-[120vh] px-4 py-6 sm:px-6 lg:px-8">
         <div class="rounded-2xl">
             <!--Container-->
@@ -11,31 +12,72 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+
+                    <table id="filter-table">
                         <thead>
                             <tr>
-                                <th data-priority="1">NIK</th>
-                                <th data-priority="2">Nama</th>
-                                <th data-priority="3">Alamat</th>
-                                <th data-priority="4">Status</th>
-                                <th data-priority="5">Waktu</th>
+                                <th>
+                                    <span class="flex items-center">
+                                        NIK
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        <span class="dashicons dashicons-nametag">Nama</span>
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        Alamat
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        Status
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        Waktu
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+
                             </tr>
                         </thead>
-                        <tbody class="">
+                        <tbody>
                             @foreach ($datas as $data)
-                                <tr class="text-center">
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        <a href="{{ route('aspirasi.show', $data->id) }}"
-                                            class="text-nord14 dark:text-nord16">
-                                            {{ $data->nik }}</a>
+                                <tr>
+                                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <a href="{{ route('aspirasi.show', $data->id) }}">{{ $data->nik }}</a>
                                     </td>
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->name }}
-                                    </td>
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->address }}
-                                    </td>
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6 text-center">
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->address }}</td>
+                                    <td>
                                         <div class="flex justify-center">
                                             @if ($data->status == 'Pending')
                                                 <span
@@ -51,32 +93,47 @@
                                             @endif
                                         </div>
                                     </td>
-
-                                    <td class="bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                                        {{ $data->created_at->diffForHumans() }}
-                                    </td>
+                                    <td>{{ $data->updated_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
-
                     </table>
-
-
                 </div>
             </div>
             <!--/container-->
         </div>
     </div>
     <script>
-        map = L.map("map").setView([-0.8898015139606371, 119.85738857328762], 13); // Set zoom level
-
-        // Add Google streets layer to the map
-        let googleStreets = L.tileLayer(
-            "http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
-                maxZoom: 20,
-                subdomains: ["mt0", "mt1", "mt2", "mt3"],
-            }
-        );
-        googleStreets.addTo(map);
+        if (document.getElementById("filter-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#filter-table", {
+                tableRender: (_data, table, type) => {
+                    if (type === "print") {
+                        return table
+                    }
+                    const tHead = table.childNodes[0]
+                    const filterHeaders = {
+                        nodeName: "TR",
+                        attributes: {
+                            class: "search-filtering-row"
+                        },
+                        childNodes: tHead.childNodes[0].childNodes.map(
+                            (_th, index) => ({
+                                nodeName: "TH",
+                                childNodes: [{
+                                    nodeName: "INPUT",
+                                    attributes: {
+                                        class: "datatable-input",
+                                        type: "search",
+                                        "data-columns": "[" + index + "]"
+                                    }
+                                }]
+                            })
+                        )
+                    }
+                    tHead.childNodes.push(filterHeaders)
+                    return table
+                }
+            });
+        }
     </script>
 </x-layout-dashboard>

@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asphalt_streets', function (Blueprint $table) {
+        Schema::create('road_inventories', function (Blueprint $table) {
             $table->id();
+            $table->string('Provinsi');
+            $table->string('Kabupaten');
             $table->string('noProvinsi');
-            $table->string('namaProvinsi');
-            $table->string('kabupaten');
-            $table->string('dariPatok');
-            $table->string('kePatok');
+            $table->string('referensi');
             $table->string('noRuas');
             $table->string('namaRuas');
-            $table->string('fungsi');
+            $table->string('dariPatokKm');
+            $table->string('kePatokKm');
+            $table->string('user_id');
             $table->string('date');
-            $table->string('surveyor');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asphalt_streets');
+        Schema::dropIfExists('road_inventories');
     }
 };

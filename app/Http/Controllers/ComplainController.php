@@ -12,7 +12,7 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        return view('pages.complain.index', ['datas' => Complain::all()]);
+        return view('pages.complain.index', ['datas' => Complain::all(), 'title' => 'Aspirasi']);
     }
 
     public function json()

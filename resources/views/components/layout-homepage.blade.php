@@ -13,6 +13,7 @@
     <meta name="author" content="" />
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
         .gradient {
