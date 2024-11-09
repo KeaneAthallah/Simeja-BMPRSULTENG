@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class AsphaltStreet extends Model
+class AsphaltStreetData extends Model
 {
     protected $guarded = [];
     use HasFactory;
 
-    public function asphaltStreetData(): HasMany
+    public function asphaltStreet(): BelongsTo
     {
-        return $this->hasMany(AsphaltStreetData::class);
+        return $this->belongsTo(AsphaltStreet::class);
     }
 }
