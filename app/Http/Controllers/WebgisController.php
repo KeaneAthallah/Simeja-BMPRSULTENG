@@ -13,7 +13,7 @@ class WebgisController extends Controller
     public function index()
     {
         //
-        return view('pages.webgis.index');
+        return view('pages.webgis.index', ['title' => 'Webgis']);
     }
 
     /**
