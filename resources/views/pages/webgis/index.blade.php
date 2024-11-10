@@ -1,4 +1,5 @@
 <x-layout-dashboard>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <script src="{{ asset('output/JP_Sulteng_2023.js') }}"></script>
     <script src="{{ asset('output/simpul_JPSulteng_fix.js') }}"></script>
     <div class="flex flex-col items-center m-5">
