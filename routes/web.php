@@ -13,6 +13,7 @@ use App\Http\Controllers\AsphaltStreetController;
 use App\Http\Controllers\RoadInventoryController;
 use App\Http\Controllers\SoilsStreetDataController;
 use App\Http\Controllers\AsphaltStreetDataController;
+use App\Http\Controllers\RoadInventoryDataController;
 
 Route::get('/', [ComplainController::class, 'create'])->name('aspirasi.create');
 Route::post('/laporan', [ComplainController::class, 'store'])->name('aspirasi.store');
@@ -35,9 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/webgis', WebgisController::class);
     Route::resource('/dashboard/jalanAspal', AsphaltStreetController::class)->parameter('jalanAspal', 'asphaltStreet');
     Route::resource('/dashboard/jalanTanah', SoilsStreetController::class)->parameter('jalanTanah', 'soilsStreet');
-    Route::resource('/dashboard/inventarisJalan', RoadInventoryController::class)->parameter('inventarisJalan', 'roadInventory');
     Route::resource('/dashboard/dataJalanAspal', AsphaltStreetDataController::class)->parameter('dataJalanAspal', 'asphaltStreetData');
     Route::resource('/dashboard/dataJalanTanah', SoilsStreetDataController::class)->parameter('dataJalanTanah', 'soilsStreetData');
+    Route::resource('/dashboard/inventarisJalan', RoadInventoryController::class)->parameter('inventarisJalan', 'roadInventory');
+    Route::resource('/dashboard/dataInventarisJalan', RoadInventoryDataController::class)->parameter('dataInventarisJalan', 'roadInventoryData');
 });
 
 require __DIR__ . '/auth.php';

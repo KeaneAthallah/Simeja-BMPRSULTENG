@@ -15,7 +15,7 @@ class SoilsStreetDataController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role == "staff") {
+        if (auth()->user()->role == "staff" || auth()->user()->role == "admin") {
             $userId = auth()->user()->id;
             $soilsStreets = SoilsStreet::all()->filter(function ($soilsStreet) use ($userId) {
                 $surveyors = explode(',', $soilsStreet->surveyor); // Split surveyors into an array

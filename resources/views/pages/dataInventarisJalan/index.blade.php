@@ -15,16 +15,15 @@
                     @if (auth()->user()->role == 'staff')
                         <button
                             class="text-nord0 bg-nord7 border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-nord7  dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ">
-                            <a href="{{ route('dataJalanTanah.create') }}">Tambah</a>
+                            <a href="{{ route('dataInventarisJalan.create') }}">Tambah</a>
                         </button>
                     @endif
-
                     <table id="export-table">
                         <thead>
                             <tr>
                                 <th>
                                     <span class="flex items-center">
-                                        No
+                                        No Ruas
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -32,9 +31,9 @@
                                         </svg>
                                     </span>
                                 </th>
-                                <th data-type="date" data-format="YYYY/DD/MM">
+                                <th>
                                     <span class="flex items-center">
-                                        Nama
+                                        Nama Ruas
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -78,24 +77,24 @@
                             @foreach ($datas as $data)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $data->soilsStreet->noRuas }}
+                                        {{ $data->roadInventory->noRuas }}
                                     </td>
-                                    <td>{{ $data->soilsStreet->namaRuas }}</td>
-                                    <td>{{ $data->soilsStreet->dariPatok }} - {{ $data->soilsStreet->kePatok }}</td>
+                                    <td>{{ $data->roadInventory->namaRuas }}</td>
+                                    <td>{{ $data->dariSta }} - {{ $data->keSta }}</td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
                                         @if (auth()->user()->role == 'staff')
                                             <button
                                                 class="focus:outline-none text-white bg-nord8 hover:bg-nord8 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord8 dark:hover:bg-nord8 dark:focus:ring-nord8">
-                                                <a href="{{ route('dataJalanTanah.edit', $data->id) }}">Ubah</a>
+                                                <a href="{{ route('dataInventarisJalan.edit', $data->id) }}">Ubah</a>
                                             </button>
                                         @endif
                                         <button
                                             class="focus:outline-none text-white bg-nord7 hover:bg-nord7 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord7 dark:hover:bg-nord7 dark:focus:ring-nord7">
-                                            <a href="{{ route('dataJalanTanah.show', $data->id) }}">PDF</a>
+                                            <a href="{{ route('dataInventarisJalan.show', $data->id) }}">PDF</a>
                                         </button>
                                         @if (auth()->user()->role == 'staff')
-                                            <form action="{{ route('dataJalanTanah.destroy', $data->id) }}"
+                                            <form action="{{ route('dataInventarisJalan.destroy', $data->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
