@@ -62,6 +62,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{-- {{ dd($datas) }} --}}
                             @foreach ($datas as $data)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">

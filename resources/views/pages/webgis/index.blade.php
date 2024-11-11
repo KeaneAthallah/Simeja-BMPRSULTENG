@@ -13,7 +13,7 @@
         let markers = [];
 
         $(document).ready(function() {
-            // Initialize the map
+            // Initialize the map centered at a default location
             map = L.map('map').setView([-0.9019336055045014, 119.86625407936758], 12);
 
             // Add a tile layer
@@ -21,116 +21,133 @@
                 maxZoom: 20,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
-            L.geoJSON(jp).addTo(map);
-            // L.geoJSON(simpul).addTo(map);
 
-            // Fetch and display markers
-            $.getJSON('https://simeja-bmprsulteng.com/dashboard/webgis/json', function(data) {
-                $.each(data, function(index) {
-                    // Create a custom icon with an image
-                    const customIconRed = L.icon({
-                        iconUrl: 'https://simeja-bmprsulteng.com/icons/red.png',
-                        iconSize: [25, 25],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34]
-                    });
-                    const customIconBlue = L.icon({
-                        iconUrl: 'https://simeja-bmprsulteng.com/icons/blue.png',
-                        iconSize: [30, 30],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34]
-                    });
-                    const customIconGreen = L.icon({
-                        iconUrl: 'https://simeja-bmprsulteng.com/icons/green.png',
-                        iconSize: [25, 25],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34]
-                    });
+            // Fetch and display markers from the backend API
+            const url = "{{ route('dashboard.webgis.json') }}";
 
-                    // Set color class and display text based on status
-                    let statusColorClass;
-                    let statusText;
-                    if (data[index].status === 'Pending') {
-                        statusColorClass = 'text-red-500';
-                        statusText = 'Baru';
-                    } else if (data[index].status === 'On Progress') {
-                        statusColorClass = 'text-blue-500';
-                        statusText = 'Dalam pengerjaan';
-                    } else {
-                        statusColorClass = 'text-green-500';
-                        statusText = 'Selesai';
-                    }
-                    // Function to format the created_at date
-                    function formatDate(dateString) {
-                        const date = new Date(dateString);
-                        const options = {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        };
-                        return date.toLocaleDateString(undefined, options); // "January 1, 2024"
+            $.getJSON(url, function(data) {
+                // Create custom icons for different statuses
+                const customIconRed = L.icon({
+                    iconUrl: 'https://simeja-bmprsulteng.com/icons/red.png',
+                    iconSize: [25, 25],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34]
+                });
+                const customIconBlue = L.icon({
+                    iconUrl: 'https://simeja-bmprsulteng.com/icons/blue.png',
+                    iconSize: [30, 30],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34]
+                });
+                const customIconGreen = L.icon({
+                    iconUrl: 'https://simeja-bmprsulteng.com/icons/green.png',
+                    iconSize: [25, 25],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34]
+                });
+
+                // Handle the asphalt street data with coordinates (polyline)
+                $.each(data, function(index, item) {
+                    // For asphalt streets, handle the coordinates
+                    if (item.coordinates) {
+                        let latlngs = item.coordinates.map(function(coord) {
+                            return [coord.latitude, coord
+                            .longitude]; // [latitude, longitude]
+                        });
+
+                        var polyline = L.polyline(latlngs, {
+                            color: 'red'
+                        }).addTo(map);
+                        map.fitBounds(polyline.getBounds()); // Zoom to fit the polyline
                     }
 
-                    // Example usage in popup content
-                    const formattedDate = formatDate(data[index].created_at);
+                    // For complaints, display markers
+                    if (item.lat && item.long) {
+                        // Determine the status and corresponding color
+                        let statusColorClass;
+                        let statusText;
+                        if (item.status === 'Pending') {
+                            statusColorClass = 'text-red-500';
+                            statusText = 'Baru';
+                        } else if (item.status === 'On Progress') {
+                            statusColorClass = 'text-blue-500';
+                            statusText = 'Dalam pengerjaan';
+                        } else {
+                            statusColorClass = 'text-green-500';
+                            statusText = 'Selesai';
+                        }
 
-                    // Prepare popup content with translated status
-                    const popupContent = `
-                            <div class="max-w-sm rounded-lg overflow-hidden bg-white ">
-                                <img class="w-full h-48 object-cover" src="http://simeja-bmprsulteng.com/storage/${data[index].image}" alt="Foto Kerusakan">
+                        // Format the date
+                        function formatDate(dateString) {
+                            const date = new Date(dateString);
+                            const options = {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            };
+                            return date.toLocaleDateString(undefined, options); // "January 1, 2024"
+                        }
+
+                        const formattedDate = formatDate(item.created_at);
+
+                        // Prepare popup content
+                        const popupContent = `
+                            <div class="max-w-sm rounded-lg overflow-hidden bg-white">
+                                <img class="w-full h-48 object-cover" src="http://simeja-bmprsulteng.com/storage/${item.image}" alt="Foto Kerusakan">
                                 <div class="px-6 py-4">
                                     <div class="mb-4">
                                         <span class="font-semibold text-lg">Status:</span>
                                         <span class="font-semibold text-lg ${statusColorClass} ml-1">${statusText}</span>
                                     </div>
                                     <div class="mb-2">
-                                    <span class="font-bold text-gray-800">Laporan dibuat oleh:</span>
+                                        <span class="font-bold text-gray-800">Laporan dibuat oleh:</span>
                                     </div>
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Nama:</span>
-                                        <span class="text-gray-600">${data[index].name}</span>
+                                        <span class="text-gray-600">${item.name}</span>
                                     </div>
-
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Alamat:</span>
-                                        <span class="text-gray-600">${data[index].address}</span>
+                                        <span class="text-gray-600">${item.address}</span>
                                     </div>
-
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Aspirasi:</span>
-                                        <span class="text-gray-600">${data[index].aspirasi}</span>
+                                        <span class="text-gray-600">${item.aspirasi}</span>
                                     </div>
-                                      <div class="mb-2 flex flex-col">
+                                    <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Tanggal:</span>
                                         <span class="text-gray-600">${formattedDate}</span>
                                     </div>
                                 </div>
                             </div>
+                        `;
 
-    `;
+                        // Select icon based on status
+                        const icon = item.status === 'Pending' ? customIconRed :
+                            item.status === 'On Progress' ? customIconBlue : customIconGreen;
 
-                    // Select icon based on status
-                    const icon = data[index].status === 'Pending' ? customIconRed :
-                        data[index].status === 'On Progress' ? customIconBlue : customIconGreen;
+                        // Ensure the coordinates are in [latitude, longitude] format before adding the marker
+                        const lat = item.lat;
+                        const long = item.long;
+                        const marker = L.marker([lat, long], {
+                                icon: icon
+                            })
+                            .bindPopup(popupContent)
+                            .on('click', function() {
+                                $('#noteDetails').text(
+                                    `Name: ${item.name}, Status: ${statusText}`);
+                            })
+                            .addTo(map);
 
-                    // Add marker with full data in popup
-                    const marker = L.marker([data[index].lat, data[index].long], {
-                            icon: icon
-                        })
-                        .bindPopup(popupContent)
-                        .on('click', function() {
-                            // Display details in the note card when a marker is clicked
-                            $('#noteDetails').text(
-                                `Name: ${data[index].name}, Status: ${statusText}`);
-                        }).addTo(map);
-
-                    markers.push({
-                        marker: marker,
-                        status: data[index].status
-                    });
+                        markers.push({
+                            marker: marker,
+                            status: item.status
+                        });
+                    }
                 });
-
             });
         });
     </script>
+
+
 </x-layout-dashboard>

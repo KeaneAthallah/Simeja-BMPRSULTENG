@@ -55,9 +55,31 @@ class AsphaltStreetDataController extends Controller
      */
     public function store(Request $request)
     {
+
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                'koordinat' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        // Attempt to decode JSON string
+                        $coordinates = json_decode($value, true);
+
+                        // Check if JSON parsing is successful
+                        if (json_last_error() !== JSON_ERROR_NONE || !is_array($coordinates)) {
+                            $fail("The {$attribute} field must be a valid JSON array of coordinate pairs.");
+                            return;
+                        }
+
+                        // Validate each coordinate pair
+                        foreach ($coordinates as $index => $coordinate) {
+                            if (!is_array($coordinate) || count($coordinate) !== 2) {
+                                $fail("Each coordinate pair in {$attribute} must contain exactly two values (longitude and latitude). Error at index {$index}.");
+                                return;
+                            }
+                        }
+                    }
+                ],
                 'asphalt_street_id' => 'required|integer',
                 'permukaanPerkerasan' => 'required|integer|in:1,2',
                 'dariPatok' => 'required|string|max:255',
@@ -85,6 +107,8 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'koordinat.required' => 'Field koordinat wajib diisi.',
+                'koordinat.array' => 'Field koordinat harus berupa array pasangan koordinat.',
                 'dariPatok.required' => 'Dari patok harus diisi.',
                 'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'kePatok.required' => 'Ke patok harus diisi.',
@@ -205,7 +229,28 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'asphalt_streets_id' => 'required|integer',
+                'koordinat' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        // Attempt to decode JSON string
+                        $coordinates = json_decode($value, true);
+
+                        // Check if JSON parsing is successful
+                        if (json_last_error() !== JSON_ERROR_NONE || !is_array($coordinates)) {
+                            $fail("The {$attribute} field must be a valid JSON array of coordinate pairs.");
+                            return;
+                        }
+
+                        // Validate each coordinate pair
+                        foreach ($coordinates as $index => $coordinate) {
+                            if (!is_array($coordinate) || count($coordinate) !== 2) {
+                                $fail("Each coordinate pair in {$attribute} must contain exactly two values (longitude and latitude). Error at index {$index}.");
+                                return;
+                            }
+                        }
+                    }
+                ],
+                'asphalt_street_id' => 'required|integer',
                 'permukaanPerkerasan' => 'required|integer|in:1,2',
                 'kondisi' => 'required|integer|in:1,2,3,4,5',
                 'dariPatok' => 'required|string|max:255',
@@ -304,7 +349,7 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
             ]);
             $asphaltStreetData->update($validatedData);
-            return redirect()->route('dataJalanAspal.edit', $asphaltStreetData->id);
+            return redirect()->route('dataJalanAspal.index');
         } else {
             return view('401');
         }

@@ -91,7 +91,7 @@ class AsphaltStreetController extends Controller
     {
         if (auth()->user()->role == 'admin') {
             // Display the names
-            return view('pages.jalanAspal.index', [
+            return view('pages.jalanAspal.edit', [
                 'title' => 'Edit Jalan Aspal',
                 'users' =>  User::where('role', '!=', 'admin')->get(),
                 'data' => $asphaltStreet,

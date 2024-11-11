@@ -14,6 +14,6 @@ class AsphaltStreet extends Model
 
     public function asphaltStreetData(): HasMany
     {
-        return $this->hasMany(AsphaltStreetData::class)->cascadeOnDelete();
+        return $this->hasMany(AsphaltStreetData::class);
     }
 }

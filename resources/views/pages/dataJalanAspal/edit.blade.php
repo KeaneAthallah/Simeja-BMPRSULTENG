@@ -53,9 +53,7 @@
                                     @foreach ($jalanAspals as $street)
                                         <option value="{{ $street->id }}"
                                             {{ old('asphalt_street_id', $data->asphalt_street_id) == $street->id ? 'selected' : '' }}>
-                                            {{ $street->noRuas }} - {{ $street->namaRuas }} - ({{ $street->dariPatok }}
-                                            -
-                                            {{ $street->kePatok }})
+                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -67,6 +65,22 @@
                                 <input type="text" id="kePatok" name="kePatok"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="0+100" value="{{ old('kePatok', $data->kePatok ?? '') }}" />
+                            </div>
+                            <div class="mb-4">
+                                <label for="koordinat"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Koordinat
+                                </label>
+                                <textarea id="koordinat" name="koordinat"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder='Example: [[119.843909, -0.889369], [119.843519, -0.890182]]'>{{ old('koordinat', $data->koordinat) }}</textarea>
+                                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    Enter coordinates in JSON format as a single line:
+                                    <span class="font-mono">[[longitude, latitude], [longitude, latitude]]</span>.
+                                    Click <a href="https://geojson.io/#map=11.42/-0.9171/119.8803" target="_blank"
+                                        rel="noopener noreferrer" class="text-blue-700 dark:text-blue-200">here</a> to
+                                    get coordinates.
+                                </p>
                             </div>
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">

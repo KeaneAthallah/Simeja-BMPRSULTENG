@@ -65,6 +65,22 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="0+100" value="{{ old('kePatok') }}" />
                             </div>
+                            <div class="mb-4">
+                                <label for="koordinat"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Koordinat
+                                </label>
+                                <textarea id="koordinat" name="koordinat"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder='Example: [[119.843909, -0.889369], [119.843519, -0.890182]]'>{{ old('koordinat') }}</textarea>
+                                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    Enter coordinates in JSON format as a single line:
+                                    <span class="font-mono">[[longitude, latitude], [longitude, latitude]]</span>.
+                                    Click <a href="https://geojson.io/#map=11.42/-0.9171/119.8803" target="_blank"
+                                        rel="noopener noreferrer" class="text-blue-700 dark:text-blue-200">here</a> to
+                                    get coordinates.
+                                </p>
+                            </div>
                         </div>
 
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
@@ -1016,4 +1032,20 @@
             <!--/container-->
         </div>
     </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const koordinatField = document.getElementById("koordinat");
+
+            try {
+                // Parse JSON to validate
+                const parsedCoordinates = JSON.parse(koordinatField.value);
+
+                // Convert back to string to ensure consistent format
+                koordinatField.value = JSON.stringify(parsedCoordinates);
+            } catch (e) {
+                alert("Please enter valid JSON format: [[longitude, latitude], [longitude, latitude]]");
+                event.preventDefault(); // Stop form submission
+            }
+        });
+    </script>
 </x-layout-dashboard>

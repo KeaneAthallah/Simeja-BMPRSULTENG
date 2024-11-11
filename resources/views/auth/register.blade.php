@@ -61,19 +61,26 @@
                             <label for="FirstName" class="block text-sm font-medium text-gray-700">
                                 Nama Lengkap
                             </label>
-                            <input type="text" id="FirstName" name="name"
+                            <input type="text" id="FirstName" name="name" value="{{ old('name') }}"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                             <label for="LastName" class="block text-sm font-medium text-gray-700">
                                 NIP
                             </label>
-                            <input type="text" id="LastName" name="nip"
+                            <input type="text" id="LastName" name="nip" value="{{ old('nip') }}"
+                                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="LastName" class="block text-sm font-medium text-gray-700">
+                                Jabatan
+                            </label>
+                            <input type="text" id="LastName" name="jabatan" value="{{ old('jabatan') }}"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                         </div>
                         <div class="col-span-6">
                             <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
-                            <input type="email" id="Email" name="email"
+                            <input type="email" id="Email" name="email" value="{{ old('email') }}"
                                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                         </div>
                         <div class="col-span-6 sm:col-span-3">

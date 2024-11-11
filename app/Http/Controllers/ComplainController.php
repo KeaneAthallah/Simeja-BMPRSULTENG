@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Complain;
 use Illuminate\Http\Request;
+use App\Models\AsphaltStreet;
+use App\Models\AsphaltStreetData;
 
 class ComplainController extends Controller
 {
@@ -17,9 +19,56 @@ class ComplainController extends Controller
 
     public function json()
     {
-        $datas = Complain::all();
-        return json_encode($datas);
+        // Get all complaints and asphalt street data
+        $complaints = Complain::all();
+        $asphaltStreets = AsphaltStreet::with('asphaltStreetData')->get(); // Eager load related asphaltStreetData
+        $data = [];  // Initialize an empty array to hold the response data
+
+        // Loop through each asphalt street record
+        foreach ($asphaltStreets as $asphaltStreet) {
+            // Loop through each asphalt street data for the current street
+            foreach ($asphaltStreet->asphaltStreetData as $asphaltStreetData) {
+                // Decode the coordinates from JSON
+                $coordinates = json_decode($asphaltStreetData->koordinat, true);
+
+                // If the coordinates are valid, process them
+                if ($coordinates && is_array($coordinates)) {
+                    $formattedCoordinates = [];
+                    // Loop through each pair of coordinates
+                    foreach ($coordinates as $coordinate) {
+                        if (is_array($coordinate) && count($coordinate) == 2) {
+                            $formattedCoordinates[] = [
+                                'longitude' => $coordinate[0],
+                                'latitude' => $coordinate[1],
+                            ];
+                        }
+                    }
+                    // Add asphalt street data along with coordinates to the response
+                    $data[] = [
+                        'asphaltStreet_id' => $asphaltStreet->id,
+                        'asphaltStreetData_id' => $asphaltStreetData->id, // Include the street data ID
+                        'coordinates' => $formattedCoordinates,
+                    ];
+                }
+            }
+        }
+
+        // Now include the complaints in the data array
+        foreach ($complaints as $complain) {
+            $data[] = [
+                'complain_id' => $complain->id,
+                'description' => $complain->aspirasi,  // Assuming 'aspirasi' is the complaint description
+                'lat' => $complain->lat,
+                'long' => $complain->long,
+                'status' => $complain->status,
+                'image' => $complain->image,
+            ];
+        }
+
+        // Return the data as a JSON response
+        return response()->json($data);
     }
+
 
     /**
      * Show the form for creating a new resource.
