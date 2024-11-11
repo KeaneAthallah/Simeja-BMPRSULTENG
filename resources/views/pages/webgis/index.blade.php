@@ -25,23 +25,23 @@
             // L.geoJSON(simpul).addTo(map);
 
             // Fetch and display markers
-            $.getJSON('http://localhost/gis/public/dashboard/webgis/json', function(data) {
+            $.getJSON('https://simeja-bmprsulteng.com/dashboard/webgis/json', function(data) {
                 $.each(data, function(index) {
                     // Create a custom icon with an image
                     const customIconRed = L.icon({
-                        iconUrl: 'https://localhost/gis/public/icons/red.png',
+                        iconUrl: 'https://simeja-bmprsulteng.com/icons/red.png',
                         iconSize: [25, 25],
                         iconAnchor: [12, 41],
                         popupAnchor: [1, -34]
                     });
                     const customIconBlue = L.icon({
-                        iconUrl: 'https://localhost/gis/public/icons/blue.png',
+                        iconUrl: 'https://simeja-bmprsulteng.com/icons/blue.png',
                         iconSize: [30, 30],
                         iconAnchor: [12, 41],
                         popupAnchor: [1, -34]
                     });
                     const customIconGreen = L.icon({
-                        iconUrl: 'https://localhost/gis/public/icons/green.png',
+                        iconUrl: 'https://simeja-bmprsulteng.com/icons/green.png',
                         iconSize: [25, 25],
                         iconAnchor: [12, 41],
                         popupAnchor: [1, -34]
@@ -77,7 +77,7 @@
                     // Prepare popup content with translated status
                     const popupContent = `
                             <div class="max-w-sm rounded-lg overflow-hidden bg-white ">
-                                <img class="w-full h-48 object-cover" src="http://localhost/gis/public/storage/${data[index].image}" alt="Foto Kerusakan">
+                                <img class="w-full h-48 object-cover" src="http://simeja-bmprsulteng.com/storage/${data[index].image}" alt="Foto Kerusakan">
                                 <div class="px-6 py-4">
                                     <div class="mb-4">
                                         <span class="font-semibold text-lg">Status:</span>
