@@ -11,7 +11,7 @@
              @if (auth()->user()->role == 'admin')
                  <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown"
                      class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspal.index') || request()->routeIs('jalanTanah.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
-                     type="button">Data Survey <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                     type="button">Pengaturan<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                              d="m1 1 4 4 4-4" />
@@ -62,7 +62,7 @@
              @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
                  <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown1"
                      class="font-medium rounded-lg text-sm  text-center inline-flex items-center  {{ request()->routeIs('jalanAspalData.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium"
-                     type="button">Penanganan <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                     type="button">Data Survey <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                              d="m1 1 4 4 4-4" />
