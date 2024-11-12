@@ -89,8 +89,6 @@
         var baseMaps = {
             "OpenStreetMap": osm,
             "OpenStreetMap.HOT": osmHOT,
-            "OpenTerrain": Stadia_StamenTerrain,
-            "OpenTonerLite": Stadia_StamenTonerLite
         };
 
         // Layer groups for kondisiJalan
