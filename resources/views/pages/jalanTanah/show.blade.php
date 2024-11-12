@@ -38,7 +38,7 @@
                     <tr>
                         <td>Nomor Provinsi</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->noProvinsi }}
                             </span>
                         </td>
@@ -46,7 +46,7 @@
                     <tr>
                         <td>Nama Provinsi</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->namaProvinsi }}
                             </span>
                         </td>
@@ -54,7 +54,7 @@
                     <tr>
                         <td>Kabupaten/Kota</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->kabupaten }}
                             </span>
                         </td>
@@ -62,7 +62,7 @@
                     <tr>
                         <td>Dari Patok Km</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->dariPatok }}
                             </span>
                         </td>
@@ -70,7 +70,7 @@
                     <tr>
                         <td>Ke Patok Km</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->kePatok }}
                             </span>
                         </td>
@@ -84,7 +84,7 @@
                     <tr>
                         <td>Nomor Ruas</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->noRuas }}
                             </span>
                         </td>
@@ -93,7 +93,7 @@
                     <tr>
                         <td>Nama Ruas</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->namaRuas }}
                             </span>
                         </td>
@@ -101,7 +101,7 @@
                     <tr>
                         <td>Status/Fungsi</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->soilsStreet->fungsi }}
                             </span>
                         </td>
@@ -110,7 +110,7 @@
                     <tr>
                         <td>Tanggal</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ \Carbon\Carbon::parse($data->soilsStreet->date)->format('d/m/Y') }}
                             </span>
                         </td>
@@ -126,7 +126,9 @@
 
                                 @foreach ($users as $user)
                                     @if (in_array($user->id, $selectedSurveyors))
-                                        <li>{{ $loop->iteration }}. {{ $user->name }}</li>
+                                        <li
+                                            style="height: 15px;width: 200px;border: 1px solid black;margin-bottom: 2px;padding-left: 2px">
+                                            {{ $loop->iteration }}. {{ $user->name }}</li>
                                     @endif
                                 @endforeach
                             </ul>

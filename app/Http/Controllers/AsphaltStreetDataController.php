@@ -16,7 +16,7 @@ class AsphaltStreetDataController extends Controller
     public function index()
     {
 
-        if (auth()->user()->role == "staff" || auth()->user()->role == "admin") {
+        if (auth()->user()->role == "staff") {
             $userId = auth()->user()->id;
             $asphaltStreets = AsphaltStreet::all()->filter(function ($asphaltStreet) use ($userId) {
                 $surveyors = explode(',', $asphaltStreet->surveyor); // Split surveyors into an array
@@ -27,6 +27,9 @@ class AsphaltStreetDataController extends Controller
 
             // Retrieve all AsphaltStreetData records for the matching IDs
             $data = AsphaltStreetData::whereIn('asphalt_street_id', $asphaltStreetIds)->latest()->get();
+            return view("pages.dataJalanAspal.index", ["datas" => $data, 'title' => 'Jalan Aspal Data']);
+        } else if (auth()->user()->role == 'admin') {
+            $data = AsphaltStreetData::all();
             return view("pages.dataJalanAspal.index", ["datas" => $data, 'title' => 'Jalan Aspal Data']);
         } else {
             return view('401');

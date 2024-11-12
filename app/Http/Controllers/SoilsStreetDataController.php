@@ -15,7 +15,7 @@ class SoilsStreetDataController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role == "staff" || auth()->user()->role == "admin") {
+        if (auth()->user()->role == "staff") {
             $userId = auth()->user()->id;
             $soilsStreets = SoilsStreet::all()->filter(function ($soilsStreet) use ($userId) {
                 $surveyors = explode(',', $soilsStreet->surveyor); // Split surveyors into an array
@@ -26,6 +26,9 @@ class SoilsStreetDataController extends Controller
 
             // Retrieve all soilsStreetData records for the matching IDs
             $data = SoilsStreetData::whereIn('soils_street_id', $soilsStreetIds)->latest()->get();
+            return view("pages.dataJalanTanah.index", ["datas" => $data, 'title' => 'Data Jalan Tanah/Kerikil']);
+        } else if (auth()->user()->role == 'admin') {
+            $data = SoilsStreetData::all();
             return view("pages.dataJalanTanah.index", ["datas" => $data, 'title' => 'Data Jalan Tanah/Kerikil']);
         } else {
             return view('401');
@@ -58,6 +61,27 @@ class SoilsStreetDataController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 'soils_street_id' => 'required|numeric',
+                'koordinat' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        // Attempt to decode JSON string
+                        $coordinates = json_decode($value, true);
+
+                        // Check if JSON parsing is successful
+                        if (json_last_error() !== JSON_ERROR_NONE || !is_array($coordinates)) {
+                            $fail("The {$attribute} field must be a valid JSON array of coordinate pairs.");
+                            return;
+                        }
+
+                        // Validate each coordinate pair
+                        foreach ($coordinates as $index => $coordinate) {
+                            if (!is_array($coordinate) || count($coordinate) !== 2) {
+                                $fail("Each coordinate pair in {$attribute} must contain exactly two values (longitude and latitude). Error at index {$index}.");
+                                return;
+                            }
+                        }
+                    }
+                ],
                 'kemiringan' => 'required|integer|in:1,2',
                 'penurunan' => 'required|integer|in:1,2,3,4,5',
                 'erosi' => 'required|integer|in:1,2,3,4,5',
@@ -82,6 +106,8 @@ class SoilsStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'koordinat.required' => 'Field koordinat wajib diisi.',
+                'koordinat.array' => 'Field koordinat harus berupa array pasangan koordinat.',
                 'dariPatok.required' => 'Dari patok harus diisi.',
                 'dariPatok.max' => 'Dari patok maksimal 255 karakter.',
                 'kePatok.required' => 'Ke patok harus diisi.',
@@ -193,6 +219,27 @@ class SoilsStreetDataController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 'soils_street_id' => 'required',
+                'koordinat' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        // Attempt to decode JSON string
+                        $coordinates = json_decode($value, true);
+
+                        // Check if JSON parsing is successful
+                        if (json_last_error() !== JSON_ERROR_NONE || !is_array($coordinates)) {
+                            $fail("The {$attribute} field must be a valid JSON array of coordinate pairs.");
+                            return;
+                        }
+
+                        // Validate each coordinate pair
+                        foreach ($coordinates as $index => $coordinate) {
+                            if (!is_array($coordinate) || count($coordinate) !== 2) {
+                                $fail("Each coordinate pair in {$attribute} must contain exactly two values (longitude and latitude). Error at index {$index}.");
+                                return;
+                            }
+                        }
+                    }
+                ],
                 'kemiringan' => 'required|integer|in:1,2,3,4',
                 'penurunan' => 'required|integer|in:1,2,3,4,5',
                 'erosi' => 'required|integer|in:1,2,3,4,5',
@@ -217,6 +264,8 @@ class SoilsStreetDataController extends Controller
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
             ], [
                 '_token.required' => 'Token harus diisi.',
+                'koordinat.required' => 'Field koordinat wajib diisi.',
+                'koordinat.array' => 'Field koordinat harus berupa array pasangan koordinat.',
                 'kemiringan.required' => 'Permukaan perkerasan harus diisi.',
                 'kemiringan.integer' => 'Permukaan perkerasan harus berupa angka.',
                 'kemiringan.in' => 'Permukaan perkerasan harus salah satu dari: 1, 2, 3, 4.',

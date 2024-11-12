@@ -65,6 +65,22 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="0+100" value="{{ old('kePatok') }}" />
                             </div>
+                            <div class="mb-4">
+                                <label for="koordinat"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Koordinat
+                                </label>
+                                <textarea id="koordinat" name="koordinat"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder='Example: [[119.843909, -0.889369], [119.843519, -0.890182]]'>{{ old('koordinat') }}</textarea>
+                                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                    Enter coordinates in JSON format as a single line:
+                                    <span class="font-mono">[[longitude, latitude], [longitude, latitude]]</span>.
+                                    Click <a href="https://geojson.io/#map=11.42/-0.9171/119.8803" target="_blank"
+                                        rel="noopener noreferrer" class="text-blue-700 dark:text-blue-200">here</a> to
+                                    get coordinates.
+                                </p>
+                            </div>
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                             <div class="border  border-black dark:border-white rounded-md p-6">
@@ -138,7 +154,8 @@
                                                 class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                                 <div class="flex items-center ps-3">
                                                     <input id="vue-checkbox" type="radio" value="1"
-                                                        {{ old('penurunan') == '1' ? 'checked' : '' }} name="penurunan"
+                                                        {{ old('penurunan') == '1' ? 'checked' : '' }}
+                                                        name="penurunan"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="vue-checkbox"
                                                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak

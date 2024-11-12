@@ -81,7 +81,7 @@
                                         {{ $data->soilsStreet->noRuas }}
                                     </td>
                                     <td>{{ $data->soilsStreet->namaRuas }}</td>
-                                    <td>{{ $data->soilsStreet->dariPatok }} - {{ $data->soilsStreet->kePatok }}</td>
+                                    <td>{{ $data->dariPatok }} - {{ $data->kePatok }}</td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
                                         @if (auth()->user()->role == 'staff')

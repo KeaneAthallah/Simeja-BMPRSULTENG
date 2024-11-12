@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('soils_street_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('soils_street_id');
+            $table->text('koordinat')->nullable();
             $table->string('dariPatok');
             $table->string('kePatok');
             $table->string('kemiringan');

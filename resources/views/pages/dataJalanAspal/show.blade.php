@@ -29,7 +29,8 @@
             <span style="height: 10px;width: 20px;border: 1px solid black;fzont-size: 10px;padding: 2px 10px">
             </span>
         </div>
-        <h3 style="text-align: center;margin-top: 80px">FORMULIR SURVEI KONDISI JALAN ASPAL PER-100 METER</h3>
+        <h3 style="text-align: center;margin-top: 80px">FORMULIR SURVEI KONDISI JALAN ASPAL PER-100 METER
+            akwkadksakdoasid</h3>
     </header>
     <main>
         <div style="position: absolute; top: 120px; left: 10px;font-weight: bold;">
@@ -38,7 +39,7 @@
                     <tr>
                         <td>Nomor Provinsi</td>
                         <td>:
-                            <span>
+                            <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->noProvinsi }}
                             </span>
                         </td>

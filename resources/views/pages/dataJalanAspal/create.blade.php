@@ -87,7 +87,7 @@
                             <div class="border  border-black dark:border-white rounded-md p-6">
                                 <h2
                                     class="text-lg h-16 content-center font-semibold text-center mb-6 text-gray-900 dark:text-white border-b border-black dark:border-white">
-                                    Permukaan Pengkerasaan</h2>
+                                    Permukaan Perkerasaan</h2>
                                 <div class="grid gap-6 mb-6 md:grid-cols-1">
                                     <div
                                         class="border border-black dark:border-white flex items-center flex-col p-3 rounded-md">
@@ -745,7 +745,8 @@
                                                         name="kondisiBahuKiri"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="angular-checkbox-left"
-                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Erosi
+                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Bekas
+                                                        rd. Erosi
                                                         ringan</label>
                                                     <input id="angular-checkbox-right" type="radio" value="3"
                                                         {{ old('kondisiBahuKanan') == '3' ? 'checked' : '' }}
@@ -760,7 +761,8 @@
                                                         name="kondisiBahuKiri"
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="angular-checkbox-left"
-                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Erosi
+                                                        class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">Bekas
+                                                        rd. Erosi
                                                         berat</label>
                                                     <input id="angular-checkbox-right" type="radio" value="4"
                                                         {{ old('kondisiBahuKanan') == '4' ? 'checked' : '' }}
@@ -847,7 +849,7 @@
                                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                     <label for="angular-checkbox-left"
                                                         class="py-3 text-sm font-medium text-gray-900 dark:text-gray-300">>
-                                                        5cm
+                                                        10 cm
                                                         dibawah
                                                         permukaan jalan</label>
                                                     <input id="angular-checkbox-right" type="radio" value="5"
