@@ -8,6 +8,8 @@
         </div>
     </div>
 
+
+
     <script>
         let map;
         let markers = [];
@@ -15,6 +17,8 @@
         $(document).ready(function() {
             // Initialize the map centered at a default location
             map = L.map('map').setView([-0.9019336055045014, 119.86625407936758], 12);
+            L.geoJSON(jp).addTo(map);
+            // L.geoJSON(simpul).addTo(map);
 
             // Add a tile layer
             L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -153,6 +157,10 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        console.log(jp);
     </script>
 
 
