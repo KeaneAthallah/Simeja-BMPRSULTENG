@@ -63,7 +63,7 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
+                "image" => "nullable|max:2048",
                 'koordinat' => [
                     'required',
                     function ($attribute, $value, $fail) {
@@ -240,7 +240,7 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                "image" => "nullable|max:2048",
                 'koordinat' => [
                     'required',
                     function ($attribute, $value, $fail) {

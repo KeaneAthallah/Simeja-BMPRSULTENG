@@ -61,7 +61,7 @@ class SoilsStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                "image" => "nullable|max:2048",
                 'soils_street_id' => 'required|numeric',
                 'koordinat' => [
                     'required',
@@ -226,7 +226,7 @@ class SoilsStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                "image" => "nullable|max:2048",
                 'soils_street_id' => 'required',
                 'koordinat' => [
                     'required',

@@ -54,7 +54,7 @@
                                 </th>
                                 <th>
                                     <span class="flex items-center">
-                                        Update
+                                        SDI
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -62,6 +62,27 @@
                                         </svg>
                                     </span>
                                 </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        Penanganan
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+                                <th>
+                                    <span class="flex items-center">
+                                        Kondisi
+                                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                        </svg>
+                                    </span>
+                                </th>
+
                                 <th>
                                     <span class="flex items-center">
                                         Action
@@ -82,7 +103,113 @@
                                     </td>
                                     <td>{{ $data->soilsStreet->namaRuas }}</td>
                                     <td>{{ $data->dariPatok }} - {{ $data->kePatok }}</td>
-                                    <td>{{ $data->updated_at->diffForHumans() }}</td>
+                                    <td>
+                                        @php
+                                            $panjang =
+                                                intval(substr($data->kePatok, -3)) -
+                                                intval(substr($data->dariPatok, -3));
+                                            $result1 = '';
+                                            if ($data->luas == 1) {
+                                                $result1 = 0;
+                                            } elseif ($data->luas == 2) {
+                                                $result1 = 5;
+                                            } elseif ($data->luas == 3) {
+                                                $result1 = 20;
+                                            } elseif ($data->luas == 4) {
+                                                $result1 = 40;
+                                            }
+
+                                            $result2 = '';
+                                            if ($data->lebar === '') {
+                                                $result2 = '';
+                                            } elseif ($data->lebar == 4) {
+                                                $result2 = $result1 * 2;
+                                            } else {
+                                                $result2 = 0;
+                                            }
+
+                                            $result3 = $result2 == 0 ? $result1 : $result2;
+
+                                            $result4 = '';
+                                            if ($data->jumlahLubang == 1) {
+                                                $result4 = $result3;
+                                            } elseif ($data->jumlahLubang == 2) {
+                                                $result4 = $result3 + 15;
+                                            } elseif ($data->jumlahLubang == 3) {
+                                                $result4 = $result3 + 75;
+                                            } elseif ($data->jumlahLubang == 4) {
+                                                $result4 = $result3 + 225;
+                                            }
+                                            $result5 = '';
+                                            if ($data->bekasRoda == 1) {
+                                                $result5 = $result4;
+                                            } elseif ($data->bekasRoda == 2) {
+                                                $result5 = $result4 + 5 * 0.5;
+                                            } elseif ($data->bekasRoda == 3) {
+                                                $result5 = $result4 + 5 * 2;
+                                            } elseif ($data->bekasRoda == 4) {
+                                                $result5 = $result4 + 5 * 4;
+                                            }
+                                            $result6 = $result5 = '' ? '' : $result5;
+                                            echo $result6;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                            $nilaiIri = 0;
+                                            $result7 = 0;
+                                            if ($nilaiIri <= 4 && $result6 <= 50) {
+                                                $result7 = $panjang;
+                                            }
+                                            $result8 = 0;
+                                            if (
+                                                ($nilaiIri <= 4 && $result6 > 50 && $result6 <= 100) ||
+                                                ($nilaiIri > 4 && $nilaiIri <= 8 && $result6 <= 100)
+                                            ) {
+                                                $result8 = $panjang;
+                                            }
+                                            $result9 = 0;
+                                            if (
+                                                ($nilaiIri <= 8 && $result6 > 100 && $result6 <= 150) ||
+                                                ($nilaiIri > 8 && $nilaiIri <= 12 && $result6 <= 150)
+                                            ) {
+                                                $result9 = $panjang;
+                                            }
+                                            $result10 = 0;
+                                            if (
+                                                ($nilaiIri > 12 && $result6 >= 0) ||
+                                                ($nilaiIri <= 12 && $result6 > 150)
+                                            ) {
+                                                $result10 = $panjang;
+                                            }
+                                            $result11 = isset($result7) && isset($result8) ? $result7 + $result8 : 0;
+                                            $result12 = isset($result9) && isset($result10) ? $result9 + $result10 : 0;
+                                            if ($result7 + $result8 > 0 && $result9 + $result10 == 0) {
+                                                $pemeliharaan = 'Pemeliharaan Rutin';
+                                            } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
+                                                $pemeliharaan = 'Pemeliharaan Berkala';
+                                            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
+                                                $pemeliharaan = 'Peningkatan/Rekonstruksi';
+                                            } else {
+                                                $pemeliharaan = '';
+                                            }
+                                            echo $pemeliharaan;
+                                        @endphp
+                                    </td>
+                                    <td>
+                                        @php
+                                            if ($result6 < 50) {
+                                                $kondisi = 'Baik';
+                                            } elseif ($result6 <= 100) {
+                                                $kondisi = 'Sedang';
+                                            } elseif ($result6 < 150) {
+                                                $kondisi = 'Rusak Ringan';
+                                            } else {
+                                                $kondisi = 'Rusak Berat';
+                                            }
+                                            echo $kondisi;
+                                        @endphp
+                                    </td>
                                     <td class="flex space-x-2">
                                         @if (auth()->user()->role == 'staff')
                                             <button
