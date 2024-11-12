@@ -24,23 +24,24 @@
 
             // Fetch and display markers from the backend API
             const url = "{{ route('dashboard.webgis.json') }}";
+            const baseURL = "{{ url('/') }}";
 
             $.getJSON(url, function(data) {
                 // Create custom icons for different statuses
                 const customIconRed = L.icon({
-                    iconUrl: 'https://simeja-bmprsulteng.com/icons/red.png',
+                    iconUrl: `${baseURL}/icons/red.png`,
                     iconSize: [25, 25],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34]
                 });
                 const customIconBlue = L.icon({
-                    iconUrl: 'https://simeja-bmprsulteng.com/icons/blue.png',
+                    iconUrl: `${baseURL}/icons/blue.png`,
                     iconSize: [30, 30],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34]
                 });
                 const customIconGreen = L.icon({
-                    iconUrl: 'https://simeja-bmprsulteng.com/icons/green.png',
+                    iconUrl: `${baseURL}/icons/green.png`,
                     iconSize: [25, 25],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34]
@@ -52,12 +53,13 @@
                     if (item.coordinates) {
                         let latlngs = item.coordinates.map(function(coord) {
                             return [coord.latitude, coord
-                            .longitude]; // [latitude, longitude]
+                                .longitude
+                            ]; // [latitude, longitude]
                         });
 
                         // Determine polyline color based on data type
                         let color = item.asphaltStreetData_id ? 'red' :
-                        'blue'; // Red for Asphalt, Blue for Soils
+                            'blue'; // Red for Asphalt, Blue for Soils
                         let polyline = L.polyline(latlngs, {
                             color: color
                         }).addTo(map);
@@ -139,7 +141,7 @@
                             .on('click', function() {
                                 $('#noteDetails').text(
                                     `Name: ${item.name || 'Tidak tersedia'}, Status: ${statusText}`
-                                    );
+                                );
                             })
                             .addTo(map);
 

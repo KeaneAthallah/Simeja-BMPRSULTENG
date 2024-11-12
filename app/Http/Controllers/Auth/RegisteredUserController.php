@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
             'jabatan' => ['required', 'string', 'max:255'],
             'nip' => ['string', 'max:255', 'required'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -42,13 +42,13 @@ class RegisteredUserController extends Controller
             'jabatan' => $request->jabatan,
             'nip' => $request->nip,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->nip),
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('dashboard.users', absolute: false));
     }
 }

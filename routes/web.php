@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/dataJalanTanah', SoilsStreetDataController::class)->parameter('dataJalanTanah', 'soilsStreetData');
     Route::resource('/dashboard/inventarisJalan', RoadInventoryController::class)->parameter('inventarisJalan', 'roadInventory');
     Route::resource('/dashboard/dataInventarisJalan', RoadInventoryDataController::class)->parameter('dataInventarisJalan', 'roadInventoryData');
+    Route::get('/dashboard/users', [WebgisController::class, 'users'])->name('dashboard.users');
+    Route::get('/dashboard/tambah-user', [WebgisController::class, 'addUser'])->name('dashboard.addUser');
 });
 
 require __DIR__ . '/auth.php';

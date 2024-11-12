@@ -109,6 +109,10 @@
                      </ul>
                  </div>
              @endif
+             @if (auth()->user()->role == 'admin')
+                 <a href="{{ route('dashboard.users') }}"
+                     class="{{ request()->routeIs('dashboard.users') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium ">Users</a>
+             @endif
          </div>
      </div>
  </header>

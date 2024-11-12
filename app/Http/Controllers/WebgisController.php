@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Webgis;
 use Illuminate\Http\Request;
 
@@ -62,5 +63,14 @@ class WebgisController extends Controller
     public function destroy(Webgis $webgis)
     {
         //
+    }
+    public function users()
+    {
+        $users = User::all();
+        return view('pages.webgis.users', ['title' => 'Semua Users', 'datas' => $users]);
+    }
+    public function addUser()
+    {
+        return view('pages.webgis.addUser', ['title' => 'Tambah User']);
     }
 }
