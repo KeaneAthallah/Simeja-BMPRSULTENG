@@ -3,3 +3,4 @@ public/storage
 /.idea
 /.vscode
 /.zed
+.env

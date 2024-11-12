@@ -102,7 +102,7 @@
                         // Prepare popup content
                         const popupContent = `
                             <div class="max-w-sm rounded-lg overflow-hidden bg-white">
-                                <img class="w-full h-48 object-cover" src="http://simeja-bmprsulteng.com/storage/${item.image}" alt="Foto Kerusakan">
+                                <img class="w-full h-48 object-cover" src="${baseURL}/storage/${item.image}" alt="Foto Kerusakan">
                                 <div class="px-6 py-4">
                                     <div class="mb-4">
                                         <span class="font-semibold text-lg">Status:</span>
