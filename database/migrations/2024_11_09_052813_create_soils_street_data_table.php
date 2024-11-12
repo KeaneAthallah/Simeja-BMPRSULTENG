@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('soils_street_id');
             $table->text('koordinat')->nullable();
+            $table->string('jenisPerkerasan')->default('Tanah');
             $table->string('image')->nullable();
             $table->string('dariPatok');
             $table->string('kePatok');

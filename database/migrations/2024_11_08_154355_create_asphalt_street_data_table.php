@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('asphalt_street_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('asphalt_street_id');
+            $table->string('jenisPerkerasan')->default('Aspal');
             $table->string('image')->nullable();
             $table->text('koordinat')->nullable();
             $table->string('permukaanPerkerasan');
@@ -40,6 +41,11 @@ return new class extends Migration
             $table->string('kerusakanLerengKanan');
             $table->string('trotoarKiri');
             $table->string('trotoarKanan');
+            $table->string('sdi')->nullable();
+            $table->string('kondisiJalan')->nullable();
+            $table->string('penanganan')->nullable();
+            $table->string('panjang')->nullable();
+            $table->string('nilaiIri')->default(0);
             $table->timestamps();
         });
     }

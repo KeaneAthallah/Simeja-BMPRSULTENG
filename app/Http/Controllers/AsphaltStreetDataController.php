@@ -191,6 +191,102 @@ class AsphaltStreetDataController extends Controller
             } else {
                 dd('No file uploaded'); // Or log this message
             }
+            $panjang =
+                intval(substr($request->kePatok, -3)) -
+                intval(substr($request->dariPatok, -3));
+            $result1 = '';
+            if ($request->luas == 1) {
+                $result1 = 0;
+            } elseif ($request->luas == 2) {
+                $result1 = 5;
+            } elseif ($request->luas == 3) {
+                $result1 = 20;
+            } elseif ($request->luas == 4) {
+                $result1 = 40;
+            }
+
+            $result2 = '';
+            if ($request->lebar === '') {
+                $result2 = '';
+            } elseif ($request->lebar == 4) {
+                $result2 = $result1 * 2;
+            } else {
+                $result2 = 0;
+            }
+
+            $result3 = $result2 == 0 ? $result1 : $result2;
+
+            $result4 = '';
+            if ($request->jumlahLubang == 1) {
+                $result4 = $result3;
+            } elseif ($request->jumlahLubang == 2) {
+                $result4 = $result3 + 15;
+            } elseif ($request->jumlahLubang == 3) {
+                $result4 = $result3 + 75;
+            } elseif ($request->jumlahLubang == 4) {
+                $result4 = $result3 + 225;
+            }
+            $result5 = '';
+            if ($request->bekasRoda == 1) {
+                $result5 = $result4;
+            } elseif ($request->bekasRoda == 2) {
+                $result5 = $result4 + 5 * 0.5;
+            } elseif ($request->bekasRoda == 3) {
+                $result5 = $result4 + 5 * 2;
+            } elseif ($request->bekasRoda == 4) {
+                $result5 = $result4 + 5 * 4;
+            }
+            $result6 = $result5 = '' ? '' : $result5;
+            $nilaiIri = 0;
+            $result7 = 0;
+            if ($nilaiIri <= 4 && $result6 <= 50) {
+                $result7 = $panjang;
+            }
+            $result8 = 0;
+            if (
+                ($nilaiIri <= 4 && $result6 > 50 && $result6 <= 100) ||
+                ($nilaiIri > 4 && $nilaiIri <= 8 && $result6 <= 100)
+            ) {
+                $result8 = $panjang;
+            }
+            $result9 = 0;
+            if (
+                ($nilaiIri <= 8 && $result6 > 100 && $result6 <= 150) ||
+                ($nilaiIri > 8 && $nilaiIri <= 12 && $result6 <= 150)
+            ) {
+                $result9 = $panjang;
+            }
+            $result10 = 0;
+            if (
+                ($nilaiIri > 12 && $result6 >= 0) ||
+                ($nilaiIri <= 12 && $result6 > 150)
+            ) {
+                $result10 = $panjang;
+            }
+            $result11 = isset($result7) && isset($result8) ? $result7 + $result8 : 0;
+            $result12 = isset($result9) && isset($result10) ? $result9 + $result10 : 0;
+            if ($result7 + $result8 > 0 && $result9 + $result10 == 0) {
+                $pemeliharaan = 'Pemeliharaan Rutin';
+            } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
+                $pemeliharaan = 'Pemeliharaan Berkala';
+            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
+            } else {
+                $pemeliharaan = '';
+            }
+            if ($result6 < 50) {
+                $kondisi = 'Baik';
+            } elseif ($result6 <= 100) {
+                $kondisi = 'Sedang';
+            } elseif ($result6 < 150) {
+                $kondisi = 'Rusak Ringan';
+            } else {
+                $kondisi = 'Rusak Berat';
+            }
+            $validatedData['penanganan'] = $pemeliharaan;
+            $validatedData['panjang'] = $panjang;
+            $validatedData['sdi'] = $result6;
+            $validatedData['kondisiJalan'] = $kondisi;
             AsphaltStreetData::create($validatedData);
             return redirect()->route('dataJalanAspal.index');
         } else {
@@ -365,10 +461,105 @@ class AsphaltStreetDataController extends Controller
                 if ($asphaltStreetData->image) {
                     Storage::delete($asphaltStreetData->image);
                 }
-
                 // Store the new image file and update the image path in the validated data
                 $validatedData['image'] = $request->file('image')->store('complain_images');
             }
+            $panjang =
+                intval(substr($request->kePatok, -3)) -
+                intval(substr($request->dariPatok, -3));
+            $result1 = '';
+            if ($request->luas == 1) {
+                $result1 = 0;
+            } elseif ($request->luas == 2) {
+                $result1 = 5;
+            } elseif ($request->luas == 3) {
+                $result1 = 20;
+            } elseif ($request->luas == 4) {
+                $result1 = 40;
+            }
+
+            $result2 = '';
+            if ($request->lebar === '') {
+                $result2 = '';
+            } elseif ($request->lebar == 4) {
+                $result2 = $result1 * 2;
+            } else {
+                $result2 = 0;
+            }
+
+            $result3 = $result2 == 0 ? $result1 : $result2;
+
+            $result4 = '';
+            if ($request->jumlahLubang == 1) {
+                $result4 = $result3;
+            } elseif ($request->jumlahLubang == 2) {
+                $result4 = $result3 + 15;
+            } elseif ($request->jumlahLubang == 3) {
+                $result4 = $result3 + 75;
+            } elseif ($request->jumlahLubang == 4) {
+                $result4 = $result3 + 225;
+            }
+            $result5 = '';
+            if ($request->bekasRoda == 1) {
+                $result5 = $result4;
+            } elseif ($request->bekasRoda == 2) {
+                $result5 = $result4 + 5 * 0.5;
+            } elseif ($request->bekasRoda == 3) {
+                $result5 = $result4 + 5 * 2;
+            } elseif ($request->bekasRoda == 4) {
+                $result5 = $result4 + 5 * 4;
+            }
+            $result6 = $result5 = '' ? '' : $result5;
+            $nilaiIri = 0;
+            $result7 = 0;
+            if ($nilaiIri <= 4 && $result6 <= 50) {
+                $result7 = $panjang;
+            }
+            $result8 = 0;
+            if (
+                ($nilaiIri <= 4 && $result6 > 50 && $result6 <= 100) ||
+                ($nilaiIri > 4 && $nilaiIri <= 8 && $result6 <= 100)
+            ) {
+                $result8 = $panjang;
+            }
+            $result9 = 0;
+            if (
+                ($nilaiIri <= 8 && $result6 > 100 && $result6 <= 150) ||
+                ($nilaiIri > 8 && $nilaiIri <= 12 && $result6 <= 150)
+            ) {
+                $result9 = $panjang;
+            }
+            $result10 = 0;
+            if (
+                ($nilaiIri > 12 && $result6 >= 0) ||
+                ($nilaiIri <= 12 && $result6 > 150)
+            ) {
+                $result10 = $panjang;
+            }
+            $result11 = isset($result7) && isset($result8) ? $result7 + $result8 : 0;
+            $result12 = isset($result9) && isset($result10) ? $result9 + $result10 : 0;
+            if ($result7 + $result8 > 0 && $result9 + $result10 == 0) {
+                $pemeliharaan = 'Pemeliharaan Rutin';
+            } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
+                $pemeliharaan = 'Pemeliharaan Berkala';
+            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
+            } else {
+                $pemeliharaan = '';
+            }
+            if ($result6 < 50) {
+                $kondisi = 'Baik';
+            } elseif ($result6 <= 100) {
+                $kondisi = 'Sedang';
+            } elseif ($result6 < 150) {
+                $kondisi = 'Rusak Ringan';
+            } else {
+                $kondisi = 'Rusak Berat';
+            }
+            $validatedData['penanganan'] = $pemeliharaan;
+            $validatedData['panjang'] = $panjang;
+            $validatedData['sdi'] = $result6;
+            $validatedData['kondisiJalan'] = $kondisi;
             $asphaltStreetData->update($validatedData);
             return redirect()->route('dataJalanAspal.index');
         } else {

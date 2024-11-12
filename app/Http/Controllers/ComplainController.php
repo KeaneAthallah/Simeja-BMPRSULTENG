@@ -46,6 +46,7 @@ class ComplainController extends Controller
                 $data[] = [
                     'soilsStreetData_id' => $soilsData->id, // Include the street data ID
                     'coordinates' => $formattedCoordinates,
+                    'jenisPerkerasan' => $soilsData->jenisPerkerasan
                 ];
             }
         }
@@ -56,9 +57,8 @@ class ComplainController extends Controller
             $coordinates = json_decode($asphaltData->koordinat, true);
 
             // If the coordinates are valid, process them
+            $formattedCoordinates = [];
             if ($coordinates && is_array($coordinates)) {
-                $formattedCoordinates = [];
-                // Loop through each pair of coordinates
                 foreach ($coordinates as $coordinate) {
                     if (is_array($coordinate) && count($coordinate) == 2) {
                         $formattedCoordinates[] = [
@@ -67,12 +67,22 @@ class ComplainController extends Controller
                         ];
                     }
                 }
-                // Add asphalt street data along with coordinates to the response
-                $data[] = [
-                    'asphaltStreetData_id' => $asphaltData->id, // Include the street data ID
-                    'coordinates' => $formattedCoordinates,
-                ];
             }
+
+            // Collect all required fields
+            $data[] = [
+                'asphaltStreetData_id' => $asphaltData->id,
+                'penanganan' => $asphaltData->penanganan,
+                'kondisiJalan' => $asphaltData->kondisiJalan,
+                'sdi' => $asphaltData->sdi,
+                'asphalt_street_id' => $asphaltData->asphalt_street_id,
+                'image' => $asphaltData->image,
+                'coordinates' => $formattedCoordinates,
+                'jenisPerkerasan' => $asphaltData->jenisPerkerasan,
+                'permukaanPerkerasan' => $asphaltData->permukaanPerkerasan,
+                'created_at' => $asphaltData->created_at,
+                'updated_at' => $asphaltData->updated_at,
+            ];
         }
 
         // Now include the complaints in the data array
@@ -90,6 +100,7 @@ class ComplainController extends Controller
         // Return the data as a JSON response
         return response()->json($data);
     }
+
 
 
 
