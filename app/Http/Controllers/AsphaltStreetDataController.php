@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\AsphaltStreet;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\AsphaltStreetData;
+use Illuminate\Support\Facades\Storage;
 
 class AsphaltStreetDataController extends Controller
 {
@@ -62,6 +63,7 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                "image" => "nullable|image|mimes:jpeg,png,jpg,gif|max:2048",
                 'koordinat' => [
                     'required',
                     function ($attribute, $value, $fail) {
@@ -183,6 +185,12 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan.integer' => 'Trotoar kanan harus berupa angka.',
                 'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
             ]);
+            if ($request->hasFile('image')) {
+                // Process the file
+                $validatedData['image'] = $request->file('image')->store('complain_images');
+            } else {
+                dd('No file uploaded'); // Or log this message
+            }
             AsphaltStreetData::create($validatedData);
             return redirect()->route('dataJalanAspal.index');
         } else {
@@ -232,6 +240,7 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'koordinat' => [
                     'required',
                     function ($attribute, $value, $fail) {
@@ -351,6 +360,15 @@ class AsphaltStreetDataController extends Controller
                 'trotoarKanan.integer' => 'Trotoar kanan harus berupa angka.',
                 'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
             ]);
+            if ($request->hasFile('image')) {
+                // Delete the old image file if it exists
+                if ($asphaltStreetData->image) {
+                    Storage::delete($asphaltStreetData->image);
+                }
+
+                // Store the new image file and update the image path in the validated data
+                $validatedData['image'] = $request->file('image')->store('complain_images');
+            }
             $asphaltStreetData->update($validatedData);
             return redirect()->route('dataJalanAspal.index');
         } else {

@@ -82,6 +82,21 @@
                                     get coordinates.
                                 </p>
                             </div>
+                            <div>
+                                <label for="image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar
+                                </label>
+                                <input type="file" id="image" name="image"
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    placeholder="0+100" value="{{ old('image') }}" />
+                            </div>
+                            <div>
+                                <label for="preview-image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview Gambar
+                                </label>
+                                <img id="preview-image" class="rounded-lg"
+                                    src="{{ asset('assets/images/no_image.jpg') }} " alt="">
+                            </div>
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">
                             <div class="border  border-black dark:border-white rounded-md p-6">

@@ -7,6 +7,7 @@ use App\Models\SoilsStreet;
 use Illuminate\Http\Request;
 use App\Models\SoilsStreetData;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class SoilsStreetDataController extends Controller
 {
@@ -60,6 +61,7 @@ class SoilsStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'soils_street_id' => 'required|numeric',
                 'koordinat' => [
                     'required',
@@ -173,6 +175,12 @@ class SoilsStreetDataController extends Controller
                 'trotoarKanan.integer' => 'Trotoar kanan harus berupa angka.',
                 'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
             ]);
+            if ($request->hasFile('image')) {
+                // Process the file
+                $validatedData['image'] = $request->file('image')->store('complain_images');
+            } else {
+                dd('No file uploaded'); // Or log this message
+            }
             SoilsStreetData::create($validatedData);
             return redirect(route("dataJalanTanah.index"));
         } else {
@@ -218,6 +226,7 @@ class SoilsStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'soils_street_id' => 'required',
                 'koordinat' => [
                     'required',
@@ -331,6 +340,15 @@ class SoilsStreetDataController extends Controller
                 'trotoarKanan.integer' => 'Trotoar kanan harus berupa angka.',
                 'trotoarKanan.in' => 'Trotoar kanan harus salah satu dari: 1, 2, 3, 4, 5.',
             ]);
+            if ($request->hasFile('image')) {
+                // Delete the old image file if it exists
+                if ($soilsStreetData->image) {
+                    Storage::delete($soilsStreetData->image);
+                }
+
+                // Store the new image file and update the image path in the validated data
+                $validatedData['image'] = $request->file('image')->store('complain_images');
+            }
             $soilsStreetData->update($validatedData);
             return redirect()->route('dataJalanTanah.index');
         } else {

@@ -31,7 +31,7 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <form action="{{ route('dataJalanAspal.store') }}" method="post">
+                    <form action="{{ route('dataJalanAspal.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
@@ -80,6 +80,21 @@
                                         rel="noopener noreferrer" class="text-blue-700 dark:text-blue-200">here</a> to
                                     get coordinates.
                                 </p>
+                            </div>
+                            <div>
+                                <label for="image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar
+                                </label>
+                                <input type="file" id="image" name="image"
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    placeholder="0+100" value="{{ old('image') }}" />
+                            </div>
+                            <div>
+                                <label for="preview-image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview Gambar
+                                </label>
+                                <img id="preview-image" class="rounded-lg"
+                                    src="{{ asset('assets/images/no_image.jpg') }} " alt="">
                             </div>
                         </div>
 
@@ -1050,4 +1065,5 @@
             }
         });
     </script>
+
 </x-layout-dashboard>
