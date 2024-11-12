@@ -60,7 +60,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Dari Patok Km</td>
+                        <td>Dari Patok STA</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->dariPatok }}
@@ -68,7 +68,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Ke Patok Km</td>
+                        <td>Ke Patok STA</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
                                 {{ $data->kePatok }}

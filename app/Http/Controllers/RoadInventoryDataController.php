@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsphaltStreetData;
 use App\Models\RoadInventory;
 use App\Models\RoadInventoryData;
+use App\Models\SoilsStreetData;
 use Illuminate\Http\Request;
 
 class RoadInventoryDataController extends Controller
@@ -41,7 +43,12 @@ class RoadInventoryDataController extends Controller
                 $surveyors = explode(',', $roadInventory->surveyor); // Split surveyors into an array
                 return in_array($userId, $surveyors); // Check if user ID is in the array
             });
-            return view('pages.dataInventarisJalan.create', ['title' => 'Tambah Data Inventaris Jaringan Jalan', 'inventarisJalans' => $roadInvetories]);
+            return view('pages.dataInventarisJalan.create', [
+                'title' => 'Tambah Data Inventaris Jaringan Jalan',
+                // 'aspals' => AsphaltStreetData::where('noRuas', $roadInvetories->noRuas),
+                // 'tanahs' => SoilsStreetData::where('noRuas', $roadInvetories->noRuas),
+                'inventarisJalans' => $roadInvetories
+            ]);
         } else {
             return view('401');
         }

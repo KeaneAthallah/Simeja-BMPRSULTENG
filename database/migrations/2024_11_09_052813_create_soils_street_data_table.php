@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('soils_street_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('soils_street_id');
+            $table->string('noRuas');
             $table->text('koordinat')->nullable();
             $table->string('jenisPerkerasan')->default('Tanah');
             $table->string('image')->nullable();
@@ -39,6 +40,11 @@ return new class extends Migration
             $table->string('kerusakanLerengKanan');
             $table->string('trotoarKiri');
             $table->string('trotoarKanan');
+            $table->string('sdi')->nullable();
+            $table->string('kondisiJalan')->nullable();
+            $table->string('penanganan')->nullable();
+            $table->string('panjang')->nullable();
+            $table->string('nilaiIri')->default(0);
             $table->timestamps();
         });
     }

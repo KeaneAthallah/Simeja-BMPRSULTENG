@@ -283,6 +283,8 @@ class AsphaltStreetDataController extends Controller
             } else {
                 $kondisi = 'Rusak Berat';
             }
+            $streetModel = AsphaltStreet::where('id', '=', $request->asphalt_street_id)->first();
+            $validatedData['noRuas'] = $streetModel->noRuas;
             $validatedData['penanganan'] = $pemeliharaan;
             $validatedData['panjang'] = $panjang;
             $validatedData['sdi'] = $result6;
@@ -556,6 +558,8 @@ class AsphaltStreetDataController extends Controller
             } else {
                 $kondisi = 'Rusak Berat';
             }
+            $streetModel = AsphaltStreet::where('id', '=', $request->asphalt_street_id)->first();
+            $validatedData['noRuas'] = $streetModel->noRuas;
             $validatedData['penanganan'] = $pemeliharaan;
             $validatedData['panjang'] = $panjang;
             $validatedData['sdi'] = $result6;

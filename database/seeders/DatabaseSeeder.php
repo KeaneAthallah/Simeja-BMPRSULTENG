@@ -94,6 +94,34 @@ class DatabaseSeeder extends Seeder
             'surveyor' => '2,3'
         ]);
         AsphaltStreetData::create([
+            'asphalt_street_id' => 1,
+            'dariPatok' => '0+000',
+            'jenisPerkerasan' => 'Aspal',
+            'kePatok' => '0+100',
+            'permukaanPerkerasan' => 1,
+            'kondisi' => 1,
+            'penurunan' => 1,
+            'tambalan' => 1,
+            'jenis' => 1,
+            'lebar' => 1,
+            'luas' => 1,
+            'jumlahLubang' => 1,
+            'ukuranLubang' => 1,
+            'bekasRoda' => 2,
+            'kerusakanTepiKiri' => 1,
+            'kerusakanTepiKanan' => 1,
+            'kondisiBahuKanan' => 1,
+            'kondisiBahuKiri' => 1,
+            'permukaanBahuKiri' => 1,
+            'permukaanBahuKanan' => 1,
+            'kondisiSaluranKiri' => 2,
+            'kondisiSaluranKanan' => 2,
+            'kerusakanLerengKiri' => 1,
+            'kerusakanLerengKanan' => 1,
+            'trotoarKiri' => 2,
+            'trotoarKanan' => 2,
+        ]);
+        AsphaltStreetData::create([
             'asphalt_street_id' => 2,
             'dariPatok' => '0+000',
             'jenisPerkerasan' => 'Aspal',
@@ -120,51 +148,6 @@ class DatabaseSeeder extends Seeder
             'kerusakanLerengKanan' => 1,
             'trotoarKiri' => 1,
             'trotoarKanan' => 1,
-            'sdi' => 0,
-            'kondisiJalan' => 'Baik',
-            'penanganan' => 'Pemeliharaan Rutin'
-        ]);
-        AsphaltStreetData::create([
-            'asphalt_street_id' => 1,
-            'dariPatok' => '0+000',
-            'koordinat' => '[
-          [
-            119.87787708154502,
-            -0.8969558135264464
-          ],
-          [
-            119.87877705446033,
-            -0.8969858089471785
-          ]
-        ]',
-            'jenisPerkerasan' => 'Aspal',
-            'kePatok' => '0+100',
-            'image' => 'complain_images/ZvfEZFgztRYEwEQyNpoupuDZow9PWqKJd5ReJD1O.',
-            'permukaanPerkerasan' => 1,
-            'kondisi' => 1,
-            'penurunan' => 1,
-            'tambalan' => 1,
-            'jenis' => 1,
-            'lebar' => 1,
-            'luas' => 1,
-            'jumlahLubang' => 1,
-            'ukuranLubang' => 1,
-            'bekasRoda' => 2,
-            'kerusakanTepiKiri' => 1,
-            'kerusakanTepiKanan' => 1,
-            'kondisiBahuKanan' => 1,
-            'kondisiBahuKiri' => 1,
-            'permukaanBahuKiri' => 1,
-            'permukaanBahuKanan' => 1,
-            'kondisiSaluranKiri' => 2,
-            'kondisiSaluranKanan' => 2,
-            'kerusakanLerengKiri' => 1,
-            'kerusakanLerengKanan' => 1,
-            'trotoarKiri' => 2,
-            'trotoarKanan' => 2,
-            'sdi' => 0,
-            'kondisiJalan' => 'Baik',
-            'penanganan' => 'Pemeliharaan Rutin'
         ]);
     }
 }

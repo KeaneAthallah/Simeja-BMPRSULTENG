@@ -181,6 +181,60 @@ class SoilsStreetDataController extends Controller
             } else {
                 dd('No file uploaded'); // Or log this message
             }
+            $panjang =
+                intval(substr($request->kePatok, -3)) -
+                intval(substr($request->dariPatok, -3));
+            $result6 = 225;
+            $nilaiIri = 0;
+            $result7 = 0;
+            if ($nilaiIri <= 4 && $result6 <= 50) {
+                $result7 = $panjang;
+            }
+            $result8 = 0;
+            if (
+                ($nilaiIri <= 4 && $result6 > 50 && $result6 <= 100) ||
+                ($nilaiIri > 4 && $nilaiIri <= 8 && $result6 <= 100)
+            ) {
+                $result8 = $panjang;
+            }
+            $result9 = 0;
+            if (
+                ($nilaiIri <= 8 && $result6 > 100 && $result6 <= 150) ||
+                ($nilaiIri > 8 && $nilaiIri <= 12 && $result6 <= 150)
+            ) {
+                $result9 = $panjang;
+            }
+            $result10 = 0;
+            if (
+                ($nilaiIri > 12 && $result6 >= 0) ||
+                ($nilaiIri <= 12 && $result6 > 150)
+            ) {
+                $result10 = $panjang;
+            }
+            $result11 = isset($result7) && isset($result8) ? $result7 + $result8 : 0;
+            $result12 = isset($result9) && isset($result10) ? $result9 + $result10 : 0;
+            if ($result7 + $result8 > 0 && $result9 + $result10 == 0) {
+                $pemeliharaan = 'Pemeliharaan Rutin';
+            } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
+                $pemeliharaan = 'Pemeliharaan Berkala';
+            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
+            } else {
+                $pemeliharaan = '';
+            }
+            if ($result6 < 50) {
+                $kondisi = 'Baik';
+            } elseif ($result6 <= 100) {
+                $kondisi = 'Sedang';
+            } elseif ($result6 < 150) {
+                $kondisi = 'Rusak Ringan';
+            } else {
+                $kondisi = 'Rusak Berat';
+            }
+            $validatedData['penanganan'] = $pemeliharaan;
+            $validatedData['panjang'] = $panjang;
+            $validatedData['sdi'] = $result6;
+            $validatedData['kondisiJalan'] = $kondisi;
             SoilsStreetData::create($validatedData);
             return redirect(route("dataJalanTanah.index"));
         } else {
@@ -349,6 +403,60 @@ class SoilsStreetDataController extends Controller
                 // Store the new image file and update the image path in the validated data
                 $validatedData['image'] = $request->file('image')->store('complain_images');
             }
+            $panjang =
+                intval(substr($request->kePatok, -3)) -
+                intval(substr($request->dariPatok, -3));
+            $result6 = 225;
+            $nilaiIri = 0;
+            $result7 = 0;
+            if ($nilaiIri <= 4 && $result6 <= 50) {
+                $result7 = $panjang;
+            }
+            $result8 = 0;
+            if (
+                ($nilaiIri <= 4 && $result6 > 50 && $result6 <= 100) ||
+                ($nilaiIri > 4 && $nilaiIri <= 8 && $result6 <= 100)
+            ) {
+                $result8 = $panjang;
+            }
+            $result9 = 0;
+            if (
+                ($nilaiIri <= 8 && $result6 > 100 && $result6 <= 150) ||
+                ($nilaiIri > 8 && $nilaiIri <= 12 && $result6 <= 150)
+            ) {
+                $result9 = $panjang;
+            }
+            $result10 = 0;
+            if (
+                ($nilaiIri > 12 && $result6 >= 0) ||
+                ($nilaiIri <= 12 && $result6 > 150)
+            ) {
+                $result10 = $panjang;
+            }
+            $result11 = isset($result7) && isset($result8) ? $result7 + $result8 : 0;
+            $result12 = isset($result9) && isset($result10) ? $result9 + $result10 : 0;
+            if ($result7 + $result8 > 0 && $result9 + $result10 == 0) {
+                $pemeliharaan = 'Pemeliharaan Rutin';
+            } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
+                $pemeliharaan = 'Pemeliharaan Berkala';
+            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
+            } else {
+                $pemeliharaan = '';
+            }
+            if ($result6 < 50) {
+                $kondisi = 'Baik';
+            } elseif ($result6 <= 100) {
+                $kondisi = 'Sedang';
+            } elseif ($result6 < 150) {
+                $kondisi = 'Rusak Ringan';
+            } else {
+                $kondisi = 'Rusak Berat';
+            }
+            $validatedData['penanganan'] = $pemeliharaan;
+            $validatedData['panjang'] = $panjang;
+            $validatedData['sdi'] = $result6;
+            $validatedData['kondisiJalan'] = $kondisi;
             $soilsStreetData->update($validatedData);
             return redirect()->route('dataJalanTanah.index');
         } else {
