@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('asphalt_street_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('asphalt_street_id');
+            $table->string('image')->nullable();
             $table->text('koordinat')->nullable();
             $table->string('permukaanPerkerasan');
             $table->string('kondisi');
