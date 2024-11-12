@@ -1,28 +1,22 @@
 <x-layout-homepage>
     <!--Hero-->
-    <div class="pt-24">
-        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div class="">
+        <div class="container flex flex-wrap flex-col md:flex-row items-center">
             <!--Left Col-->
-            <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                {{-- <p class="uppercase tracking-loose w-full">What business are you?</p> --}}
-                <h1 class="my-4 text-5xl font-bold leading-tight">
-                    SiMeja 💻 | BMPR SULTENG
-                </h1>
-                <p class="leading-normal text-2xl mb-8">
-                    Simeja BMPR Sulteng mempermudah pelaporan harian Dinas Bina Marga, memastikan pelacakan kerja yang
-                    efisien dan transparan.
-                </p>
+            {{-- <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
                 <a href="#pengaduan"
                     class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                     Laporkan kerusakan jalan
                 </a>
-            </div>
-            <!--Right Col-->
-            <div class="w-full md:w-3/5 py-6 text-center">
-                <img class="w-full md:w-4/5 z-50" src="{{ asset('assets/images/hero.png') }}" />
+            </div> --}}
+            <!--Right Col with Hero Background-->
+            <div class="w-full text-center relative bg-cover bg-center h-screen rounded-md"
+                style="background-image: url('{{ asset('assets/images/home.jpg') }}');">
+                <!-- Content here will appear over the background image -->
             </div>
         </div>
     </div>
+
     <div class="relative -mt-12 lg:-mt-24">
         <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -46,7 +40,7 @@
             </g>
         </svg>
     </div>
-    <section class="bg-nord4 border-b py-8">
+    <section class="bg-white border-b py-8">
         <div id="pengaduan" class="flex flex-col items-center container max-w-5xl mx-auto m-8">
             <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord0">
                 Pengaduan Masyarakat

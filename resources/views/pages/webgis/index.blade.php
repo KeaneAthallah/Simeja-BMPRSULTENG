@@ -84,7 +84,7 @@
             zoom: 10,
             layers: [osm]
         });
-
+        // L.getJSON(jp).addto(Map);
         // Base layers
         var baseMaps = {
             "OpenStreetMap": osm,
@@ -118,10 +118,10 @@
 
         // Add the layer control with custom labels and styling
         L.control.layers(baseMaps, {
-            "Kondisi - Baik (Merah)": kondisiLayers["Baik"],
-            "Kondisi - Sedang (Hijau)": kondisiLayers["Sedang"],
-            "Kondisi - Rusak Ringan (Biru)": kondisiLayers["Rusak Ringan"],
-            "Kondisi - Rusak Berat (Kuning)": kondisiLayers["Rusak Berat"],
+            "Kondisi - Baik (Hijau)": kondisiLayers["Baik"],
+            "Kondisi - Sedang (Kuning)": kondisiLayers["Sedang"],
+            "Kondisi - Rusak Ringan (Orens)": kondisiLayers["Rusak Ringan"],
+            "Kondisi - Rusak Berat (Merah)": kondisiLayers["Rusak Berat"],
             "Penanganan - Pemeliharaan Rutin (Merah)": penangananLayers["Pemeliharaan Rutin"],
             "Penanganan - Pemeliharaan Berkala (Hijau)": penangananLayers["Pemeliharaan Berkala"],
             "Penanganan - Peningkatan/Rekonstruksi (Biru)": penangananLayers["Peningkatan/Rekonstruksi"],
@@ -136,10 +136,10 @@
 
         $.getJSON(url, function(data) {
             const colorMapping = {
-                "Baik": 'red',
-                "Sedang": 'green',
-                "Rusak Ringan": 'blue',
-                "Rusak Berat": 'yellow',
+                "Baik": 'green',
+                "Sedang": 'yellow',
+                "Rusak Ringan": 'orange',
+                "Rusak Berat": 'red',
                 "Pemeliharaan Rutin": 'red',
                 "Pemeliharaan Berkala": 'green',
                 "Peningkatan/Rekonstruksi": 'blue'

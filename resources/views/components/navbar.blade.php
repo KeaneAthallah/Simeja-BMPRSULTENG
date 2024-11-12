@@ -3,7 +3,7 @@
         <div class="flex h-16 items-center justify-between">
             <a href="{{ url('/') }}">
                 <div class="flex items-center -ml-28">
-                    <span class="hidden md:block font-bold ml-3">SiMeja 💻 | BMPR SULTENG</span>
+                    <span class="hidden md:block font-bold ml-3">SiMeja | BMPR SULTENG</span>
                     <div class="ml-3 flex-shrink-0">
                         <img class=" w-8" src="{{ asset('assets/images/logo.png') }}" alt="Your Company">
                     </div>

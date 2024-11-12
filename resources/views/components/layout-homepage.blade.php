@@ -17,7 +17,7 @@
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
         .gradient {
-            background: linear-gradient(90deg, #2e3440 0%, #4c566a 100%);
+            background: linear-gradient(90deg, #fbd206 0%, #ffd008 100%);
         }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,13 +27,13 @@
 
 <body class="leading-normal tracking-normal text-nord6 gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
-    <nav id="header" class="fixed w-full z-30 top-0 text-nord6">
+    <nav id="header" class="fixed w-full z-30 top-0 text-nord6 py-3">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
-                <a class="toggleColour text-nord6 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+                {{-- <a class="toggleColour text-nord6 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                     href="#">
-                    SIMEJA 💻
-                </a>
+                    SIMEJA
+                </a> --}}
             </div>
             <div class="block lg:hidden pr-4">
                 <button id="nav-toggle"
@@ -44,7 +44,7 @@
                     </svg>
                 </button>
             </div>
-            <div class="toggleColour w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-nord4 lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
+            <div class="toggleColour w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-nord6 lg:bg-transparent text-nord6 p-4 lg:p-0 z-20"
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center mr-8 mb-10 lg:mb-0">
                     <li class="mr-6">
@@ -76,12 +76,12 @@
                     @if (Route::has('login'))
                         @auth
                             <a id="navAction" href="{{ url('/dashboard') }}"
-                                class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full mt-4  lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                class="mx-auto lg:mx-0 hover:underline bg-nord6 text-nord0 font-bold rounded-full mt-4  lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Dashboard
                             </a>
                         @else
                             <a id="navAction" href="{{ route('login') }}"
-                                class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full mt-4  lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                class="mx-auto lg:mx-0 hover:underline bg-nord6 text-nord0 font-bold rounded-full mt-4  lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                 Log in
                             </a>
                         @endauth
@@ -93,7 +93,7 @@
     </nav>
     <main> {{ $slot }}</main>
     <!--Footer-->
-    <footer class="bg-nord4">
+    <footer class="bg-nord6">
         <div class="container mx-auto px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6 text-black">
@@ -317,8 +317,8 @@
             scrollpos = window.scrollY;
 
             if (scrollpos > 10) {
-                header.classList.add("bg-nord4");
-                navaction.classList.remove("bg-nord4");
+                header.classList.add("bg-nord6");
+                navaction.classList.remove("bg-nord6");
                 navaction.classList.add("gradient");
                 navaction.classList.remove("text-nord0");
                 navaction.classList.add("text-nord6");
@@ -337,7 +337,7 @@
                 }
                 header.classList.add("shadow");
                 navcontent.classList.remove("bg-nord0");
-                navcontent.classList.add("bg-nord4");
+                navcontent.classList.add("bg-nord6");
             } else {
                 sreveve1.classList.remove("text-nord0");
                 sreveve1.classList.add("text-nord6");
@@ -347,9 +347,9 @@
                 sreveve3.classList.add("text-nord6");
                 sreveve4.classList.remove("text-nord0");
                 sreveve4.classList.add("text-nord6");
-                header.classList.remove("bg-nord4");
+                header.classList.remove("bg-nord6");
                 navaction.classList.remove("gradient");
-                navaction.classList.add("bg-nord4");
+                navaction.classList.add("bg-nord6");
                 navaction.classList.remove("text-nord6");
                 navaction.classList.add("text-nord0");
                 //Use to switch toggleColour colours
@@ -359,7 +359,7 @@
                 }
 
                 header.classList.remove("shadow");
-                navcontent.classList.remove("bg-nord4");
+                navcontent.classList.remove("bg-nord6");
                 navcontent.classList.add("bg-nord0");
             }
         });

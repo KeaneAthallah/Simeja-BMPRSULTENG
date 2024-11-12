@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AsphaltStreet;
+use App\Models\AsphaltStreetData;
 use App\Models\Complain;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -71,6 +72,99 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Lasoso, No. 123',
             'aspirasi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             'status' => 'Completed'
+        ]);
+        AsphaltStreet::create([
+            'noProvinsi' => 72,
+            'namaProvinsi' => 'Sulawesi Tengah',
+            'kabupaten' => 'Palu',
+            'noRuas' => 0002,
+            'namaRuas' => 'JLN. JUANDA (PALU)',
+            'fungsi' => 'KP2',
+            'date' => '2023-08-18',
+            'surveyor' => '1,2'
+        ]);
+        AsphaltStreet::create([
+            'noProvinsi' => 72,
+            'namaProvinsi' => 'Sulawesi Tengah',
+            'kabupaten' => 'Palu',
+            'noRuas' => 01524,
+            'namaRuas' => 'GIMPU - TUARE (BTS. KAB. POSO)',
+            'fungsi' => 'KP2',
+            'date' => '2023-08-18',
+            'surveyor' => '2,3'
+        ]);
+        AsphaltStreetData::create([
+            'asphalt_street_id' => 2,
+            'dariPatok' => '0+000',
+            'jenisPerkerasan' => 'Aspal',
+            'kePatok' => '0+100',
+            'permukaanPerkerasan' => 2,
+            'kondisi' => 1,
+            'penurunan' => 1,
+            'tambalan' => 1,
+            'jenis' => 1,
+            'lebar' => 1,
+            'luas' => 1,
+            'jumlahLubang' => 1,
+            'ukuranLubang' => 1,
+            'bekasRoda' => 2,
+            'kerusakanTepiKiri' => 3,
+            'kerusakanTepiKanan' => 1,
+            'kondisiBahuKanan' => 4,
+            'kondisiBahuKiri' => 2,
+            'permukaanBahuKiri' => 3,
+            'permukaanBahuKanan' => 3,
+            'kondisiSaluranKiri' => 1,
+            'kondisiSaluranKanan' => 1,
+            'kerusakanLerengKiri' => 2,
+            'kerusakanLerengKanan' => 1,
+            'trotoarKiri' => 1,
+            'trotoarKanan' => 1,
+            'sdi' => 0,
+            'kondisiJalan' => 'Baik',
+            'penanganan' => 'Pemeliharaan Rutin'
+        ]);
+        AsphaltStreetData::create([
+            'asphalt_street_id' => 1,
+            'dariPatok' => '0+000',
+            'koordinat' => '[
+          [
+            119.87787708154502,
+            -0.8969558135264464
+          ],
+          [
+            119.87877705446033,
+            -0.8969858089471785
+          ]
+        ]',
+            'jenisPerkerasan' => 'Aspal',
+            'kePatok' => '0+100',
+            'image' => 'complain_images/ZvfEZFgztRYEwEQyNpoupuDZow9PWqKJd5ReJD1O.',
+            'permukaanPerkerasan' => 1,
+            'kondisi' => 1,
+            'penurunan' => 1,
+            'tambalan' => 1,
+            'jenis' => 1,
+            'lebar' => 1,
+            'luas' => 1,
+            'jumlahLubang' => 1,
+            'ukuranLubang' => 1,
+            'bekasRoda' => 2,
+            'kerusakanTepiKiri' => 1,
+            'kerusakanTepiKanan' => 1,
+            'kondisiBahuKanan' => 1,
+            'kondisiBahuKiri' => 1,
+            'permukaanBahuKiri' => 1,
+            'permukaanBahuKanan' => 1,
+            'kondisiSaluranKiri' => 2,
+            'kondisiSaluranKanan' => 2,
+            'kerusakanLerengKiri' => 1,
+            'kerusakanLerengKanan' => 1,
+            'trotoarKiri' => 2,
+            'trotoarKanan' => 2,
+            'sdi' => 0,
+            'kondisiJalan' => 'Baik',
+            'penanganan' => 'Pemeliharaan Rutin'
         ]);
     }
 }
