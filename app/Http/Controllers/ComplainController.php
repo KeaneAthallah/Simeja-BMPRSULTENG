@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Complain;
 use Illuminate\Http\Request;
-use App\Models\AsphaltStreet;
+use App\Models\SoilsStreetData;
 use App\Models\AsphaltStreetData;
 
 class ComplainController extends Controller
@@ -19,37 +19,59 @@ class ComplainController extends Controller
 
     public function json()
     {
-        // Get all complaints and asphalt street data
+        // Get all complaints and street data directly
         $complaints = Complain::all();
-        $asphaltStreets = AsphaltStreet::with('asphaltStreetData')->get(); // Eager load related asphaltStreetData
+        $asphaltStreetData = AsphaltStreetData::all();
+        $soilsStreetData = SoilsStreetData::all();
         $data = [];  // Initialize an empty array to hold the response data
 
-        // Loop through each asphalt street record
-        foreach ($asphaltStreets as $asphaltStreet) {
-            // Loop through each asphalt street data for the current street
-            foreach ($asphaltStreet->asphaltStreetData as $asphaltStreetData) {
-                // Decode the coordinates from JSON
-                $coordinates = json_decode($asphaltStreetData->koordinat, true);
+        // Process each soils street data entry
+        foreach ($soilsStreetData as $soilsData) {
+            // Decode the coordinates from JSON
+            $coordinates = json_decode($soilsData->koordinat, true);
 
-                // If the coordinates are valid, process them
-                if ($coordinates && is_array($coordinates)) {
-                    $formattedCoordinates = [];
-                    // Loop through each pair of coordinates
-                    foreach ($coordinates as $coordinate) {
-                        if (is_array($coordinate) && count($coordinate) == 2) {
-                            $formattedCoordinates[] = [
-                                'longitude' => $coordinate[0],
-                                'latitude' => $coordinate[1],
-                            ];
-                        }
+            // If the coordinates are valid, process them
+            if ($coordinates && is_array($coordinates)) {
+                $formattedCoordinates = [];
+                // Loop through each pair of coordinates
+                foreach ($coordinates as $coordinate) {
+                    if (is_array($coordinate) && count($coordinate) == 2) {
+                        $formattedCoordinates[] = [
+                            'longitude' => $coordinate[0],
+                            'latitude' => $coordinate[1],
+                        ];
                     }
-                    // Add asphalt street data along with coordinates to the response
-                    $data[] = [
-                        'asphaltStreet_id' => $asphaltStreet->id,
-                        'asphaltStreetData_id' => $asphaltStreetData->id, // Include the street data ID
-                        'coordinates' => $formattedCoordinates,
-                    ];
                 }
+                // Add soils street data along with coordinates to the response
+                $data[] = [
+                    'soilsStreetData_id' => $soilsData->id, // Include the street data ID
+                    'coordinates' => $formattedCoordinates,
+                ];
+            }
+        }
+
+        // Process each asphalt street data entry
+        foreach ($asphaltStreetData as $asphaltData) {
+            // Decode the coordinates from JSON
+            $coordinates = json_decode($asphaltData->koordinat, true);
+
+            // If the coordinates are valid, process them
+            if ($coordinates && is_array($coordinates)) {
+                $formattedCoordinates = [];
+                // Loop through each pair of coordinates
+                foreach ($coordinates as $coordinate) {
+                    if (is_array($coordinate) && count($coordinate) == 2) {
+                        $formattedCoordinates[] = [
+                            'longitude' => $coordinate[0],
+                            'latitude' => $coordinate[1],
+                        ];
+                    }
+                }
+                // Add asphalt street data along with coordinates to the response
+                $data[] = [
+                    'asphaltStreetData_id' => $asphaltData->id, // Include the street data ID
+                    'coordinates' => $formattedCoordinates,
+                ];
             }
         }
 
@@ -68,6 +90,7 @@ class ComplainController extends Controller
         // Return the data as a JSON response
         return response()->json($data);
     }
+
 
 
     /**

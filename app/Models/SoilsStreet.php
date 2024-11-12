@@ -13,6 +13,6 @@ class SoilsStreet extends Model
     use HasFactory;
     public function soilsStreetData(): HasMany
     {
-        return $this->hasMany(SoilsStreetData::class)->cascadeOnDelete();
+        return $this->hasMany(SoilsStreetData::class);
     }
 }

@@ -46,22 +46,25 @@
                     popupAnchor: [1, -34]
                 });
 
-                // Handle the asphalt street data with coordinates (polyline)
+                // Process each item in the data array
                 $.each(data, function(index, item) {
-                    // For asphalt streets, handle the coordinates
+                    // For `asphaltStreetData` and `soilsStreetData`, handle the coordinates (polyline)
                     if (item.coordinates) {
                         let latlngs = item.coordinates.map(function(coord) {
                             return [coord.latitude, coord
                             .longitude]; // [latitude, longitude]
                         });
 
-                        var polyline = L.polyline(latlngs, {
-                            color: 'red'
+                        // Determine polyline color based on data type
+                        let color = item.asphaltStreetData_id ? 'red' :
+                        'blue'; // Red for Asphalt, Blue for Soils
+                        let polyline = L.polyline(latlngs, {
+                            color: color
                         }).addTo(map);
                         map.fitBounds(polyline.getBounds()); // Zoom to fit the polyline
                     }
 
-                    // For complaints, display markers
+                    // For `complaints`, display markers with popup information
                     if (item.lat && item.long) {
                         // Determine the status and corresponding color
                         let statusColorClass;
@@ -85,7 +88,7 @@
                                 month: 'long',
                                 day: 'numeric'
                             };
-                            return date.toLocaleDateString(undefined, options); // "January 1, 2024"
+                            return date.toLocaleDateString(undefined, options);
                         }
 
                         const formattedDate = formatDate(item.created_at);
@@ -104,15 +107,15 @@
                                     </div>
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Nama:</span>
-                                        <span class="text-gray-600">${item.name}</span>
+                                        <span class="text-gray-600">${item.name || 'Tidak tersedia'}</span>
                                     </div>
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Alamat:</span>
-                                        <span class="text-gray-600">${item.address}</span>
+                                        <span class="text-gray-600">${item.address || 'Tidak tersedia'}</span>
                                     </div>
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Aspirasi:</span>
-                                        <span class="text-gray-600">${item.aspirasi}</span>
+                                        <span class="text-gray-600">${item.aspirasi || 'Tidak tersedia'}</span>
                                     </div>
                                     <div class="mb-2 flex flex-col">
                                         <span class="font-semibold text-gray-800">Tanggal:</span>
@@ -135,7 +138,8 @@
                             .bindPopup(popupContent)
                             .on('click', function() {
                                 $('#noteDetails').text(
-                                    `Name: ${item.name}, Status: ${statusText}`);
+                                    `Name: ${item.name || 'Tidak tersedia'}, Status: ${statusText}`
+                                    );
                             })
                             .addTo(map);
 
@@ -148,6 +152,7 @@
             });
         });
     </script>
+
 
 
 </x-layout-dashboard>
