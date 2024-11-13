@@ -3,7 +3,7 @@
     <div class="mx-auto min-h-[120vh] px-4 py-6 sm:px-6 lg:px-8">
         <div class="rounded-2xl">
             <!--Container-->
-            <div class="container w-full max-w-full mx-auto px-2">
+            <div class="container w-full max-w-full mx-auto px-2 ">
                 <!--Title-->
                 <h1
                     class="flex items-center font-sans font-bold break-normal text-nord0 dark:text-nord6 px-2 py-2 text-xl md:text-2xl">
