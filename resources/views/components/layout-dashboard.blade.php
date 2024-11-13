@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </head>
 
-<body class="h-full tracking-wider leading-normal">
+<body class="h-full">
     <div class="min-h-full dark:bg-nord0 dark:text-nord6 bg-nord6 text-nord0">
         <x-navbar></x-navbar>
         <x-header></x-header>
