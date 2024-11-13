@@ -1,5 +1,5 @@
-<nav class="bg-nord4 text-nord0  dark:bg-nord3 dark:text-nord6" x-data="{ isOpen: false }">
-    <div class="container max-w-screen-xl mx-auto p-4">
+<nav class="container bg-nord4 text-nord0  dark:bg-nord3 dark:text-nord6" x-data="{ isOpen: false }">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl mx-auto p-4">
         <div class="flex h-16 items-center justify-between">
             <a href="{{ url('/') }}">
                 <div class="flex items-center -ml-28">

@@ -17,6 +17,25 @@ use App\Http\Controllers\RoadInventoryDataController;
 
 Route::get('/', [ComplainController::class, 'create'])->name('aspirasi.create');
 Route::post('/laporan', [ComplainController::class, 'store'])->name('aspirasi.store');
+Route::get('/webgis/map-data', function () {
+    $complaints = Complain::all();
+    foreach ($complaints as $complain) {
+        $data[] = [
+            'complain_id' => $complain->id,
+            'name' => $complain->name,
+            'address' => $complain->address,
+            'description' => $complain->aspirasi,
+            'lat' => $complain->lat,
+            'long' => $complain->long,
+            'status' => $complain->status,
+            'image' => $complain->image,
+        ];
+    }
+    return response()->json($data);
+});
+Route::get('/webgis', function () {
+    return view('webgis');
+});
 
 
 Route::get('/dashboard', function () {

@@ -99,10 +99,7 @@
                                                 <a href="{{ route('dataInventarisJalan.edit', $data->id) }}">Ubah</a>
                                             </button>
                                         @endif
-                                        <button
-                                            class="focus:outline-none text-white bg-nord7 hover:bg-nord7 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord7 dark:hover:bg-nord7 dark:focus:ring-nord7">
-                                            <a href="{{ route('dataInventarisJalan.show', $data->id) }}">PDF</a>
-                                        </button>
+
                                         @if (auth()->user()->role == 'staff')
                                             <form action="{{ route('dataInventarisJalan.destroy', $data->id) }}"
                                                 method="POST">

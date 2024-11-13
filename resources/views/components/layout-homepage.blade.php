@@ -48,29 +48,19 @@
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center mr-8 mb-10 lg:mb-0">
                     <li class="mr-6">
-                        <a href="#" id="nav-menu1"
+                        <a href="{{ url('/') }}" id="nav-menu1"
                             class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Profil
                         </a>
                     </li>
                     <li class="mr-6">
-                        <a href="#" id="nav-menu2"
+                        <a href="{{ url('/webgis') }}" id="nav-menu2"
                             class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
                             Webgis
                         </a>
                     </li>
-                    <li class="mr-6">
-                        <a href="#" id="nav-menu3"
-                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
-                            Aspirasi
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" id="nav-menu4"
-                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
-                            Kontak
-                        </a>
-                    </li>
+
+
                 </ul>
                 <ul>
                     @if (Route::has('login'))
@@ -158,8 +148,7 @@
                                 Blog</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#"
-                                class="no-underline hover:underline text-nord0 hover:text-pink-500">About
+                            <a href="#" class="no-underline hover:underline text-nord0 hover:text-pink-500">About
                                 Us</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -174,132 +163,7 @@
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
-    <script>
-        let latitude = -0.9029821741503987, // Default latitude
-            longitude = 119.85871178991329; // Default longitude
-        let map, marker; // Declare map and marker globally
 
-        // Initialize the map with default coordinates
-        function initMap() {
-            map = L.map("map").setView([latitude, longitude], 13); // Set zoom level
-
-            // Add Google streets layer to the map
-            let googleStreets = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                    maxZoom: 20,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }
-            );
-            googleStreets.addTo(map);
-
-            // Add draggable marker for the default location
-            marker = L.marker([latitude, longitude], {
-                    draggable: true
-                })
-                .addTo(map)
-                .bindPopup(`Latitude: ${latitude}, Longitude: ${longitude}`) // Set initial popup content
-                .openPopup();
-
-            // Event listener to update latitude and longitude on marker drag
-            marker.on("dragend", function(e) {
-                const position = marker.getLatLng(); // Get new marker position
-                latitude = position.lat; // Update latitude
-                longitude = position.lng; // Update longitude
-
-                // Update the latitude and longitude input fields
-                document.querySelector("#lat").value = latitude;
-                document.querySelector("#long").value = longitude;
-
-                // Update the popup with new latitude and longitude
-                marker
-                    .getPopup()
-                    .setContent(
-                        `Latitude: ${latitude.toFixed(
-                    6
-                )}, Longitude: ${longitude.toFixed(6)}`
-                    ) // Update popup content
-                    .openOn(map); // Reopen the updated popup
-            });
-
-            // Initialize input fields with default values
-            document.querySelector("#lat").value = latitude;
-            document.querySelector("#long").value = longitude;
-        }
-
-        // Geolocation function to update the map and marker based on user's location
-        const findMyLocation = () => {
-            const success = (position) => {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-
-                if (map !== undefined) {
-                    map.remove(); // Remove the existing map instance
-                }
-
-                // Reinitialize the map with the new location
-                map = L.map("map").setView([latitude, longitude], 18);
-                let googleStreets = L.tileLayer(
-                    "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                        maxZoom: 20,
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    }
-                );
-                googleStreets.addTo(map);
-
-                // Add draggable marker for the new location
-                marker = L.marker([latitude, longitude], {
-                        draggable: true
-                    })
-                    .addTo(map)
-                    .bindPopup(
-                        `Latitude: ${latitude.toFixed(
-                    6
-                )}, Longitude: ${longitude.toFixed(6)}`
-                    )
-                    .openPopup();
-
-                // Add dragend event listener to update lat/lng and popup when marker is dragged
-                marker.on("dragend", function(e) {
-                    const position = marker.getLatLng(); // Get new marker position
-                    latitude = position.lat; // Update latitude
-                    longitude = position.lng; // Update longitude
-
-                    // Update the latitude and longitude input fields
-                    document.querySelector("#lat").value = latitude;
-                    document.querySelector("#long").value = longitude;
-
-                    // Update the popup with new latitude and longitude
-                    marker
-                        .getPopup()
-                        .setContent(
-                            `Latitude: ${latitude.toFixed(
-                        6
-                    )}, Longitude: ${longitude.toFixed(6)}`
-                        )
-                        .openOn(map); // Reopen the updated popup
-                });
-
-                // Update the latitude and longitude input fields
-                document.querySelector("#lat").value = latitude;
-                document.querySelector("#long").value = longitude;
-            };
-
-            const error = (err) => {
-                console.log(err);
-            };
-
-            // Trigger geolocation lookup
-            navigator.geolocation.getCurrentPosition(success, error);
-        };
-
-        // Initialize the map with default coordinates when the page loads
-        initMap();
-
-        // Add event listener for "Find My Location" button
-        document
-            .querySelector("#find-my-location")
-            .addEventListener("click", findMyLocation);
-    </script>
     <script>
         var scrollpos = window.scrollY;
         var header = document.getElementById("header");

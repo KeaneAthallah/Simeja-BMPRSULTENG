@@ -21,7 +21,7 @@
     <div class="min-h-full dark:bg-nord0 dark:text-nord6 bg-nord6 text-nord0">
         <x-navbar></x-navbar>
         <x-header></x-header>
-        <main class="dark:text-black">
+        <main class="dark:text-black ">
             {{ $slot }}
         </main>
     </div>
