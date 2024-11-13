@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SoilsStreetData;
+use App\Models\AsphaltStreetData;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\AsphaltStreetData;
-use App\Models\SoilsStreetData;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoadInventory extends Model
 {
@@ -23,32 +24,5 @@ class RoadInventory extends Model
     public function soilsStreet(): HasMany
     {
         return $this->hasMany(SoilsStreet::class);
-    }
-    public function road()
-    {
-        // Retrieve all dataRoadInventory records related to this RoadInventory instance
-        $dataRoadInventory = $this->dataRoadInventory;
-        // Initialize an empty collection for streets
-        $streets = collect();
-        // Loop through the dataRoadInventory
-        foreach ($dataRoadInventory as $data) {
-            // Check the jenisPerkerasan value
-            if ($data->jenisPerkerasan == 1) {
-                // If jenisPerkerasan is 1 (Asphalt), get the related AsphaltStreetData
-                $street = AsphaltStreetData::find($data->road_id);
-                if ($street) {
-                    $streets->push($street);  // Add the asphalt street to the collection
-                }
-            } elseif ($data->jenisPerkerasan == 5) {
-                // If jenisPerkerasan is 5 (Soil), get the related SoilsStreetData
-                $street = SoilsStreetData::find($data->road_id);
-                if ($street) {
-                    $streets->push($street);  // Add the soil street to the collection
-                }
-            }
-        }
-
-        // Return the streets collection
-        return $streets;
     }
 }

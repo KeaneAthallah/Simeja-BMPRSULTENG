@@ -15,4 +15,8 @@ class SoilsStreetData extends Model
     {
         return $this->belongsTo(SoilsStreet::class);
     }
+    public function roadInventoryData()
+    {
+        return $this->belongsTo(RoadInventoryData::class, 'road_id', 'id');
+    }
 }

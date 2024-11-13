@@ -16,4 +16,8 @@ class AsphaltStreetData extends Model
     {
         return $this->belongsTo(AsphaltStreet::class);
     }
+    public function roadInventoryData()
+    {
+        return $this->belongsTo(RoadInventoryData::class, 'road_id', 'id');
+    }
 }

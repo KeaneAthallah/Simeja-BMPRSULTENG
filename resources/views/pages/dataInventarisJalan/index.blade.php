@@ -81,7 +81,15 @@
                                     </td>
                                     <td>{{ $data->roadInventory->namaRuas }}</td>
                                     <td>
-                                        {{-- {{ dd($data->roadInventory->road()[0]->dariPatok) }} --}}
+                                        @if ($data->jenisPerkerasan == 1)
+                                            @foreach ($data->asphaltStreet as $asphalt)
+                                                <p>{{ $asphalt->dariPatok }} - {{ $asphalt->kePatok }}</p>
+                                            @endforeach
+                                        @elseif ($data->jenisPerkerasan == 5)
+                                            @foreach ($data->soilsStreet as $soil)
+                                                <p>{{ $soil->dariPatok }} - {{ $soil->kePatok }}</p>
+                                            @endforeach
+                                        @endif
                                     </td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
@@ -110,7 +118,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
 

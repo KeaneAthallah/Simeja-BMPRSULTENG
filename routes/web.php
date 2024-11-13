@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/dashboard/aspirasi', ComplainController::class)->only(['index', 'show', 'edit', 'update', 'destroy']);
-    Route::get('/dashboard/webgis/json', [ComplainController::class, 'json'])->name('dashboard.webgis.json');
+    Route::get('/map-data', [ComplainController::class, 'json'])->name('dashboard.webgis.json');
     Route::resource('/dashboard/webgis', WebgisController::class);
     Route::resource('/dashboard/jalanAspal', AsphaltStreetController::class)->parameter('jalanAspal', 'asphaltStreet');
     Route::resource('/dashboard/jalanTanah', SoilsStreetController::class)->parameter('jalanTanah', 'soilsStreet');

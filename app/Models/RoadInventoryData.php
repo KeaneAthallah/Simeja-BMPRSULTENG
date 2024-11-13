@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoadInventoryData extends Model
 {
@@ -16,12 +17,11 @@ class RoadInventoryData extends Model
     }
     public function asphaltStreet()
     {
-        return $this->belongsTo(AsphaltStreet::class, 'road_id'); // 'road_id' connects this to the AsphaltStreet
+        return $this->hasMany(AsphaltStreetData::class, 'id', 'road_id');
     }
 
-    // Relationship to SoilsStreet (only for jenisPerkerasan == 5)
     public function soilsStreet()
     {
-        return $this->belongsTo(SoilsStreet::class, 'road_id');
+        return $this->hasMany(SoilsStreetData::class, 'id', 'road_id');
     }
 }

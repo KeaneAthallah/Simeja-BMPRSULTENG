@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsphaltStreetData;
-use App\Models\RoadInventory;
-use App\Models\RoadInventoryData;
-use App\Models\SoilsStreetData;
 use Illuminate\Http\Request;
+use App\Models\RoadInventory;
+use App\Models\SoilsStreetData;
+use App\Models\AsphaltStreetData;
+use App\Models\RoadInventoryData;
+use Illuminate\Support\Facades\DB;
 
 class RoadInventoryDataController extends Controller
 {
@@ -17,17 +18,21 @@ class RoadInventoryDataController extends Controller
     {
         if (auth()->user()->role == "staff" || auth()->user()->role == "admin") { {
                 $userId = auth()->user()->id;
-                // $roadInventory = RoadInventory::find($id);
-                // $streets = $roadInventory->road();
                 $roadInvetories = RoadInventory::all()->filter(function ($raodInventory) use ($userId) {
-                    $surveyors = explode(',', $raodInventory->surveyor); // Split surveyors into an array
-                    return in_array($userId, $surveyors); // Check if user ID is in the array
+                    $surveyors = explode(',', $raodInventory->surveyor);
+                    return in_array($userId, $surveyors);
                 });
-                // Get all matching soils_streets_id values
                 $raodInventoryIds = $roadInvetories->pluck('id')->toArray();
-                // Retrieve all raodInventoryData records for the matching IDs
                 $data = RoadInventoryData::whereIn('road_inventory_id', $raodInventoryIds)->latest()->get();
-                return view("pages.dataInventarisJalan.index", ["datas" => $data, 'title' => 'Data Inventaris Jaringan Jalan']);
+                $data = RoadInventoryData::with('asphaltStreet', 'soilsStreet')
+                    ->whereIn('road_inventory_id', $raodInventoryIds)
+                    ->latest()
+                    ->get();
+                return view("pages.dataInventarisJalan.index", [
+                    "datas" => $data,
+                    "title" => "Data Inventaris Jaringan Jalan",
+
+                ]);
             }
         } else {
             return view('401');
@@ -45,6 +50,7 @@ class RoadInventoryDataController extends Controller
                 $surveyors = explode(',', $roadInventory->surveyor); // Split surveyors into an array
                 return in_array($userId, $surveyors); // Check if user ID is in the array
             });
+
             return view('pages.dataInventarisJalan.create', [
                 'title' => 'Tambah Data Inventaris Jaringan Jalan',
                 'streets' => [

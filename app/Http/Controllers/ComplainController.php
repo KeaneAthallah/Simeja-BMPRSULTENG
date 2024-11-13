@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Complain;
 use Illuminate\Http\Request;
+use App\Models\RoadInventory;
 use App\Models\SoilsStreetData;
 use App\Models\AsphaltStreetData;
 
@@ -19,85 +20,50 @@ class ComplainController extends Controller
 
     public function json()
     {
-        // Get all complaints and street data directly
+        $roadInventories = RoadInventory::with('dataRoadInventory.asphaltStreet', 'dataRoadInventory.soilsStreet')->get();
         $complaints = Complain::all();
-        $asphaltStreetData = AsphaltStreetData::all();
-        $soilsStreetData = SoilsStreetData::all();
-        $data = [];  // Initialize an empty array to hold the response data
-
-        // Process each soils street data entry
-        foreach ($soilsStreetData as $soilsData) {
-            // Decode the coordinates from JSON
-            $coordinates = json_decode($soilsData->koordinat, true);
-
-            // If the coordinates are valid, process them
-            if ($coordinates && is_array($coordinates)) {
-                $formattedCoordinates = [];
-                // Loop through each pair of coordinates
-                foreach ($coordinates as $coordinate) {
-                    if (is_array($coordinate) && count($coordinate) == 2) {
-                        $formattedCoordinates[] = [
-                            'longitude' => $coordinate[0],
-                            'latitude' => $coordinate[1],
-                        ];
+        $data = [];
+        foreach ($roadInventories as $roadInventory) {
+            foreach ($roadInventory->dataRoadInventory as $roadInventoryData) {
+                $streetData = $roadInventoryData->jenisPerkerasan == 1 ? $roadInventoryData->asphaltStreet : $roadInventoryData->soilsStreet;
+                foreach ($streetData as $street) {
+                    $coordinates = json_decode($street->koordinat, true);
+                    $formattedCoordinates = [];
+                    if ($coordinates && is_array($coordinates)) {
+                        foreach ($coordinates as $coordinate) {
+                            if (is_array($coordinate) && count($coordinate) == 2) {
+                                $formattedCoordinates[] = [
+                                    'longitude' => $coordinate[0],
+                                    'latitude' => $coordinate[1],
+                                ];
+                            }
+                        }
                     }
-                }
-                // Add soils street data along with coordinates to the response
-                $data[] = [
-                    'soilsStreetData_id' => $soilsData->id, // Include the street data ID
-                    'coordinates' => $formattedCoordinates,
-                    'jenisPerkerasan' => $soilsData->jenisPerkerasan
-                ];
-            }
-        }
-
-        // Process each asphalt street data entry
-        foreach ($asphaltStreetData as $asphaltData) {
-            // Decode the coordinates from JSON
-            $coordinates = json_decode($asphaltData->koordinat, true);
-
-            // If the coordinates are valid, process them
-            $formattedCoordinates = [];
-            if ($coordinates && is_array($coordinates)) {
-                foreach ($coordinates as $coordinate) {
-                    if (is_array($coordinate) && count($coordinate) == 2) {
-                        $formattedCoordinates[] = [
-                            'longitude' => $coordinate[0],
-                            'latitude' => $coordinate[1],
-                        ];
-                    }
+                    $data[] = [
+                        'street_id' => $street->id,
+                        'no_ruas' => $roadInventory->noRuas,
+                        'kondisiJalan' => $street->kondisiJalan,
+                        'penanganan' => $street->penanganan,
+                        'coordinates' => $formattedCoordinates,
+                        'nama_ruas' => $roadInventory->namaRuas,
+                        'jenis_perkerasan' => $roadInventoryData->jenisPerkerasan,
+                        'dari_patok' => $street->dariPatok,
+                        'ke_patok' => $street->kePatok,
+                        // Add other fields as needed
+                    ];
                 }
             }
-
-            // Collect all required fields
-            $data[] = [
-                'asphaltStreetData_id' => $asphaltData->id,
-                'penanganan' => $asphaltData->penanganan,
-                'kondisiJalan' => $asphaltData->kondisiJalan,
-                'sdi' => $asphaltData->sdi,
-                'asphalt_street_id' => $asphaltData->asphalt_street_id,
-                'image' => $asphaltData->image,
-                'coordinates' => $formattedCoordinates,
-                'jenisPerkerasan' => $asphaltData->jenisPerkerasan,
-                'permukaanPerkerasan' => $asphaltData->permukaanPerkerasan,
-                'created_at' => $asphaltData->created_at,
-                'updated_at' => $asphaltData->updated_at,
-            ];
         }
-
-        // Now include the complaints in the data array
         foreach ($complaints as $complain) {
             $data[] = [
                 'complain_id' => $complain->id,
-                'description' => $complain->aspirasi,  // Assuming 'aspirasi' is the complaint description
+                'description' => $complain->aspirasi,
                 'lat' => $complain->lat,
                 'long' => $complain->long,
                 'status' => $complain->status,
                 'image' => $complain->image,
             ];
         }
-
-        // Return the data as a JSON response
         return response()->json($data);
     }
 
