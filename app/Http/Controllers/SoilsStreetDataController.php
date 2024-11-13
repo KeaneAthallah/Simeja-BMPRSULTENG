@@ -177,7 +177,7 @@ class SoilsStreetDataController extends Controller
             ]);
             if ($request->hasFile('image')) {
                 // Process the file
-                $validatedData['image'] = $request->file('image')->store('complain_images');
+                $validatedData['image'] = $request->file('image')->store('soils_street_data_images');
             } else {
                 dd('No file uploaded'); // Or log this message
             }
@@ -401,7 +401,7 @@ class SoilsStreetDataController extends Controller
                 }
 
                 // Store the new image file and update the image path in the validated data
-                $validatedData['image'] = $request->file('image')->store('complain_images');
+                $validatedData['image'] = $request->file('image')->store('soils_street_data_images');
             }
             $panjang =
                 intval(substr($request->kePatok, -3)) -

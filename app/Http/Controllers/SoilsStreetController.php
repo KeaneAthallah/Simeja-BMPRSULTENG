@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\SoilsStreet;
 use Illuminate\Http\Request;
+use App\Models\RoadInventory;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class SoilsStreetController extends Controller
@@ -28,7 +29,7 @@ class SoilsStreetController extends Controller
     public function create()
     {
         if (auth()->user()->role == 'admin') {
-            return view('pages.jalanTanah.create', ['title' => 'Tambah Jalan Tanah/Kerikil', 'users' =>  User::where('role', '!=', 'admin')->get()]);
+            return view('pages.jalanTanah.create', ['title' => 'Tambah Jalan Tanah/Kerikil', 'users' =>  User::where('role', '!=', 'admin')->get(), 'streets' => RoadInventory::all()]);
         } else {
             return view('401');
         }
@@ -42,13 +43,8 @@ class SoilsStreetController extends Controller
         if (auth()->user()->role == 'admin') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'noProvinsi' => 'required|numeric',
-                'noRuas' => 'required|string|max:9',
-                'namaProvinsi' => 'required|string|max:255',
-                'namaRuas' => 'required|string|max:255',
-                'kabupaten' => 'required|string|max:255',
+                'road_inventory_id' => 'required|integer',
                 'fungsi' => 'required|string|max:255',
-                'date' => 'required|date',
                 'surveyor' => 'required|array|min:1',
                 'surveyor.*' => 'integer',
             ], [
@@ -94,6 +90,7 @@ class SoilsStreetController extends Controller
                 'title' => 'Edit Jalan Tanah/Kerikil',
                 'users' =>  User::where('role', '!=', 'admin')->get(),
                 'data' => $soilsStreet,
+                'streets' => RoadInventory::all()
             ]);
         } else {
             return view('401');
@@ -108,31 +105,14 @@ class SoilsStreetController extends Controller
         if (auth()->user()->role == 'admin') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
-                'noProvinsi' => 'required|numeric',
-                'noRuas' => 'required|string|max:9',
-                'namaProvinsi' => 'required|string|max:255',
-                'namaRuas' => 'required|string|max:255',
-                'kabupaten' => 'required|string|max:255',
+                'road_inventory_id' => 'required|integer',
                 'fungsi' => 'required|string|max:255',
-                'date' => 'required|date',
                 'surveyor' => 'required|array|min:1',
                 'surveyor.*' => 'integer',
             ], [
                 '_token.required' => 'Token harus diisi.',
-                'noProvinsi.required' => 'Nomor provinsi harus diisi.',
-                'noProvinsi.numeric' => 'Nomor provinsi harus berupa angka.',
-                'noRuas.required' => 'Nomor ruas harus diisi.',
-                'noRuas.max' => 'Nomor ruas maksimal 9 karakter.',
-                'namaProvinsi.required' => 'Nama provinsi harus diisi.',
-                'namaProvinsi.max' => 'Nama provinsi maksimal 255 karakter.',
-                'namaRuas.required' => 'Nama ruas harus diisi.',
-                'namaRuas.max' => 'Nama ruas maksimal 255 karakter.',
-                'kabupaten.required' => 'Kabupaten harus diisi.',
-                'kabupaten.max' => 'Kabupaten maksimal 255 karakter.',
                 'fungsi.required' => 'Fungsi harus diisi.',
                 'fungsi.max' => 'Fungsi maksimal 255 karakter.',
-                'date.required' => 'Tanggal harus diisi.',
-                'date.date' => 'Format tanggal tidak valid.',
                 'surveyor.required' => 'Surveyor harus dipilih.',
                 'surveyor.array' => 'Surveyor harus berupa array.',
                 'surveyor.min' => 'Minimal satu surveyor harus dipilih.',

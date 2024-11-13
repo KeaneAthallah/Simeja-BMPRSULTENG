@@ -80,7 +80,9 @@
                                         {{ $data->roadInventory->noRuas }}
                                     </td>
                                     <td>{{ $data->roadInventory->namaRuas }}</td>
-                                    <td>{{ $data->dariSta }} - {{ $data->keSta }}</td>
+                                    <td>
+                                        {{-- {{ dd($data->roadInventory->road()[0]->dariPatok) }} --}}
+                                    </td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
                                         @if (auth()->user()->role == 'staff')

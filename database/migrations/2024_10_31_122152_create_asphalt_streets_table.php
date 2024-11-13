@@ -13,13 +13,8 @@ return new class extends Migration
     {
         Schema::create('asphalt_streets', function (Blueprint $table) {
             $table->id();
-            $table->string('noProvinsi');
-            $table->string('namaProvinsi');
-            $table->string('kabupaten');
-            $table->string('noRuas');
-            $table->string('namaRuas');
+            $table->foreignId('road_inventory_id');
             $table->string('fungsi');
-            $table->string('date');
             $table->string('surveyor');
             $table->timestamps();
         });

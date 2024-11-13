@@ -50,34 +50,35 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="dariSta"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dari
+                                <label for="road_id"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Data
                                     STA</label>
-                                <select id="dariSta" name="dariSta"
+                                <select id="road_id" name="road_id"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih STA</option>
-                                    <option value="0+000" {{ old('dariSta') == '0+000' ? 'selected' : '' }}>0+000
-                                    </option>
-                                    <option value="0+100" {{ old('dariSta') == '0+100' ? 'selected' : '' }}>0+100
-                                    </option>
-                                    <option value="0+200" {{ old('dariSta') == '0+200' ? 'selected' : '' }}>0+200
-                                    </option>
-                                    <option value="0+300" {{ old('dariSta') == '0+300' ? 'selected' : '' }}>0+300
-                                    </option>
-                                    <option value="0+400" {{ old('dariSta') == '0+400' ? 'selected' : '' }}>0+400
-                                    </option>
-                                    <option value="0+500" {{ old('dariSta') == '0+500' ? 'selected' : '' }}>0+500
-                                    </option>
-                                    <option value="0+600" {{ old('dariSta') == '0+600' ? 'selected' : '' }}>0+600
-                                    </option>
-                                    <option value="0+700" {{ old('dariSta') == '0+700' ? 'selected' : '' }}>0+700
-                                    </option>
-                                    <option value="0+800" {{ old('dariSta') == '0+800' ? 'selected' : '' }}>0+800
-                                    </option>
-                                    <option value="0+900" {{ old('dariSta') == '0+900' ? 'selected' : '' }}>0+900
-                                    </option>
-                                    <option value="1+000" {{ old('dariSta') == '1+000' ? 'selected' : '' }}>1+000
-                                    </option>
+                                    {{-- Asphalt Streets --}}
+                                    <optgroup label="Data Survey Jalan Aspal">
+                                        @foreach ($streets['asphaltStreets'] as $asphaltStreet)
+                                            <option value="{{ $asphaltStreet->id }}"
+                                                {{ old('road_id') == $asphaltStreet->id ? 'selected' : '' }}>
+                                                {{ $asphaltStreet->dariPatok }} -
+                                                {{ $asphaltStreet->kePatok }}
+                                                {{ $asphaltStreet->asphaltStreet->roadInventory->namaRuas }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+
+                                    {{-- Soil Streets --}}
+                                    <optgroup label="Data Survey Jalan Tanah">
+                                        @foreach ($streets['soilStreets'] as $soilStreet)
+                                            <option value="{{ $soilStreet->id }}"
+                                                {{ old('road_id') == $soilStreet->id ? 'selected' : '' }}>
+                                                {{ $soilStreet->dariPatok }} -
+                                                {{ $soilStreet->kePatok }}
+                                                {{ $soilStreet->soilsStreet->roadInventory->namaRuas }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
                                 </select>
                             </div>
                             <div>
@@ -100,32 +101,26 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="keSta"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ke STA</label>
-                                <select id="keSta" name="keSta"
+                                <label for="jenisPerkerasan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                    Perkerasan</label>
+                                <select id="jenisPerkerasan" name="jenisPerkerasan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" disabled selected>Pilih STA</option>
-                                    <option value="0+100" {{ old('keSta') == '0+100' ? 'selected' : '' }}>0+100
+                                    <option value="" disabled selected>Pilih Jenis Perkerasan</option>
+                                    <option value="1" {{ old('jenisPerkerasan') == '1' ? 'selected' : '' }}>
+                                        Aspal (AC,HRS,ATB)
                                     </option>
-                                    <option value="0+200" {{ old('keSta') == '0+200' ? 'selected' : '' }}>0+200
+                                    <option value="2" {{ old('jenisPerkerasan') == '2' ? 'selected' : '' }}>
+                                        Beton
                                     </option>
-                                    <option value="0+300" {{ old('keSta') == '0+300' ? 'selected' : '' }}>0+300
+                                    <option value="3" {{ old('jenisPerkerasan') == '3' ? 'selected' : '' }}>
+                                        Lapis Penetrasi/Macadam
                                     </option>
-                                    <option value="0+400" {{ old('keSta') == '0+400' ? 'selected' : '' }}>0+400
+                                    <option value="4" {{ old('jenisPerkerasan') == '4' ? 'selected' : '' }}>
+                                        Kerikil
                                     </option>
-                                    <option value="0+500" {{ old('keSta') == '0+500' ? 'selected' : '' }}>0+500
-                                    </option>
-                                    <option value="0+600" {{ old('keSta') == '0+600' ? 'selected' : '' }}>0+600
-                                    </option>
-                                    <option value="0+700" {{ old('keSta') == '0+700' ? 'selected' : '' }}>0+700
-                                    </option>
-                                    <option value="0+800" {{ old('keSta') == '0+800' ? 'selected' : '' }}>0+800
-                                    </option>
-                                    <option value="0+900" {{ old('keSta') == '0+900' ? 'selected' : '' }}>0+900
-                                    </option>
-                                    <option value="1+000" {{ old('keSta') == '1+000' ? 'selected' : '' }}>1+000
-                                    </option>
-                                    <option value="1+100" {{ old('keSta') == '1+100' ? 'selected' : '' }}>1+100
+                                    <option value="5" {{ old('jenisPerkerasan') == '5' ? 'selected' : '' }}>
+                                        Tanah/Belum Tembus
                                     </option>
                                 </select>
                             </div>

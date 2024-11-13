@@ -16,4 +16,8 @@ class AsphaltStreet extends Model
     {
         return $this->hasMany(AsphaltStreetData::class);
     }
+    public function roadInventory(): BelongsTo
+    {
+        return $this->belongsTo(RoadInventory::class);
+    }
 }

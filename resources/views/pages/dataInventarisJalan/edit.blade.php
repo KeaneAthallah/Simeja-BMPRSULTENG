@@ -7,7 +7,7 @@
                 <!--Title-->
                 <h1
                     class="flex items-center font-sans font-bold break-normal text-nord0 dark:text-nord6 px-2 py-2 text-xl md:text-2xl">
-                    FORMULIR SURVEI INVENTARIS JALAN
+                    FORMULIR SURVEI INVENTARIS JARINGAN JALAN
                 </h1>
                 @if ($errors->any())
                     <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -31,112 +31,426 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <form action="{{ route('inventarisJalan.update', $data->id) }}" method="POST">
+                    <form action="{{ route('dataInventarisJalan.update', $data->id) }}" method="post">
                         @method('PUT')
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <label for="namaProvinsi"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                    Provinsi</label>
-                                <input type="text" id="namaProvinsi" name="namaProvinsi"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Sulawesi Tengah"
-                                    value="{{ old('namaProvinsi', $data->namaProvinsi) }}" />
+                                <label for="road_inventory_id"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Survey Jalan
+                                    Aspal</label>
+                                <select id="road_inventory_id" name="road_inventory_id"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jalan Aspal</option>
+                                    @foreach ($inventarisJalans as $street)
+                                        <option value="{{ $street->id }}"
+                                            {{ old('road_inventory_id') == $street->id ? 'selected' : '' }}>
+                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div>
-                                <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
-                                <input type="text" id="kabupaten" name="kabupaten"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Sigi" value="{{ old('kabupaten', $data->kabupaten) }}" />
-                            </div>
-                            <div>
-                                <label for="noProvinsi"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                                    Provinsi</label>
-                                <input type="text" id="noProvinsi" name="noProvinsi"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="72" value="{{ old('noProvinsi', $data->noProvinsi) }}" />
-                            </div>
-                            <div>
-                                <label for="DRP"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
-                                    Lokasi DRP (Optional)</label>
-                                <input type="number" id="DRP" name="DRP"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('DRP', $data->DRP) }}" />
-                            </div>
-                            <div>
-                                <label for="namaRuas"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                    Ruas</label>
-                                <input type="text" id="namaRuas" name="namaRuas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="SP. KULAWI - GIMPU" value="{{ old('namaRuas', $data->namaRuas) }}" />
-                            </div>
-                            <div>
-                                <label for="LRP"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
-                                    Lokasi LRP (Optional)</label>
-                                <input type="number" id="LRP" name="LRP"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('LRP', $data->LRP) }}" />
-                            </div>
-                            <div>
-                                <label for="noRuas"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                                    Ruas</label>
-                                <input type="text" id="noRuas" name="noRuas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="01423" value="{{ old('noRuas', $data->noRuas) }}" />
-                            </div>
-                            <div>
-                                <label for="CHN"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
-                                    Lokasi CHN (Optional)</label>
-                                <input type="number" id="CHN" name="CHN"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('CHN', $data->CHN) }}" />
-                            </div>
-                            <div>
-                                <label for="dariPatokKm"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dari Patok
-                                    KM</label>
-                                <input type="text" id="dariPatokKm" name="dariPatokKm"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="069690" value="{{ old('dariPatokKm', $data->dariPatokKm) }}" />
-                            </div>
-                            <div>
-                                <label for="date"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
-                                <input type="date" id="date" name="date"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="{{ old('date', $data->date) }}" />
-                            </div>
-                            <div>
-                                <label for="kePatokKm"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ke Patok
-                                    KM</label>
-                                <input type="text" id="kePatokKm" name="kePatokKm"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="099000" value="{{ old('kePatokKm', $data->kePatokKm) }}" />
-                            </div>
-                            <div class="mb-4">
-                                <label for="surveyor"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surveyor</label>
-                                <div class="relative">
-                                    <select id="surveyor" name="surveyor"
-                                        class="h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}"
-                                                {{ $user->id = $data->surveyor ? 'selected' : '' }}>
-                                                {{ $user->name }}</option>
+                                <label for="road_id"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Data
+                                    STA</label>
+                                <select id="road_id" name="road_id"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih STA</option>
+                                    {{-- Asphalt Streets --}}
+                                    <optgroup label="Data Survey Jalan Aspal">
+                                        @foreach ($streets['asphaltStreets'] as $asphaltStreet)
+                                            <option value="{{ $asphaltStreet->id }}"
+                                                {{ old('road_id') == $asphaltStreet->id ? 'selected' : '' }}>
+                                                {{ $asphaltStreet->dariPatok }} -
+                                                {{ $asphaltStreet->kePatok }}
+                                                {{ $asphaltStreet->asphaltStreet->roadInventory->namaRuas }}
+                                            </option>
                                         @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                                    </optgroup>
 
+                                    {{-- Soil Streets --}}
+                                    <optgroup label="Data Survey Jalan Tanah">
+                                        @foreach ($streets['soilStreets'] as $soilStreet)
+                                            <option value="{{ $soilStreet->id }}"
+                                                {{ old('road_id') == $soilStreet->id ? 'selected' : '' }}>
+                                                {{ $soilStreet->dariPatok }} -
+                                                {{ $soilStreet->kePatok }}
+                                                {{ $soilStreet->soilsStreet->roadInventory->namaRuas }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tipeJalan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Tipe
+                                    Jalan</label>
+                                <select id="tipeJalan" name="tipeJalan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Tipe Jalan</option>
+                                    <option value="1" {{ old('tipeJalan') == '1' ? 'selected' : '' }}>2 / 1 UD
+                                    </option>
+                                    <option value="2" {{ old('tipeJalan') == '2' ? 'selected' : '' }}>2 / 2 UD
+                                    </option>
+                                    <option value="3" {{ old('tipeJalan') == '3' ? 'selected' : '' }}>4 / 2 UD
+                                    </option>
+                                    <option value="4" {{ old('tipeJalan') == '4' ? 'selected' : '' }}>4 / 2 D
+                                    </option>
+                                    <option value="5" {{ old('tipeJalan') == '5' ? 'selected' : '' }}>6 / 2 D
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="jenisPerkerasan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                    Perkerasan</label>
+                                <select id="jenisPerkerasan" name="jenisPerkerasan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Perkerasan</option>
+                                    <option value="1" {{ old('jenisPerkerasan') == '1' ? 'selected' : '' }}>
+                                        Aspal (AC,HRS,ATB)
+                                    </option>
+                                    <option value="2" {{ old('jenisPerkerasan') == '2' ? 'selected' : '' }}>
+                                        Beton
+                                    </option>
+                                    <option value="3" {{ old('jenisPerkerasan') == '3' ? 'selected' : '' }}>
+                                        Lapis Penetrasi/Macadam
+                                    </option>
+                                    <option value="4" {{ old('jenisPerkerasan') == '4' ? 'selected' : '' }}>
+                                        Kerikil
+                                    </option>
+                                    <option value="5" {{ old('jenisPerkerasan') == '5' ? 'selected' : '' }}>
+                                        Tanah/Belum Tembus
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="lapisPermukaanTahun"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lapis Permukaan
+                                    Tahun</label>
+                                <input type="number" id="lapisPermukaanTahun" name="lapisPermukaanTahun"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="2020" value="{{ old('lapisPermukaanTahun') }}" />
+                            </div>
+                            <div>
+                                <label for="lapisPermukaanJenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lapis Permukaan
+                                    Jenis</label>
+                                <select id="lapisPermukaanJenis" name="lapisPermukaanJenis"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Permukaan</option>
+                                    <option value="0" {{ old('lapisPermukaanJenis') == '0' ? 'selected' : '' }}>
+                                        Tidak Diketahui</option>
+                                    <option value="1" {{ old('lapisPermukaanJenis') == '1' ? 'selected' : '' }}>
+                                        Tanah</option>
+                                    <option value="2" {{ old('lapisPermukaanJenis') == '2' ? 'selected' : '' }}>
+                                        Japat (AWCAS) / Kerikil</option>
+                                    <option value="3" {{ old('lapisPermukaanJenis') == '3' ? 'selected' : '' }}>
+                                        Telford / Macadam Terbuka</option>
+                                    <option value="4" {{ old('lapisPermukaanJenis') == '4' ? 'selected' : '' }}>
+                                        Burtu</option>
+                                    <option value="5" {{ old('lapisPermukaanJenis') == '5' ? 'selected' : '' }}>
+                                        Burda</option>
+                                    <option value="6" {{ old('lapisPermukaanJenis') == '6' ? 'selected' : '' }}>
+                                        Penetrasi Macadam 1 Lapis</option>
+                                    <option value="7" {{ old('lapisPermukaanJenis') == '7' ? 'selected' : '' }}>
+                                        Penetrasi Macadam 2 Lapis</option>
+                                    <option value="8" {{ old('lapisPermukaanJenis') == '8' ? 'selected' : '' }}>
+                                        Lasbutag (BUTAS)</option>
+                                    <option value="9" {{ old('lapisPermukaanJenis') == '9' ? 'selected' : '' }}>
+                                        Aspal Beton (A.C.)</option>
+                                    <option value="10" {{ old('lapisPermukaanJenis') == '10' ? 'selected' : '' }}>
+                                        Latasbum (NACAS)</option>
+                                    <option value="11" {{ old('lapisPermukaanJenis') == '11' ? 'selected' : '' }}>
+                                        Lataston (HRS)</option>
+                                    <option value="12" {{ old('lapisPermukaanJenis') == '12' ? 'selected' : '' }}>
+                                        HRSSA</option>
+                                    <option value="13" {{ old('lapisPermukaanJenis') == '13' ? 'selected' : '' }}>
+                                        Slurry Seal</option>
+                                    <option value="14" {{ old('lapisPermukaanJenis') == '14' ? 'selected' : '' }}>
+                                        Macro Seal</option>
+                                    <option value="15" {{ old('lapisPermukaanJenis') == '15' ? 'selected' : '' }}>
+                                        Micro Asbuton</option>
+                                    <option value="16" {{ old('lapisPermukaanJenis') == '16' ? 'selected' : '' }}>
+                                        DGEM</option>
+                                    <option value="17" {{ old('lapisPermukaanJenis') == '17' ? 'selected' : '' }}>
+                                        SMA</option>
+                                    <option value="18" {{ old('lapisPermukaanJenis') == '18' ? 'selected' : '' }}>
+                                        BMA</option>
+                                    <option value="19" {{ old('lapisPermukaanJenis') == '19' ? 'selected' : '' }}>
+                                        HSWC</option>
+                                    <option value="20" {{ old('lapisPermukaanJenis') == '20' ? 'selected' : '' }}>
+                                        SPAV</option>
+                                    <option value="21" {{ old('lapisPermukaanJenis') == '21' ? 'selected' : '' }}>
+                                        Rigid</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="lapisPermukaanLebar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lapis
+                                    Permukaan
+                                    Lebar</label>
+                                <input type="text" id="lapisPermukaanLebar" name="lapisPermukaanLebar"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="4.5" value="{{ old('lapisPermukaanLebar') }}" />
+                            </div>
+                            <div>
+                                <label for="median"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode
+                                    Median</label>
+                                <select id="median" name="median"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Median</option>
+                                    <option value="0" {{ old('median') == '0' ? 'selected' : '' }}>Tidak Ada
+                                    </option>
+                                    <option value="1" {{ old('median') == '1' ? 'selected' : '' }}>1 < M</option>
+                                    <option value="2" {{ old('median') == '2' ? 'selected' : '' }}>1 - 3 M
+                                    </option>
+                                    <option value="3" {{ old('median') == '3' ? 'selected' : '' }}>3 < M</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="bahuKiriTahun"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kiri
+                                    Tahun</label>
+                                <input type="text" id="bahuKiriTahun" name="bahuKiriTahun"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="2020" value="{{ old('bahuKiriTahun') }}" />
+                            </div>
+                            <div>
+                                <label for="bahuKananTahun"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kanan
+                                    Tahun</label>
+                                <input type="text" id="bahuKananTahun" name="bahuKananTahun"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="2020" value="{{ old('bahuKananTahun') }}" />
+                            </div>
+                            <div>
+                                <label for="bahuKiriLebar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kiri
+                                    Lebar</label>
+                                <input type="text" id="bahuKiriLebar" name="bahuKiriLebar"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="4.5" value="{{ old('bahuKiriLebar') }}" />
+                            </div>
+                            <div>
+                                <label for="bahuKananLebar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kanan
+                                    Lebar</label>
+                                <input type="text" id="bahuKananLebar" name="bahuKananLebar"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="4.5" value="{{ old('bahuKananLebar') }}" />
+                            </div>
+                            <div>
+                                <label for="bahuKiriJenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jenis
+                                    Bahu Kiri</label>
+                                <select id="bahuKiriJenis" name="bahuKiriJenis"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Bahu</option>
+                                    <option value="0" {{ old('bahuKiriJenis') == '0' ? 'selected' : '' }}>Tidak
+                                        Ada Bahu</option>
+                                    <option value="1" {{ old('bahuKiriJenis') == '1' ? 'selected' : '' }}>Bahu
+                                        Lunak</option>
+                                    <option value="2" {{ old('bahuKiriJenis') == '2' ? 'selected' : '' }}>Bahu
+                                        yang Diperkeras</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="bahuKananJenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jenis
+                                    Bahu Kanan</label>
+                                <select id="bahuKananJenis" name="bahuKananJenis"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Bahu</option>
+                                    <option value="0" {{ old('bahuKananJenis') == '0' ? 'selected' : '' }}>Tidak
+                                        Ada Bahu</option>
+                                    <option value="1" {{ old('bahuKananJenis') == '1' ? 'selected' : '' }}>Bahu
+                                        Lunak</option>
+                                    <option value="2" {{ old('bahuKananJenis') == '2' ? 'selected' : '' }}>Bahu
+                                        yang Diperkeras</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="saluranKiriLebar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Saluran Kiri
+                                    Lebar</label>
+                                <input type="number" id="saluranKiriLebar" name="saluranKiriLebar"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="40 cm" value="{{ old('saluranKiriLebar') }}" />
+                            </div>
+                            <div>
+                                <label for="saluranKananLebar"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Saluran Kanan
+                                    Lebar</label>
+                                <input type="number" id="saluranKananLebar" name="saluranKananLebar"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="40 cm" value="{{ old('saluranKananLebar') }}" />
+                            </div>
+                            <div>
+                                <label for="saluranKiriDalam"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Saluran Kiri
+                                    Dalam</label>
+                                <input type="number" id="saluranKiriDalam" name="saluranKiriDalam"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="40 cm" value="{{ old('saluranKiriDalam') }}" />
+                            </div>
+                            <div>
+                                <label for="saluranKananDalam"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Saluran Kanan
+                                    Dalam</label>
+                                <input type="number" id="saluranKananDalam" name="saluranKananDalam"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="40 cm" value="{{ old('saluranKananDalam') }}" />
+                            </div>
+                            <div>
+                                <label for="saluranKiriJenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jenis
+                                    Saluran Samping Kiri</label>
+                                <select id="saluranKiriJenis" name="saluranKiriJenis"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Saluran Samping</option>
+                                    <option value="0" {{ old('saluranKiriJenis') == '0' ? 'selected' : '' }}>
+                                        Tidak Ada</option>
+                                    <option value="1" {{ old('saluranKiriJenis') == '1' ? 'selected' : '' }}>
+                                        Tanah Terbuka</option>
+                                    <option value="2" {{ old('saluranKiriJenis') == '2' ? 'selected' : '' }}>
+                                        Beton/Pasir Batu Terbuka</option>
+                                    <option value="3" {{ old('saluranKiriJenis') == '3' ? 'selected' : '' }}>
+                                        Saluran Irigasi</option>
+                                    <option value="4" {{ old('saluranKiriJenis') == '4' ? 'selected' : '' }}>
+                                        Beton/Pasir Batu Tertutup</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="saluranKananJenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jenis
+                                    Saluran Samping Kanan</label>
+                                <select id="saluranKananJenis" name="saluranKananJenis"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Jenis Saluran Samping</option>
+                                    <option value="0" {{ old('saluranKananJenis') == '0' ? 'selected' : '' }}>
+                                        Tidak Ada</option>
+                                    <option value="1" {{ old('saluranKananJenis') == '1' ? 'selected' : '' }}>
+                                        Tanah Terbuka</option>
+                                    <option value="2" {{ old('saluranKananJenis') == '2' ? 'selected' : '' }}>
+                                        Beton/Pasir Batu Terbuka</option>
+                                    <option value="3" {{ old('saluranKananJenis') == '3' ? 'selected' : '' }}>
+                                        Saluran Irigasi</option>
+                                    <option value="4" {{ old('saluranKananJenis') == '4' ? 'selected' : '' }}>
+                                        Beton/Pasir Batu Tertutup</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tataKiri"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Tata Guna
+                                    Lahan Kiri</label>
+                                <select id="tataKiri" name="tataKiri"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Tata Guna Lahan</option>
+                                    <option value="1" {{ old('tataKiri') == '1' ? 'selected' : '' }}>Sawah /
+                                        Kebun / Hutan (Rural)</option>
+                                    <option value="2" {{ old('tataKiri') == '2' ? 'selected' : '' }}>Perumahan
+                                        (Urban 1)</option>
+                                    <option value="3" {{ old('tataKiri') == '3' ? 'selected' : '' }}>
+                                        Perindustrian (Urban 2)</option>
+                                    <option value="4" {{ old('tataKiri') == '4' ? 'selected' : '' }}>Pertokoan /
+                                        Perkantoran / Pasar (Urban 3)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tataKanan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Tata Guna
+                                    Lahan Kanan</label>
+                                <select id="tataKanan" name="tataKanan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Tata Guna Lahan</option>
+                                    <option value="1" {{ old('tataKanan') == '1' ? 'selected' : '' }}>Sawah /
+                                        Kebun / Hutan (Rural)</option>
+                                    <option value="2" {{ old('tataKanan') == '2' ? 'selected' : '' }}>Perumahan
+                                        (Urban 1)</option>
+                                    <option value="3" {{ old('tataKanan') == '3' ? 'selected' : '' }}>
+                                        Perindustrian (Urban 2)</option>
+                                    <option value="4" {{ old('tataKanan') == '4' ? 'selected' : '' }}>Pertokoan /
+                                        Perkantoran / Pasar (Urban 3)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="alinyemenVertical"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alignment
+                                    Vertical
+                                    (Kode Grade)</label>
+                                <select id="alinyemenVertical" name="alinyemenVertical"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Alignment Vertical (Pilih Grade)</option>
+                                    <option value="1" {{ old('alinyemenVertical') == '1' ? 'selected' : '' }}>
+                                        Datar (F) (< 5.0 M/KM)</option>
+                                    <option value="2" {{ old('alinyemenVertical') == '2' ? 'selected' : '' }}>
+                                        Bukit (R) (5 - 45 M/KM)</option>
+                                    <option value="3" {{ old('alinyemenVertical') == '3' ? 'selected' : '' }}>
+                                        Gunung (H) (> 45 M/KM)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="alinyemenHorizontal"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alignment
+                                    Horizontal
+                                    (Kode Belokan)</label>
+                                <select id="alinyemenHorizontal" name="alinyemenHorizontal"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Alignment Horizontal (Pilih Belokan)
+                                    </option>
+                                    <option value="1" {{ old('alinyemenHorizontal') == '1' ? 'selected' : '' }}>
+                                        Lurus (< 0.25 Rad/KM)</option>
+                                    <option value="2" {{ old('alinyemenHorizontal') == '2' ? 'selected' : '' }}>
+                                        Sedikit Belokan (0.25 - 3.50 Rad/KM)</option>
+                                    <option value="3" {{ old('alinyemenHorizontal') == '3' ? 'selected' : '' }}>
+                                        Banyak Belokan (> 3.50 Rad/KM)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="terrainKiri"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode
+                                    Terrain Kiri</label>
+                                <select id="terrainKiri" name="terrainKiri"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Terrain Kiri</option>
+                                    <option value="L1" {{ old('terrainKiri') == 'L1' ? 'selected' : '' }}>
+                                        (Lembah) Datar (F) < 1.0 M</option>
+                                    <option value="L2" {{ old('terrainKiri') == 'L2' ? 'selected' : '' }}>
+                                        (Lembah) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
+                                    <option value="L3" {{ old('terrainKiri') == 'L3' ? 'selected' : '' }}>
+                                        (Lembah) Gunung (H) > 3.0 M</option>
+                                    <option value="T1" {{ old('terrainKiri') == 'T1' ? 'selected' : '' }}>
+                                        (Tebing) Datar (F) < 1.0 M</option>
+                                    <option value="T2" {{ old('terrainKiri') == 'T2' ? 'selected' : '' }}>
+                                        (Tebing) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
+                                    <option value="T3" {{ old('terrainKiri') == 'T3' ? 'selected' : '' }}>
+                                        (Tebing) Gunung (H) > 3.0 M</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="terrainKanan"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode
+                                    Terrain Kanan</label>
+                                <select id="terrainKanan" name="terrainKanan"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih Terrain Kanan</option>
+                                    <option value="L1" {{ old('terrainKanan') == 'L1' ? 'selected' : '' }}>
+                                        (Lembah) Datar (F) < 1.0 M</option>
+                                    <option value="L2" {{ old('terrainKanan') == 'L2' ? 'selected' : '' }}>
+                                        (Lembah) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
+                                    <option value="L3" {{ old('terrainKanan') == 'L3' ? 'selected' : '' }}>
+                                        (Lembah) Gunung (H) > 3.0 M</option>
+                                    <option value="T1" {{ old('terrainKanan') == 'T1' ? 'selected' : '' }}>
+                                        (Tebing) Datar (F) < 1.0 M</option>
+                                    <option value="T2" {{ old('terrainKanan') == 'T2' ? 'selected' : '' }}>
+                                        (Tebing) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
+                                    <option value="T3" {{ old('terrainKanan') == 'T3' ? 'selected' : '' }}>
+                                        (Tebing) Gunung (H) > 3.0 M</option>
+                                </select>
+                            </div>
                         </div>
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>

@@ -52,7 +52,8 @@
                                     @foreach ($jalanAspals as $street)
                                         <option value="{{ $street->id }}"
                                             {{ old('asphalt_street_id') == $street->id ? 'selected' : '' }}>
-                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
+                                            {{ $street->roadInventory->noRuas }} -
+                                            {{ $street->roadInventory->namaRuas }}
                                         </option>
                                     @endforeach
                                 </select>

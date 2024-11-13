@@ -36,44 +36,20 @@
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
-                                <label for="noProvinsi"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                                    Provinsi</label>
-                                <input type="number" id="noProvinsi" name="noProvinsi"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="72" value="{{ old('noProvinsi', $data->noProvinsi) }}" />
-                            </div>
-                            <div>
-                                <label for="noRuas"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
-                                    Ruas</label>
-                                <input type="text" id="noRuas" name="noRuas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="01423" value="{{ old('noRuas', $data->noRuas) }}" />
-                            </div>
-                            <div>
-                                <label for="namaProvinsi"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                    Provinsi</label>
-                                <input type="text" id="namaProvinsi" name="namaProvinsi"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Sulawesi Tengah"
-                                    value="{{ old('namaProvinsi', $data->namaProvinsi) }}" />
-                            </div>
-                            <div>
-                                <label for="namaRuas"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                                    Ruas</label>
-                                <input type="text" id="namaRuas" name="namaRuas"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="SP. KULAWI - GIMPU" value="{{ old('namaRuas', $data->namaRuas) }}" />
-                            </div>
-                            <div>
-                                <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten/Kota</label>
-                                <input type="text" id="kabupaten" name="kabupaten"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Sigi" value="{{ old('kabupaten', $data->kabupaten) }}" />
+                                <label for="asphalt_street_id"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih
+                                    Inventaris Jaringan Jalan</label>
+                                <select id="road_inventory_id" name="road_inventory_id"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="" disabled selected>Pilih
+                                        Inventaris Jaringan Jalan</option>
+                                    @foreach ($streets as $street)
+                                        <option value="{{ $street->id }}"
+                                            {{ old('road_inventory_id') == $street->id ? 'selected' : '' }}>
+                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div>
                                 <label for="fungsi"
@@ -83,15 +59,6 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="KP-2" value="{{ old('fungsi', $data->fungsi) }}" />
                             </div>
-
-                            <div>
-                                <label for="date"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
-                                <input type="date" id="date" name="date"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="{{ old('date', $data->date) }}" />
-                            </div>
-
                             <div class="mb-4">
                                 <label for="surveyor"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surveyor</label>

@@ -53,7 +53,8 @@
                                     @foreach ($jalanTanahs as $street)
                                         <option value="{{ $street->id }}"
                                             {{ old('soils_street_id', $data->soils_street_id) == $street->id ? 'selected' : '' }}>
-                                            {{ $street->noRuas }} - {{ $street->namaRuas }}
+                                            {{ $street->roadInventory->noRuas }} -
+                                            {{ $street->roadInventory->namaRuas }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -95,7 +96,8 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview Gambar
                                 </label>
                                 <img id="preview-image" class="rounded-lg"
-                                    src="{{ asset('assets/images/no_image.jpg') }} " alt="">
+                                    src="{{ $data->image ? asset('storage/' . $data->image) : asset('assets/images/no_image.jpg') }}"
+                                    alt="">
                             </div>
                         </div>
                         <div class="grid gap-6 mb-6 md:grid-cols-4">

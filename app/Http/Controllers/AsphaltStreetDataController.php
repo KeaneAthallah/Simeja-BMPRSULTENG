@@ -187,7 +187,7 @@ class AsphaltStreetDataController extends Controller
             ]);
             if ($request->hasFile('image')) {
                 // Process the file
-                $validatedData['image'] = $request->file('image')->store('complain_images');
+                $validatedData['image'] = $request->file('image')->store('asphalt_street_data_images');
             } else {
                 dd('No file uploaded'); // Or log this message
             }
@@ -283,8 +283,6 @@ class AsphaltStreetDataController extends Controller
             } else {
                 $kondisi = 'Rusak Berat';
             }
-            $streetModel = AsphaltStreet::where('id', '=', $request->asphalt_street_id)->first();
-            $validatedData['noRuas'] = $streetModel->noRuas;
             $validatedData['penanganan'] = $pemeliharaan;
             $validatedData['panjang'] = $panjang;
             $validatedData['sdi'] = $result6;
@@ -464,7 +462,7 @@ class AsphaltStreetDataController extends Controller
                     Storage::delete($asphaltStreetData->image);
                 }
                 // Store the new image file and update the image path in the validated data
-                $validatedData['image'] = $request->file('image')->store('complain_images');
+                $validatedData['image'] = $request->file('image')->store('asphalt_street_data_images');
             }
             $panjang =
                 intval(substr($request->kePatok, -3)) -
@@ -558,8 +556,6 @@ class AsphaltStreetDataController extends Controller
             } else {
                 $kondisi = 'Rusak Berat';
             }
-            $streetModel = AsphaltStreet::where('id', '=', $request->asphalt_street_id)->first();
-            $validatedData['noRuas'] = $streetModel->noRuas;
             $validatedData['penanganan'] = $pemeliharaan;
             $validatedData['panjang'] = $panjang;
             $validatedData['sdi'] = $result6;

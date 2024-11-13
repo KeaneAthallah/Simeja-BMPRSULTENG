@@ -39,7 +39,7 @@
                         <td>Nomor Provinsi</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ $data->asphaltStreet->noProvinsi }}
+                                {{ $data->asphaltStreet->roadInventory->noProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
                         <td>Nama Provinsi</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ $data->asphaltStreet->namaProvinsi }}
+                                {{ $data->asphaltStreet->roadInventory->namaProvinsi }}
                             </span>
                         </td>
                     </tr>
@@ -55,7 +55,7 @@
                         <td>Kabupaten/Kota</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ $data->asphaltStreet->kabupaten }}
+                                {{ $data->asphaltStreet->roadInventory->kabupaten }}
                             </span>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
                         <td>Nomor Ruas</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ $data->asphaltStreet->noRuas }}
+                                {{ $data->asphaltStreet->roadInventory->noRuas }}
                             </span>
                         </td>
 
@@ -94,7 +94,7 @@
                         <td>Nama Ruas</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ $data->asphaltStreet->namaRuas }}
+                                {{ $data->asphaltStreet->roadInventory->namaRuas }}
                             </span>
                         </td>
                     </tr>
@@ -111,7 +111,7 @@
                         <td>Tanggal</td>
                         <td>:
                             <span style="height: 10px;width: 20px;border: 1px solid black">
-                                {{ \Carbon\Carbon::parse($data->asphaltStreet->date)->format('d/m/Y') }}
+                                {{ \Carbon\Carbon::parse($data->asphaltStreet->roadInventory->date)->format('d/m/Y') }}
                             </span>
                         </td>
                     </tr>

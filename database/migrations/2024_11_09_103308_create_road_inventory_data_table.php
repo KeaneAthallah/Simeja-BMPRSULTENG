@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('road_inventory_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('road_inventory_id');
-            $table->string('dariSta');
-            $table->string('keSta');
+            $table->foreignId('road_id');
+            $table->string('jenisPerkerasan');
             $table->string('tipeJalan');
             $table->string('median');
             $table->string('lapisPermukaanTahun');

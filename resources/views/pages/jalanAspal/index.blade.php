@@ -21,7 +21,7 @@
                             <tr>
                                 <th>
                                     <span class="flex items-center">
-                                        No
+                                        No Ruas
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -31,7 +31,7 @@
                                 </th>
                                 <th data-type="date" data-format="YYYY/DD/MM">
                                     <span class="flex items-center">
-                                        Nama
+                                        Nama Ruas
                                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                             width="24" height="24" fill="none" viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -66,9 +66,9 @@
                             @foreach ($datas as $data)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $data->noRuas }}
+                                        {{ $data->roadInventory->noRuas }}
                                     </td>
-                                    <td>{{ $data->namaRuas }}</td>
+                                    <td>{{ $data->roadInventory->namaRuas }}</td>
                                     <td>{{ $data->updated_at->diffForHumans() }}</td>
                                     <td class="flex space-x-2">
                                         <button
