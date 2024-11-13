@@ -81,14 +81,13 @@
         </div>
         <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
-    <main> {{ $slot }}</main>
+    <main class=""> {{ $slot }}</main>
     <!--Footer-->
     <footer class="bg-nord6">
         <div class="container mx-auto px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6 text-black">
                     <a class="text-nord0 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-
                         SiMeja 💻
                     </a>
                 </div>
