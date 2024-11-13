@@ -82,6 +82,7 @@
                                     get coordinates.
                                 </p>
                             </div>
+
                             <div>
                                 <label for="image"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar
@@ -96,6 +97,14 @@
                                 </label>
                                 <img id="preview-image" class="rounded-lg"
                                     src="{{ asset('assets/images/no_image.jpg') }} " alt="">
+                            </div>
+                            <div>
+                                <label for="nilaiIri"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai
+                                    IRI</label>
+                                <input type="text" id="nilaiIri" name="nilaiIri"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value="{{ old('nilaiIri') }}" />
                             </div>
                         </div>
 

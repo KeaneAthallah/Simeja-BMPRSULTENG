@@ -110,6 +110,7 @@ class AsphaltStreetDataController extends Controller
                 'kerusakanLerengKiri' => 'required|integer|in:1,2,3,4,5',
                 'trotoarKiri' => 'required|integer|in:1,2,3,4,5',
                 'trotoarKanan' => 'required|integer|in:1,2,3,4,5',
+                'nilaiIri' => 'nullable|string'
             ], [
                 '_token.required' => 'Token harus diisi.',
                 'koordinat.required' => 'Field koordinat wajib diisi.',
@@ -238,6 +239,9 @@ class AsphaltStreetDataController extends Controller
             }
             $result6 = $result5 = '' ? '' : $result5;
             $nilaiIri = 0;
+            if ($request->nilaiIri) {
+                $nilaiIri = intval($request->nilaiIri);
+            }
             $result7 = 0;
             if ($nilaiIri <= 4 && $result6 <= 50) {
                 $result7 = $panjang;
@@ -336,6 +340,7 @@ class AsphaltStreetDataController extends Controller
         if (auth()->user()->role == 'staff') {
             $validatedData = $request->validate([
                 '_token' => 'required|string',
+                'nilaiIri' => 'nullable|string',
                 "image" => "nullable|max:2048",
                 'koordinat' => [
                     'required',
@@ -511,6 +516,9 @@ class AsphaltStreetDataController extends Controller
             }
             $result6 = $result5 = '' ? '' : $result5;
             $nilaiIri = 0;
+            if ($request->nilaiIri) {
+                $nilaiIri = intval($request->nilaiIri);
+            }
             $result7 = 0;
             if ($nilaiIri <= 4 && $result6 <= 50) {
                 $result7 = $panjang;

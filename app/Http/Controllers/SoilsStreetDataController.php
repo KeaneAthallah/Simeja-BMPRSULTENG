@@ -62,6 +62,7 @@ class SoilsStreetDataController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 "image" => "nullable|max:2048",
+                'nilaiIri' => 'nullable|string',
                 'soils_street_id' => 'required|numeric',
                 'koordinat' => [
                     'required',
@@ -186,6 +187,9 @@ class SoilsStreetDataController extends Controller
                 intval(substr($request->dariPatok, -3));
             $result6 = 225;
             $nilaiIri = 0;
+            if ($request->nilaiIri) {
+                $nilaiIri = intval($request->nilaiIri);
+            }
             $result7 = 0;
             if ($nilaiIri <= 4 && $result6 <= 50) {
                 $result7 = $panjang;
@@ -279,6 +283,7 @@ class SoilsStreetDataController extends Controller
             $validatedData = $request->validate([
                 '_token' => 'required|string',
                 "image" => "nullable|max:2048",
+                'nilaiIri' => 'nullable|string',
                 'soils_street_id' => 'required',
                 'koordinat' => [
                     'required',
@@ -406,6 +411,9 @@ class SoilsStreetDataController extends Controller
                 intval(substr($request->dariPatok, -3));
             $result6 = 225;
             $nilaiIri = 0;
+            if ($request->nilaiIri) {
+                $nilaiIri = intval($request->nilaiIri);
+            }
             $result7 = 0;
             if ($nilaiIri <= 4 && $result6 <= 50) {
                 $result7 = $panjang;

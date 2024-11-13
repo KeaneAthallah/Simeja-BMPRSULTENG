@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RoadInventory;
 use App\Models\SoilsStreetData;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\AsphaltStreetData;
 use App\Models\RoadInventoryData;
 use Illuminate\Support\Facades\DB;

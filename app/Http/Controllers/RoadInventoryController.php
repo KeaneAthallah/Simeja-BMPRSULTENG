@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\RoadInventory;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RoadInventoryController extends Controller
 {
@@ -81,7 +82,43 @@ class RoadInventoryController extends Controller
      */
     public function show(RoadInventory $roadInventory)
     {
-        //
+        $roadInventories = RoadInventory::with('dataRoadInventory.asphaltStreet', 'dataRoadInventory.soilsStreet')->get();
+        $data = [];
+        foreach ($roadInventories as $roadInventory) {
+            foreach ($roadInventory->dataRoadInventory as $roadInventoryData) {
+                $streetData = $roadInventoryData->jenisPerkerasan == 1 ? $roadInventoryData->asphaltStreet : $roadInventoryData->soilsStreet;
+                foreach ($streetData as $street) {
+                    $coordinates = json_decode($street->koordinat, true);
+                    $formattedCoordinates = [];
+                    if ($coordinates && is_array($coordinates)) {
+                        foreach ($coordinates as $coordinate) {
+                            if (is_array($coordinate) && count($coordinate) == 2) {
+                                $formattedCoordinates[] = [
+                                    'longitude' => $coordinate[0],
+                                    'latitude' => $coordinate[1],
+                                ];
+                            }
+                        }
+                    }
+                    $data[] = [
+                        'street_id' => $street->id,
+                        'no_ruas' => $roadInventory->noRuas,
+                        'kondisiJalan' => $street->kondisiJalan,
+                        'penanganan' => $street->penanganan,
+                        'coordinates' => $formattedCoordinates,
+                        'nama_ruas' => $roadInventory->namaRuas,
+                        'jenis_perkerasan' => $roadInventoryData->jenisPerkerasan,
+                        'dari_patok' => $street->dariPatok,
+                        'ke_patok' => $street->kePatok,
+                        // Add other fields as needed
+                    ];
+                }
+            }
+        }
+        $surveyorIds = $roadInventory->surveyor;
+        $users = User::whereId($surveyorIds)->get();
+        $pdf = Pdf::loadView('pages.dataInventarisJalan.show', ['data' => $roadInventory, 'streets' => $data, 'title' => 'Detail Jalan Aspal', 'users' => $users])->setPaper('a4', 'landscape');
+        return $pdf->stream('Detail Data Inventaris Jaringan Jalan.pdf');
     }
 
     /**
