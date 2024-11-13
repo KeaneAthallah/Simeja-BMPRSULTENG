@@ -217,10 +217,8 @@ class SoilsStreetDataController extends Controller
                 $pemeliharaan = 'Pemeliharaan Rutin';
             } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
                 $pemeliharaan = 'Pemeliharaan Berkala';
-            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
-                $pemeliharaan = 'Peningkatan/Rekonstruksi';
             } else {
-                $pemeliharaan = '';
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
             }
             if ($result6 < 50) {
                 $kondisi = 'Baik';
@@ -439,10 +437,8 @@ class SoilsStreetDataController extends Controller
                 $pemeliharaan = 'Pemeliharaan Rutin';
             } elseif ($result7 + $result8 + $result10 == 0 && $result9 > 0) {
                 $pemeliharaan = 'Pemeliharaan Berkala';
-            } elseif ($result7 + $result8 + $result9 == 0 && $result10 > 0) {
-                $pemeliharaan = 'Peningkatan/Rekonstruksi';
             } else {
-                $pemeliharaan = '';
+                $pemeliharaan = 'Peningkatan/Rekonstruksi';
             }
             if ($result6 < 50) {
                 $kondisi = 'Baik';
