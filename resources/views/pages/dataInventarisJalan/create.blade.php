@@ -210,22 +210,6 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="bahuKiriTahun"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kiri
-                                    Tahun</label>
-                                <input type="text" id="bahuKiriTahun" name="bahuKiriTahun"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="2020" value="{{ old('bahuKiriTahun') }}" />
-                            </div>
-                            <div>
-                                <label for="bahuKananTahun"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kanan
-                                    Tahun</label>
-                                <input type="text" id="bahuKananTahun" name="bahuKananTahun"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="2020" value="{{ old('bahuKananTahun') }}" />
-                            </div>
-                            <div>
                                 <label for="bahuKiriLebar"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kiri
                                     Lebar</label>
@@ -348,14 +332,22 @@
                                 <select id="tataKiri" name="tataKiri"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Tata Guna Lahan</option>
-                                    <option value="1" {{ old('tataKiri') == '1' ? 'selected' : '' }}>Sawah /
-                                        Kebun / Hutan (Rural)</option>
-                                    <option value="2" {{ old('tataKiri') == '2' ? 'selected' : '' }}>Perumahan
-                                        (Urban 1)</option>
-                                    <option value="3" {{ old('tataKiri') == '3' ? 'selected' : '' }}>
-                                        Perindustrian (Urban 2)</option>
-                                    <option value="4" {{ old('tataKiri') == '4' ? 'selected' : '' }}>Pertokoan /
-                                        Perkantoran / Pasar (Urban 3)</option>
+                                    <option value="1" {{ old('tataKiri') == '1' ? 'selected' : '' }}>Sawah
+                                    </option>
+                                    <option value="2" {{ old('tataKiri') == '2' ? 'selected' : '' }}>Kebun
+                                    </option>
+                                    <option value="3" {{ old('tataKiri') == '3' ? 'selected' : '' }}>Hutan
+                                    </option>
+                                    <option value="4" {{ old('tataKiri') == '4' ? 'selected' : '' }}>Perumahan
+                                    </option>
+                                    <option value="5" {{ old('tataKiri') == '5' ? 'selected' : '' }}>
+                                        Perindustrian</option>
+                                    <option value="6" {{ old('tataKiri') == '6' ? 'selected' : '' }}>Pertokoan
+                                    </option>
+                                    <option value="7" {{ old('tataKiri') == '7' ? 'selected' : '' }}>
+                                        Perkantoran</option>
+                                    <option value="8" {{ old('tataKiri') == '8' ? 'selected' : '' }}>Pasar
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -364,15 +356,22 @@
                                     Lahan Kanan</label>
                                 <select id="tataKanan" name="tataKanan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" disabled selected>Pilih Tata Guna Lahan</option>
-                                    <option value="1" {{ old('tataKanan') == '1' ? 'selected' : '' }}>Sawah /
-                                        Kebun / Hutan (Rural)</option>
-                                    <option value="2" {{ old('tataKanan') == '2' ? 'selected' : '' }}>Perumahan
-                                        (Urban 1)</option>
-                                    <option value="3" {{ old('tataKanan') == '3' ? 'selected' : '' }}>
-                                        Perindustrian (Urban 2)</option>
-                                    <option value="4" {{ old('tataKanan') == '4' ? 'selected' : '' }}>Pertokoan /
-                                        Perkantoran / Pasar (Urban 3)</option>
+                                    <option value="1" {{ old('tataKanan') == '1' ? 'selected' : '' }}>Sawah
+                                    </option>
+                                    <option value="2" {{ old('tataKanan') == '2' ? 'selected' : '' }}>Kebun
+                                    </option>
+                                    <option value="3" {{ old('tataKanan') == '3' ? 'selected' : '' }}>Hutan
+                                    </option>
+                                    <option value="4" {{ old('tataKanan') == '4' ? 'selected' : '' }}>Perumahan
+                                    </option>
+                                    <option value="5" {{ old('tataKanan') == '5' ? 'selected' : '' }}>
+                                        Perindustrian</option>
+                                    <option value="6" {{ old('tataKanan') == '6' ? 'selected' : '' }}>Pertokoan
+                                    </option>
+                                    <option value="7" {{ old('tataKanan') == '7' ? 'selected' : '' }}>
+                                        Perkantoran</option>
+                                    <option value="8" {{ old('tataKanan') == '8' ? 'selected' : '' }}>Pasar
+                                    </option>
                                 </select>
                             </div>
                             <div>

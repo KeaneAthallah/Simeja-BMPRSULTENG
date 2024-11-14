@@ -84,9 +84,11 @@ class RoadInventoryController extends Controller
     {
         $roadInventories = RoadInventory::with('dataRoadInventory.asphaltStreet', 'dataRoadInventory.soilsStreet')->get();
         $data = [];
+
         foreach ($roadInventories as $roadInventory) {
             foreach ($roadInventory->dataRoadInventory as $roadInventoryData) {
                 $streetData = $roadInventoryData->jenisPerkerasan == 1 ? $roadInventoryData->asphaltStreet : $roadInventoryData->soilsStreet;
+
                 foreach ($streetData as $street) {
                     $coordinates = json_decode($street->koordinat, true);
                     $formattedCoordinates = [];
@@ -101,20 +103,42 @@ class RoadInventoryController extends Controller
                         }
                     }
                     $data[] = [
-                        'street_id' => $street->id,
-                        'no_ruas' => $roadInventory->noRuas,
-                        'kondisiJalan' => $street->kondisiJalan,
-                        'penanganan' => $street->penanganan,
-                        'coordinates' => $formattedCoordinates,
-                        'nama_ruas' => $roadInventory->namaRuas,
-                        'jenis_perkerasan' => $roadInventoryData->jenisPerkerasan,
                         'dari_patok' => $street->dariPatok,
                         'ke_patok' => $street->kePatok,
-                        // Add other fields as needed
+                        'tipe_jalan' => $roadInventoryData->tipeJalan,
+                        'median' => $roadInventoryData->median,
+                        'lapis_permukaan_tahun' => $roadInventoryData->lapisPermukaanTahun,
+                        'lapis_permukaan_jenis' => $roadInventoryData->lapisPermukaanJenis,
+                        'lapis_permukaan_lebar' => $roadInventoryData->lapisPermukaanLebar,
+                        'bahu_kiri_jenis' => $roadInventoryData->bahuKiriJenis,
+                        'bahu_kiri_lebar' => $roadInventoryData->bahuKiriLebar,
+                        'bahu_kanan_jenis' => $roadInventoryData->bahuKananJenis,
+                        'bahu_kanan_lebar' => $roadInventoryData->bahuKananLebar,
+                        'saluran_kiri_jenis' => $roadInventoryData->saluranKiriJenis,
+                        'saluran_kiri_lebar' => $roadInventoryData->saluranKiriLebar,
+                        'saluran_kiri_dalam' => $roadInventoryData->saluranKiriDalam,
+                        'saluran_kanan_jenis' => $roadInventoryData->saluranKananJenis,
+                        'saluran_kanan_lebar' => $roadInventoryData->saluranKananLebar,
+                        'saluran_kanan_dalam' => $roadInventoryData->saluranKananDalam,
+                        'terrain_kiri' => $roadInventoryData->terrainKiri,
+                        'terrain_kanan' => $roadInventoryData->terrainKanan,
+                        'alinyemen_vertical' => $roadInventoryData->alinyemenVertical,
+                        'alinyemen_horizontal' => $roadInventoryData->alinyemenHorizontal,
+                        'tata_kiri' => $roadInventoryData->tataKiri,
+                        'tata_kanan' => $roadInventoryData->tataKanan,
                     ];
                 }
             }
         }
+
+        // Sort the data by 'dari_patok' in ascending order
+        usort($data, function ($a, $b) {
+            return $a['dari_patok'] <=> $b['dari_patok'];
+        });
+
+        // Limit the results to a maximum of 10 entries
+        $data = array_slice($data, 0, 10);
+        // dd($data);
         $surveyorIds = $roadInventory->surveyor;
         $users = User::whereId($surveyorIds)->get();
         $pdf = Pdf::loadView('pages.dataInventarisJalan.show', ['data' => $roadInventory, 'streets' => $data, 'title' => 'Detail Jalan Aspal', 'users' => $users])->setPaper('a4', 'landscape');

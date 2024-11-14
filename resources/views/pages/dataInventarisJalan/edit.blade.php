@@ -44,7 +44,7 @@
                                     <option value="" disabled selected>Pilih Jalan Aspal</option>
                                     @foreach ($inventarisJalans as $street)
                                         <option value="{{ $street->id }}"
-                                            {{ old('road_inventory_id') == $street->id ? 'selected' : '' }}>
+                                            {{ old('road_inventory_id', $street->id) == $street->id ? 'selected' : '' }}>
                                             {{ $street->noRuas }} - {{ $street->namaRuas }}
                                         </option>
                                     @endforeach
@@ -61,7 +61,7 @@
                                     <optgroup label="Data Survey Jalan Aspal">
                                         @foreach ($streets['asphaltStreets'] as $asphaltStreet)
                                             <option value="{{ $asphaltStreet->id }}"
-                                                {{ old('road_id') == $asphaltStreet->id ? 'selected' : '' }}>
+                                                {{ old('road_id', $asphaltStreet->id) == $asphaltStreet->id ? 'selected' : '' }}>
                                                 {{ $asphaltStreet->dariPatok }} -
                                                 {{ $asphaltStreet->kePatok }}
                                                 {{ $asphaltStreet->asphaltStreet->roadInventory->namaRuas }}
@@ -73,7 +73,7 @@
                                     <optgroup label="Data Survey Jalan Tanah">
                                         @foreach ($streets['soilStreets'] as $soilStreet)
                                             <option value="{{ $soilStreet->id }}"
-                                                {{ old('road_id') == $soilStreet->id ? 'selected' : '' }}>
+                                                {{ old('road_id', $soilStreet->id) == $soilStreet->id ? 'selected' : '' }}>
                                                 {{ $soilStreet->dariPatok }} -
                                                 {{ $soilStreet->kePatok }}
                                                 {{ $soilStreet->soilsStreet->roadInventory->namaRuas }}
@@ -89,15 +89,20 @@
                                 <select id="tipeJalan" name="tipeJalan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Tipe Jalan</option>
-                                    <option value="1" {{ old('tipeJalan') == '1' ? 'selected' : '' }}>2 / 1 UD
+                                    <option value="1"
+                                        {{ old('tipeJalan', $data->tipeJalan) == '1' ? 'selected' : '' }}>2 / 1 UD
                                     </option>
-                                    <option value="2" {{ old('tipeJalan') == '2' ? 'selected' : '' }}>2 / 2 UD
+                                    <option value="2"
+                                        {{ old('tipeJalan', $data->tipeJalan) == '2' ? 'selected' : '' }}>2 / 2 UD
                                     </option>
-                                    <option value="3" {{ old('tipeJalan') == '3' ? 'selected' : '' }}>4 / 2 UD
+                                    <option value="3"
+                                        {{ old('tipeJalan', $data->tipeJalan) == '3' ? 'selected' : '' }}>4 / 2 UD
                                     </option>
-                                    <option value="4" {{ old('tipeJalan') == '4' ? 'selected' : '' }}>4 / 2 D
+                                    <option value="4"
+                                        {{ old('tipeJalan', $data->tipeJalan) == '4' ? 'selected' : '' }}>4 / 2 D
                                     </option>
-                                    <option value="5" {{ old('tipeJalan') == '5' ? 'selected' : '' }}>6 / 2 D
+                                    <option value="5"
+                                        {{ old('tipeJalan', $data->tipeJalan) == '5' ? 'selected' : '' }}>6 / 2 D
                                     </option>
                                 </select>
                             </div>
@@ -108,19 +113,24 @@
                                 <select id="jenisPerkerasan" name="jenisPerkerasan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Perkerasan</option>
-                                    <option value="1" {{ old('jenisPerkerasan') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('jenisPerkerasan', $data->jenisPerkerasan) == '1' ? 'selected' : '' }}>
                                         Aspal (AC,HRS,ATB)
                                     </option>
-                                    <option value="2" {{ old('jenisPerkerasan') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('jenisPerkerasan', $data->jenisPerkerasan) == '2' ? 'selected' : '' }}>
                                         Beton
                                     </option>
-                                    <option value="3" {{ old('jenisPerkerasan') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('jenisPerkerasan', $data->jenisPerkerasan) == '3' ? 'selected' : '' }}>
                                         Lapis Penetrasi/Macadam
                                     </option>
-                                    <option value="4" {{ old('jenisPerkerasan') == '4' ? 'selected' : '' }}>
+                                    <option value="4"
+                                        {{ old('jenisPerkerasan', $data->jenisPerkerasan) == '4' ? 'selected' : '' }}>
                                         Kerikil
                                     </option>
-                                    <option value="5" {{ old('jenisPerkerasan') == '5' ? 'selected' : '' }}>
+                                    <option value="5"
+                                        {{ old('jenisPerkerasan', $data->jenisPerkerasan) == '5' ? 'selected' : '' }}>
                                         Tanah/Belum Tembus
                                     </option>
                                 </select>
@@ -131,7 +141,8 @@
                                     Tahun</label>
                                 <input type="number" id="lapisPermukaanTahun" name="lapisPermukaanTahun"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="2020" value="{{ old('lapisPermukaanTahun') }}" />
+                                    placeholder="2020"
+                                    value="{{ old('lapisPermukaanTahun', $data->lapisPermukaanTahun) }}" />
                             </div>
                             <div>
                                 <label for="lapisPermukaanJenis"
@@ -140,49 +151,71 @@
                                 <select id="lapisPermukaanJenis" name="lapisPermukaanJenis"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Permukaan</option>
-                                    <option value="0" {{ old('lapisPermukaanJenis') == '0' ? 'selected' : '' }}>
+                                    <option value="0"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '0' ? 'selected' : '' }}>
                                         Tidak Diketahui</option>
-                                    <option value="1" {{ old('lapisPermukaanJenis') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '1' ? 'selected' : '' }}>
                                         Tanah</option>
-                                    <option value="2" {{ old('lapisPermukaanJenis') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '2' ? 'selected' : '' }}>
                                         Japat (AWCAS) / Kerikil</option>
-                                    <option value="3" {{ old('lapisPermukaanJenis') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '3' ? 'selected' : '' }}>
                                         Telford / Macadam Terbuka</option>
-                                    <option value="4" {{ old('lapisPermukaanJenis') == '4' ? 'selected' : '' }}>
+                                    <option value="4"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '4' ? 'selected' : '' }}>
                                         Burtu</option>
-                                    <option value="5" {{ old('lapisPermukaanJenis') == '5' ? 'selected' : '' }}>
+                                    <option value="5"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '5' ? 'selected' : '' }}>
                                         Burda</option>
-                                    <option value="6" {{ old('lapisPermukaanJenis') == '6' ? 'selected' : '' }}>
+                                    <option value="6"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '6' ? 'selected' : '' }}>
                                         Penetrasi Macadam 1 Lapis</option>
-                                    <option value="7" {{ old('lapisPermukaanJenis') == '7' ? 'selected' : '' }}>
+                                    <option value="7"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '7' ? 'selected' : '' }}>
                                         Penetrasi Macadam 2 Lapis</option>
-                                    <option value="8" {{ old('lapisPermukaanJenis') == '8' ? 'selected' : '' }}>
+                                    <option value="8"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '8' ? 'selected' : '' }}>
                                         Lasbutag (BUTAS)</option>
-                                    <option value="9" {{ old('lapisPermukaanJenis') == '9' ? 'selected' : '' }}>
+                                    <option value="9"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '9' ? 'selected' : '' }}>
                                         Aspal Beton (A.C.)</option>
-                                    <option value="10" {{ old('lapisPermukaanJenis') == '10' ? 'selected' : '' }}>
+                                    <option value="10"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '10' ? 'selected' : '' }}>
                                         Latasbum (NACAS)</option>
-                                    <option value="11" {{ old('lapisPermukaanJenis') == '11' ? 'selected' : '' }}>
+                                    <option value="11"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '11' ? 'selected' : '' }}>
                                         Lataston (HRS)</option>
-                                    <option value="12" {{ old('lapisPermukaanJenis') == '12' ? 'selected' : '' }}>
+                                    <option value="12"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '12' ? 'selected' : '' }}>
                                         HRSSA</option>
-                                    <option value="13" {{ old('lapisPermukaanJenis') == '13' ? 'selected' : '' }}>
+                                    <option value="13"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '13' ? 'selected' : '' }}>
                                         Slurry Seal</option>
-                                    <option value="14" {{ old('lapisPermukaanJenis') == '14' ? 'selected' : '' }}>
+                                    <option value="14"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '14' ? 'selected' : '' }}>
                                         Macro Seal</option>
-                                    <option value="15" {{ old('lapisPermukaanJenis') == '15' ? 'selected' : '' }}>
+                                    <option value="15"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '15' ? 'selected' : '' }}>
                                         Micro Asbuton</option>
-                                    <option value="16" {{ old('lapisPermukaanJenis') == '16' ? 'selected' : '' }}>
+                                    <option value="16"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '16' ? 'selected' : '' }}>
                                         DGEM</option>
-                                    <option value="17" {{ old('lapisPermukaanJenis') == '17' ? 'selected' : '' }}>
+                                    <option value="17"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '17' ? 'selected' : '' }}>
                                         SMA</option>
-                                    <option value="18" {{ old('lapisPermukaanJenis') == '18' ? 'selected' : '' }}>
+                                    <option value="18"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '18' ? 'selected' : '' }}>
                                         BMA</option>
-                                    <option value="19" {{ old('lapisPermukaanJenis') == '19' ? 'selected' : '' }}>
+                                    <option value="19"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '19' ? 'selected' : '' }}>
                                         HSWC</option>
-                                    <option value="20" {{ old('lapisPermukaanJenis') == '20' ? 'selected' : '' }}>
+                                    <option value="20"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '20' ? 'selected' : '' }}>
                                         SPAV</option>
-                                    <option value="21" {{ old('lapisPermukaanJenis') == '21' ? 'selected' : '' }}>
+                                    <option value="21"
+                                        {{ old('lapisPermukaanJenis', $data->lapisPermukaanJenis) == '21' ? 'selected' : '' }}>
                                         Rigid</option>
                                 </select>
                             </div>
@@ -193,7 +226,8 @@
                                     Lebar</label>
                                 <input type="text" id="lapisPermukaanLebar" name="lapisPermukaanLebar"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="4.5" value="{{ old('lapisPermukaanLebar') }}" />
+                                    placeholder="4.5"
+                                    value="{{ old('lapisPermukaanLebar', $data->lapisPermukaanLebar) }}" />
                             </div>
                             <div>
                                 <label for="median"
@@ -202,29 +236,21 @@
                                 <select id="median" name="median"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Median</option>
-                                    <option value="0" {{ old('median') == '0' ? 'selected' : '' }}>Tidak Ada
+                                    <option value="0"
+                                        {{ old('median', $data->median) == '0' ? 'selected' : '' }}>
+                                        Tidak Ada
                                     </option>
-                                    <option value="1" {{ old('median') == '1' ? 'selected' : '' }}>1 < M</option>
-                                    <option value="2" {{ old('median') == '2' ? 'selected' : '' }}>1 - 3 M
+                                    <option value="1"
+                                        {{ old('median', $data->median) == '1' ? 'selected' : '' }}>
+                                        1 < M</option>
+                                    <option value="2"
+                                        {{ old('median', $data->median) == '2' ? 'selected' : '' }}>
+                                        1 - 3 M
                                     </option>
-                                    <option value="3" {{ old('median') == '3' ? 'selected' : '' }}>3 < M</option>
+                                    <option value="3"
+                                        {{ old('median', $data->median) == '3' ? 'selected' : '' }}>
+                                        3 < M</option>
                                 </select>
-                            </div>
-                            <div>
-                                <label for="bahuKiriTahun"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kiri
-                                    Tahun</label>
-                                <input type="text" id="bahuKiriTahun" name="bahuKiriTahun"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="2020" value="{{ old('bahuKiriTahun') }}" />
-                            </div>
-                            <div>
-                                <label for="bahuKananTahun"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bahu Kanan
-                                    Tahun</label>
-                                <input type="text" id="bahuKananTahun" name="bahuKananTahun"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="2020" value="{{ old('bahuKananTahun') }}" />
                             </div>
                             <div>
                                 <label for="bahuKiriLebar"
@@ -232,7 +258,7 @@
                                     Lebar</label>
                                 <input type="text" id="bahuKiriLebar" name="bahuKiriLebar"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="4.5" value="{{ old('bahuKiriLebar') }}" />
+                                    placeholder="4.5" value="{{ old('bahuKiriLebar', $data->bahuKiriLebar) }}" />
                             </div>
                             <div>
                                 <label for="bahuKananLebar"
@@ -240,7 +266,7 @@
                                     Lebar</label>
                                 <input type="text" id="bahuKananLebar" name="bahuKananLebar"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="4.5" value="{{ old('bahuKananLebar') }}" />
+                                    placeholder="4.5" value="{{ old('bahuKananLebar', $data->bahuKananLebar) }}" />
                             </div>
                             <div>
                                 <label for="bahuKiriJenis"
@@ -249,11 +275,14 @@
                                 <select id="bahuKiriJenis" name="bahuKiriJenis"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Bahu</option>
-                                    <option value="0" {{ old('bahuKiriJenis') == '0' ? 'selected' : '' }}>Tidak
+                                    <option value="0"
+                                        {{ old('bahuKiriJenis', $data->bahuKiriJenis) == '0' ? 'selected' : '' }}>Tidak
                                         Ada Bahu</option>
-                                    <option value="1" {{ old('bahuKiriJenis') == '1' ? 'selected' : '' }}>Bahu
+                                    <option value="1"
+                                        {{ old('bahuKiriJenis', $data->bahuKiriJenis) == '1' ? 'selected' : '' }}>Bahu
                                         Lunak</option>
-                                    <option value="2" {{ old('bahuKiriJenis') == '2' ? 'selected' : '' }}>Bahu
+                                    <option value="2"
+                                        {{ old('bahuKiriJenis', $data->bahuKiriJenis) == '2' ? 'selected' : '' }}>Bahu
                                         yang Diperkeras</option>
                                 </select>
                             </div>
@@ -264,11 +293,17 @@
                                 <select id="bahuKananJenis" name="bahuKananJenis"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Bahu</option>
-                                    <option value="0" {{ old('bahuKananJenis') == '0' ? 'selected' : '' }}>Tidak
+                                    <option value="0"
+                                        {{ old('bahuKananJenis', $data->bahuKananJenis) == '0' ? 'selected' : '' }}>
+                                        Tidak
                                         Ada Bahu</option>
-                                    <option value="1" {{ old('bahuKananJenis') == '1' ? 'selected' : '' }}>Bahu
+                                    <option value="1"
+                                        {{ old('bahuKananJenis', $data->bahuKananJenis) == '1' ? 'selected' : '' }}>
+                                        Bahu
                                         Lunak</option>
-                                    <option value="2" {{ old('bahuKananJenis') == '2' ? 'selected' : '' }}>Bahu
+                                    <option value="2"
+                                        {{ old('bahuKananJenis', $data->bahuKananJenis) == '2' ? 'selected' : '' }}>
+                                        Bahu
                                         yang Diperkeras</option>
                                 </select>
                             </div>
@@ -278,7 +313,8 @@
                                     Lebar</label>
                                 <input type="number" id="saluranKiriLebar" name="saluranKiriLebar"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="40 cm" value="{{ old('saluranKiriLebar') }}" />
+                                    placeholder="40 cm"
+                                    value="{{ old('saluranKiriLebar', $data->saluranKiriLebar) }}" />
                             </div>
                             <div>
                                 <label for="saluranKananLebar"
@@ -286,7 +322,8 @@
                                     Lebar</label>
                                 <input type="number" id="saluranKananLebar" name="saluranKananLebar"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="40 cm" value="{{ old('saluranKananLebar') }}" />
+                                    placeholder="40 cm"
+                                    value="{{ old('saluranKananLebar', $data->saluranKananLebar) }}" />
                             </div>
                             <div>
                                 <label for="saluranKiriDalam"
@@ -294,7 +331,8 @@
                                     Dalam</label>
                                 <input type="number" id="saluranKiriDalam" name="saluranKiriDalam"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="40 cm" value="{{ old('saluranKiriDalam') }}" />
+                                    placeholder="40 cm"
+                                    value="{{ old('saluranKiriDalam', $data->saluranKiriDalam) }}" />
                             </div>
                             <div>
                                 <label for="saluranKananDalam"
@@ -302,7 +340,8 @@
                                     Dalam</label>
                                 <input type="number" id="saluranKananDalam" name="saluranKananDalam"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="40 cm" value="{{ old('saluranKananDalam') }}" />
+                                    placeholder="40 cm"
+                                    value="{{ old('saluranKananDalam', $data->saluranKananDalam) }}" />
                             </div>
                             <div>
                                 <label for="saluranKiriJenis"
@@ -311,15 +350,20 @@
                                 <select id="saluranKiriJenis" name="saluranKiriJenis"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Saluran Samping</option>
-                                    <option value="0" {{ old('saluranKiriJenis') == '0' ? 'selected' : '' }}>
+                                    <option value="0"
+                                        {{ old('saluranKiriJenis', $data->saluranKiriJenis) == '0' ? 'selected' : '' }}>
                                         Tidak Ada</option>
-                                    <option value="1" {{ old('saluranKiriJenis') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('saluranKiriJenis', $data->saluranKiriJenis) == '1' ? 'selected' : '' }}>
                                         Tanah Terbuka</option>
-                                    <option value="2" {{ old('saluranKiriJenis') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('saluranKiriJenis', $data->saluranKiriJenis) == '2' ? 'selected' : '' }}>
                                         Beton/Pasir Batu Terbuka</option>
-                                    <option value="3" {{ old('saluranKiriJenis') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('saluranKiriJenis', $data->saluranKiriJenis) == '3' ? 'selected' : '' }}>
                                         Saluran Irigasi</option>
-                                    <option value="4" {{ old('saluranKiriJenis') == '4' ? 'selected' : '' }}>
+                                    <option value="4"
+                                        {{ old('saluranKiriJenis', $data->saluranKiriJenis) == '4' ? 'selected' : '' }}>
                                         Beton/Pasir Batu Tertutup</option>
                                 </select>
                             </div>
@@ -330,15 +374,20 @@
                                 <select id="saluranKananJenis" name="saluranKananJenis"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Jenis Saluran Samping</option>
-                                    <option value="0" {{ old('saluranKananJenis') == '0' ? 'selected' : '' }}>
+                                    <option value="0"
+                                        {{ old('saluranKananJenis', $data->saluranKananJenis) == '0' ? 'selected' : '' }}>
                                         Tidak Ada</option>
-                                    <option value="1" {{ old('saluranKananJenis') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('saluranKananJenis', $data->saluranKananJenis) == '1' ? 'selected' : '' }}>
                                         Tanah Terbuka</option>
-                                    <option value="2" {{ old('saluranKananJenis') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('saluranKananJenis', $data->saluranKananJenis) == '2' ? 'selected' : '' }}>
                                         Beton/Pasir Batu Terbuka</option>
-                                    <option value="3" {{ old('saluranKananJenis') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('saluranKananJenis', $data->saluranKananJenis) == '3' ? 'selected' : '' }}>
                                         Saluran Irigasi</option>
-                                    <option value="4" {{ old('saluranKananJenis') == '4' ? 'selected' : '' }}>
+                                    <option value="4"
+                                        {{ old('saluranKananJenis', $data->saluranKananJenis) == '4' ? 'selected' : '' }}>
                                         Beton/Pasir Batu Tertutup</option>
                                 </select>
                             </div>
@@ -348,15 +397,30 @@
                                     Lahan Kiri</label>
                                 <select id="tataKiri" name="tataKiri"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="" disabled selected>Pilih Tata Guna Lahan</option>
-                                    <option value="1" {{ old('tataKiri') == '1' ? 'selected' : '' }}>Sawah /
-                                        Kebun / Hutan (Rural)</option>
-                                    <option value="2" {{ old('tataKiri') == '2' ? 'selected' : '' }}>Perumahan
-                                        (Urban 1)</option>
-                                    <option value="3" {{ old('tataKiri') == '3' ? 'selected' : '' }}>
-                                        Perindustrian (Urban 2)</option>
-                                    <option value="4" {{ old('tataKiri') == '4' ? 'selected' : '' }}>Pertokoan /
-                                        Perkantoran / Pasar (Urban 3)</option>
+                                    <option value="1"
+                                        {{ old('tataKiri', $data->tataKiri) == '1' ? 'selected' : '' }}>Sawah
+                                    </option>
+                                    <option value="2"
+                                        {{ old('tataKiri', $data->tataKiri) == '2' ? 'selected' : '' }}>Kebun
+                                    </option>
+                                    <option value="3"
+                                        {{ old('tataKiri', $data->tataKiri) == '3' ? 'selected' : '' }}>Hutan
+                                    </option>
+                                    <option value="4"
+                                        {{ old('tataKiri', $data->tataKiri) == '4' ? 'selected' : '' }}>Perumahan
+                                    </option>
+                                    <option value="5"
+                                        {{ old('tataKiri', $data->tataKiri) == '5' ? 'selected' : '' }}>
+                                        Perindustrian</option>
+                                    <option value="6"
+                                        {{ old('tataKiri', $data->tataKiri) == '6' ? 'selected' : '' }}>Pertokoan
+                                    </option>
+                                    <option value="7"
+                                        {{ old('tataKiri', $data->tataKiri) == '7' ? 'selected' : '' }}>
+                                        Perkantoran</option>
+                                    <option value="8"
+                                        {{ old('tataKiri', $data->tataKiri) == '8' ? 'selected' : '' }}>Pasar
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -366,14 +430,30 @@
                                 <select id="tataKanan" name="tataKanan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Tata Guna Lahan</option>
-                                    <option value="1" {{ old('tataKanan') == '1' ? 'selected' : '' }}>Sawah /
-                                        Kebun / Hutan (Rural)</option>
-                                    <option value="2" {{ old('tataKanan') == '2' ? 'selected' : '' }}>Perumahan
-                                        (Urban 1)</option>
-                                    <option value="3" {{ old('tataKanan') == '3' ? 'selected' : '' }}>
-                                        Perindustrian (Urban 2)</option>
-                                    <option value="4" {{ old('tataKanan') == '4' ? 'selected' : '' }}>Pertokoan /
-                                        Perkantoran / Pasar (Urban 3)</option>
+                                    <option value="1"
+                                        {{ old('tataKanan', $data->tataKanan) == '1' ? 'selected' : '' }}>Sawah
+                                    </option>
+                                    <option value="2"
+                                        {{ old('tataKanan', $data->tataKanan) == '2' ? 'selected' : '' }}>Kebun
+                                    </option>
+                                    <option value="3"
+                                        {{ old('tataKanan', $data->tataKanan) == '3' ? 'selected' : '' }}>Hutan
+                                    </option>
+                                    <option value="4"
+                                        {{ old('tataKanan', $data->tataKanan) == '4' ? 'selected' : '' }}>Perumahan
+                                    </option>
+                                    <option value="5"
+                                        {{ old('tataKanan', $data->tataKanan) == '5' ? 'selected' : '' }}>
+                                        Perindustrian</option>
+                                    <option value="6"
+                                        {{ old('tataKanan', $data->tataKanan) == '6' ? 'selected' : '' }}>Pertokoan
+                                    </option>
+                                    <option value="7"
+                                        {{ old('tataKanan', $data->tataKanan) == '7' ? 'selected' : '' }}>
+                                        Perkantoran</option>
+                                    <option value="8"
+                                        {{ old('tataKanan', $data->tataKanan) == '8' ? 'selected' : '' }}>Pasar
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -384,11 +464,14 @@
                                 <select id="alinyemenVertical" name="alinyemenVertical"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Alignment Vertical (Pilih Grade)</option>
-                                    <option value="1" {{ old('alinyemenVertical') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('alinyemenVertical', $data->alinyemenVertical) == '1' ? 'selected' : '' }}>
                                         Datar (F) (< 5.0 M/KM)</option>
-                                    <option value="2" {{ old('alinyemenVertical') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('alinyemenVertical', $data->alinyemenVertical) == '2' ? 'selected' : '' }}>
                                         Bukit (R) (5 - 45 M/KM)</option>
-                                    <option value="3" {{ old('alinyemenVertical') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('alinyemenVertical', $data->alinyemenVertical) == '3' ? 'selected' : '' }}>
                                         Gunung (H) (> 45 M/KM)</option>
                                 </select>
                             </div>
@@ -401,11 +484,14 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Alignment Horizontal (Pilih Belokan)
                                     </option>
-                                    <option value="1" {{ old('alinyemenHorizontal') == '1' ? 'selected' : '' }}>
+                                    <option value="1"
+                                        {{ old('alinyemenHorizontal', $data->alinyemenHorizontal) == '1' ? 'selected' : '' }}>
                                         Lurus (< 0.25 Rad/KM)</option>
-                                    <option value="2" {{ old('alinyemenHorizontal') == '2' ? 'selected' : '' }}>
+                                    <option value="2"
+                                        {{ old('alinyemenHorizontal', $data->alinyemenHorizontal) == '2' ? 'selected' : '' }}>
                                         Sedikit Belokan (0.25 - 3.50 Rad/KM)</option>
-                                    <option value="3" {{ old('alinyemenHorizontal') == '3' ? 'selected' : '' }}>
+                                    <option value="3"
+                                        {{ old('alinyemenHorizontal', $data->alinyemenHorizontal) == '3' ? 'selected' : '' }}>
                                         Banyak Belokan (> 3.50 Rad/KM)</option>
                                 </select>
                             </div>
@@ -416,17 +502,23 @@
                                 <select id="terrainKiri" name="terrainKiri"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Terrain Kiri</option>
-                                    <option value="L1" {{ old('terrainKiri') == 'L1' ? 'selected' : '' }}>
+                                    <option value="L1"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'L1' ? 'selected' : '' }}>
                                         (Lembah) Datar (F) < 1.0 M</option>
-                                    <option value="L2" {{ old('terrainKiri') == 'L2' ? 'selected' : '' }}>
+                                    <option value="L2"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'L2' ? 'selected' : '' }}>
                                         (Lembah) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
-                                    <option value="L3" {{ old('terrainKiri') == 'L3' ? 'selected' : '' }}>
+                                    <option value="L3"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'L3' ? 'selected' : '' }}>
                                         (Lembah) Gunung (H) > 3.0 M</option>
-                                    <option value="T1" {{ old('terrainKiri') == 'T1' ? 'selected' : '' }}>
+                                    <option value="T1"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'T1' ? 'selected' : '' }}>
                                         (Tebing) Datar (F) < 1.0 M</option>
-                                    <option value="T2" {{ old('terrainKiri') == 'T2' ? 'selected' : '' }}>
+                                    <option value="T2"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'T2' ? 'selected' : '' }}>
                                         (Tebing) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
-                                    <option value="T3" {{ old('terrainKiri') == 'T3' ? 'selected' : '' }}>
+                                    <option value="T3"
+                                        {{ old('terrainKiri', $data->terrainKiri) == 'T3' ? 'selected' : '' }}>
                                         (Tebing) Gunung (H) > 3.0 M</option>
                                 </select>
                             </div>
@@ -437,17 +529,23 @@
                                 <select id="terrainKanan" name="terrainKanan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="" disabled selected>Pilih Terrain Kanan</option>
-                                    <option value="L1" {{ old('terrainKanan') == 'L1' ? 'selected' : '' }}>
+                                    <option value="L1"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'L1' ? 'selected' : '' }}>
                                         (Lembah) Datar (F) < 1.0 M</option>
-                                    <option value="L2" {{ old('terrainKanan') == 'L2' ? 'selected' : '' }}>
+                                    <option value="L2"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'L2' ? 'selected' : '' }}>
                                         (Lembah) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
-                                    <option value="L3" {{ old('terrainKanan') == 'L3' ? 'selected' : '' }}>
+                                    <option value="L3"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'L3' ? 'selected' : '' }}>
                                         (Lembah) Gunung (H) > 3.0 M</option>
-                                    <option value="T1" {{ old('terrainKanan') == 'T1' ? 'selected' : '' }}>
+                                    <option value="T1"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'T1' ? 'selected' : '' }}>
                                         (Tebing) Datar (F) < 1.0 M</option>
-                                    <option value="T2" {{ old('terrainKanan') == 'T2' ? 'selected' : '' }}>
+                                    <option value="T2"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'T2' ? 'selected' : '' }}>
                                         (Tebing) Bukit (R) 1.0 M < Bukit < 3.0 M</option>
-                                    <option value="T3" {{ old('terrainKanan') == 'T3' ? 'selected' : '' }}>
+                                    <option value="T3"
+                                        {{ old('terrainKanan', $data->terrainKanan) == 'T3' ? 'selected' : '' }}>
                                         (Tebing) Gunung (H) > 3.0 M</option>
                                 </select>
                             </div>

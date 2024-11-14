@@ -80,8 +80,6 @@ class RoadInventoryDataController extends Controller
             'lapisPermukaanJenis' => 'required|integer|between:0,15',
             'lapisPermukaanLebar' => 'required|numeric|min:0|max:100',
             'median' => 'required|integer|in:0,1,2',
-            'bahuKiriTahun' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
-            'bahuKananTahun' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
             'bahuKiriLebar' => 'required|numeric|min:0|max:100',
             'bahuKananLebar' => 'required|numeric|min:0|max:100',
             'bahuKiriJenis' => 'required|integer|between:0,15',
@@ -92,8 +90,8 @@ class RoadInventoryDataController extends Controller
             'saluranKananDalam' => 'required|numeric|min:0|max:100',
             'saluranKiriJenis' => 'required|integer|in:0,1,2,3,4',
             'saluranKananJenis' => 'required|integer|in:0,1,2,3,4',
-            'tataKiri' => 'required|integer|in:1,2,3,4',
-            'tataKanan' => 'required|integer|in:1,2,3,4',
+            'tataKiri' => 'required|integer|in:1,2,3,4,5,6,7,8',
+            'tataKanan' => 'required|integer|in:1,2,3,4,5,6,7,8',
             'alinyemenVertical' => 'required|integer|in:1,2,3,4',
             'alinyemenHorizontal' => 'required|integer|in:1,2,3,4',
             'terrainKiri' => 'required|string|in:T1,T2,T3,L1,L2,L3',
@@ -231,8 +229,6 @@ class RoadInventoryDataController extends Controller
             'lapisPermukaanJenis' => 'required|integer|between:0,15',
             'lapisPermukaanLebar' => 'required|numeric|min:0|max:100',
             'median' => 'required|integer|in:0,1,2',
-            'bahuKiriTahun' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
-            'bahuKananTahun' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
             'bahuKiriLebar' => 'required|numeric|min:0|max:100',
             'bahuKananLebar' => 'required|numeric|min:0|max:100',
             'bahuKiriJenis' => 'required|integer|between:0,15',
@@ -243,8 +239,8 @@ class RoadInventoryDataController extends Controller
             'saluranKananDalam' => 'required|numeric|min:0|max:100',
             'saluranKiriJenis' => 'required|integer|in:0,1,2,3,4',
             'saluranKananJenis' => 'required|integer|in:0,1,2,3,4',
-            'tataKiri' => 'required|integer|in:1,2,3,4',
-            'tataKanan' => 'required|integer|in:1,2,3,4',
+            'tataKiri' => 'required|integer|in:1,2,3,4,5,6,7,8',
+            'tataKanan' => 'required|integer|in:1,2,3,4,5,6,7,8',
             'alinyemenVertical' => 'required|integer|in:1,2,3,4',
             'alinyemenHorizontal' => 'required|integer|in:1,2,3,4',
             'terrainKiri' => 'required|string|in:T1,T2,T3,L1,L2,L3',
@@ -339,7 +335,7 @@ class RoadInventoryDataController extends Controller
             'terrainKanan.in' => 'Jenis medan kanan harus salah satu dari nilai T1, T2, T3, L1, L2, atau L3.',
         ]);
         $roadInventoryData->update($validatedData);
-        return view('pages.dataInventarisJalan.index', ['title' => 'Data Inventaris Jaringan Jalan', 'message' => 'Data inventaris jaringan jalan berhasil diperbarui.']);
+        return redirect()->route('dataInventarisJalan.index');
     }
 
     /**
