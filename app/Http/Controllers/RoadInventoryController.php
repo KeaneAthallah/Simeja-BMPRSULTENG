@@ -86,47 +86,50 @@ class RoadInventoryController extends Controller
         $data = [];
 
         foreach ($roadInventories as $roadInventory) {
-            foreach ($roadInventory->dataRoadInventory as $roadInventoryData) {
-                $streetData = $roadInventoryData->jenisPerkerasan == 1 ? $roadInventoryData->asphaltStreet : $roadInventoryData->soilsStreet;
-
-                foreach ($streetData as $street) {
-                    $coordinates = json_decode($street->koordinat, true);
-                    $formattedCoordinates = [];
-                    if ($coordinates && is_array($coordinates)) {
-                        foreach ($coordinates as $coordinate) {
-                            if (is_array($coordinate) && count($coordinate) == 2) {
-                                $formattedCoordinates[] = [
-                                    'longitude' => $coordinate[0],
-                                    'latitude' => $coordinate[1],
-                                ];
+            if ($roadInventory->dataRoadInventory) { // Check if dataRoadInventory exists
+                foreach ($roadInventory->dataRoadInventory as $roadInventoryData) {
+                    $streetData = $roadInventoryData->jenisPerkerasan == 1 ? $roadInventoryData->asphaltStreet : $roadInventoryData->soilsStreet;
+                    if ($streetData) { // Check if street data exists
+                        foreach ($streetData as $street) {
+                            $coordinates = json_decode($street->koordinat, true);
+                            $formattedCoordinates = [];
+                            if ($coordinates && is_array($coordinates)) {
+                                foreach ($coordinates as $coordinate) {
+                                    if (is_array($coordinate) && count($coordinate) == 2) {
+                                        $formattedCoordinates[] = [
+                                            'longitude' => $coordinate[0],
+                                            'latitude' => $coordinate[1],
+                                        ];
+                                    }
+                                }
                             }
+                            $data[] = [
+                                'dari_patok' => $street->dariPatok ?? '',
+                                'ke_patok' => $street->kePatok ?? '',
+                                'tipe_jalan' => $roadInventoryData->tipeJalan ?? '',
+                                'median' => $roadInventoryData->median ?? '',
+                                'lapis_permukaan_tahun' => $roadInventoryData->lapisPermukaanTahun ?? '',
+                                'lapis_permukaan_jenis' => $roadInventoryData->lapisPermukaanJenis ?? '',
+                                'lapis_permukaan_lebar' => $roadInventoryData->lapisPermukaanLebar ?? '',
+                                'bahu_kiri_jenis' => $roadInventoryData->bahuKiriJenis ?? '',
+                                'bahu_kiri_lebar' => $roadInventoryData->bahuKiriLebar ?? '',
+                                'bahu_kanan_jenis' => $roadInventoryData->bahuKananJenis ?? '',
+                                'bahu_kanan_lebar' => $roadInventoryData->bahuKananLebar ?? '',
+                                'saluran_kiri_jenis' => $roadInventoryData->saluranKiriJenis ?? '',
+                                'saluran_kiri_lebar' => $roadInventoryData->saluranKiriLebar ?? '',
+                                'saluran_kiri_dalam' => $roadInventoryData->saluranKiriDalam ?? '',
+                                'saluran_kanan_jenis' => $roadInventoryData->saluranKananJenis ?? '',
+                                'saluran_kanan_lebar' => $roadInventoryData->saluranKananLebar ?? '',
+                                'saluran_kanan_dalam' => $roadInventoryData->saluranKananDalam ?? '',
+                                'terrain_kiri' => $roadInventoryData->terrainKiri ?? '',
+                                'terrain_kanan' => $roadInventoryData->terrainKanan ?? '',
+                                'alinyemen_vertical' => $roadInventoryData->alinyemenVertical ?? '',
+                                'alinyemen_horizontal' => $roadInventoryData->alinyemenHorizontal ?? '',
+                                'tata_kiri' => $roadInventoryData->tataKiri ?? '',
+                                'tata_kanan' => $roadInventoryData->tataKanan ?? '',
+                            ];
                         }
                     }
-                    $data[] = [
-                        'dari_patok' => $street->dariPatok,
-                        'ke_patok' => $street->kePatok,
-                        'tipe_jalan' => $roadInventoryData->tipeJalan,
-                        'median' => $roadInventoryData->median,
-                        'lapis_permukaan_tahun' => $roadInventoryData->lapisPermukaanTahun,
-                        'lapis_permukaan_jenis' => $roadInventoryData->lapisPermukaanJenis,
-                        'lapis_permukaan_lebar' => $roadInventoryData->lapisPermukaanLebar,
-                        'bahu_kiri_jenis' => $roadInventoryData->bahuKiriJenis,
-                        'bahu_kiri_lebar' => $roadInventoryData->bahuKiriLebar,
-                        'bahu_kanan_jenis' => $roadInventoryData->bahuKananJenis,
-                        'bahu_kanan_lebar' => $roadInventoryData->bahuKananLebar,
-                        'saluran_kiri_jenis' => $roadInventoryData->saluranKiriJenis,
-                        'saluran_kiri_lebar' => $roadInventoryData->saluranKiriLebar,
-                        'saluran_kiri_dalam' => $roadInventoryData->saluranKiriDalam,
-                        'saluran_kanan_jenis' => $roadInventoryData->saluranKananJenis,
-                        'saluran_kanan_lebar' => $roadInventoryData->saluranKananLebar,
-                        'saluran_kanan_dalam' => $roadInventoryData->saluranKananDalam,
-                        'terrain_kiri' => $roadInventoryData->terrainKiri,
-                        'terrain_kanan' => $roadInventoryData->terrainKanan,
-                        'alinyemen_vertical' => $roadInventoryData->alinyemenVertical,
-                        'alinyemen_horizontal' => $roadInventoryData->alinyemenHorizontal,
-                        'tata_kiri' => $roadInventoryData->tataKiri,
-                        'tata_kanan' => $roadInventoryData->tataKanan,
-                    ];
                 }
             }
         }
@@ -138,10 +141,19 @@ class RoadInventoryController extends Controller
 
         // Limit the results to a maximum of 10 entries
         $data = array_slice($data, 0, 10);
-        // dd($data);
-        $surveyorIds = $roadInventory->surveyor;
-        $users = User::whereId($surveyorIds)->get();
-        $pdf = Pdf::loadView('pages.dataInventarisJalan.show', ['data' => $roadInventory, 'streets' => $data, 'title' => 'Detail Jalan Aspal', 'users' => $users])->setPaper('a4', 'landscape');
+
+        // Check if surveyor ID(s) exist before querying
+        $surveyorIds = $roadInventory->surveyor ?? '';
+        $users = $surveyorIds ? User::whereIn('id', explode(',', $surveyorIds))->get() : collect();
+
+        // Generate PDF
+        $pdf = Pdf::loadView('pages.dataInventarisJalan.show', [
+            'data' => $roadInventory,
+            'streets' => $data,
+            'title' => 'Detail Jalan Aspal',
+            'users' => $users,
+        ])->setPaper('a4', 'landscape');
+
         return $pdf->stream('Detail Data Inventaris Jaringan Jalan.pdf');
     }
 

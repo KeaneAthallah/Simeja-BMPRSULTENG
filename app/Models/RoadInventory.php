@@ -15,14 +15,14 @@ class RoadInventory extends Model
     protected $guarded = [];
     public function dataRoadInventory(): HasMany
     {
-        return $this->hasMany(RoadInventoryData::class);
+        return $this->hasMany(RoadInventoryData::class)->cascadeOnDelete();
     }
     public function asphaltStreet(): HasMany
     {
-        return $this->hasMany(AsphaltStreet::class);
+        return $this->hasMany(AsphaltStreet::class)->cascadeOnDelete();
     }
     public function soilsStreet(): HasMany
     {
-        return $this->hasMany(SoilsStreet::class);
+        return $this->hasMany(SoilsStreet::class)->cascadeOnDelete();
     }
 }

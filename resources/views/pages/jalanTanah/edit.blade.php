@@ -31,7 +31,7 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <form action="{{ route('jalanTanah.update', $data->id) }}" method="POST">
+                    <form action="{{ route('jalanTanah.update', $data->id) }}" method="post">
                         @method('PUT')
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -45,7 +45,7 @@
                                         Inventaris Jaringan Jalan</option>
                                     @foreach ($streets as $street)
                                         <option value="{{ $street->id }}"
-                                            {{ old('road_inventory_id') == $street->id ? 'selected' : '' }}>
+                                            {{ old('road_inventory_id', $street->id) == $street->id ? 'selected' : '' }}>
                                             {{ $street->noRuas }} - {{ $street->namaRuas }}
                                         </option>
                                     @endforeach
@@ -59,6 +59,7 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="KP-2" value="{{ old('fungsi', $data->fungsi) }}" />
                             </div>
+
                             <div class="mb-4">
                                 <label for="surveyor"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Surveyor</label>

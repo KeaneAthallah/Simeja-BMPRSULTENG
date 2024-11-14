@@ -343,6 +343,7 @@ class RoadInventoryDataController extends Controller
      */
     public function destroy(RoadInventoryData $roadInventoryData)
     {
-        //
+        $roadInventoryData->delete();
+        return redirect()->route('dataInventarisJalan.index');
     }
 }
