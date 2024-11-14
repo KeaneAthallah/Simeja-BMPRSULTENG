@@ -125,7 +125,13 @@ class ComplainController extends Controller
      */
     public function update(Request $request, Complain $complain)
     {
-        //
+        if (auth()->user()->role == "admin") {
+            $validatedData = $request->validate([
+                'status' => 'required|string',
+            ]);
+            $complain->update($validatedData);
+            return redirect()->route('aspirasi.index');
+        }
     }
 
     /**
