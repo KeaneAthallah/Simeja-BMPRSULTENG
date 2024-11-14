@@ -31,7 +31,7 @@
                 <!--Card-->
                 <div id='recipients'
                     class="p-8 mt-6 lg:mt-0 rounded shadow bg-nord4 dark:bg-nord3 text-nord0 dark:text-nord6">
-                    <form action="{{ route('dashboard.addUserStore') }}" method="post">
+                    <form action="{{ route('dashboard.editUserStore', $data->id) }}" method="post">
                         @csrf
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div>
@@ -39,7 +39,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                                 <input type="number" id="nip" name="nip"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('nip') }}" />
+                                    placeholder="" value="{{ old('nip', $data->nip) }}" />
                             </div>
                             <div>
                                 <label for="name"
@@ -47,21 +47,21 @@
                                     Lengkap</label>
                                 <input type="text" id="name" name="name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('name') }}" />
+                                    placeholder="" value="{{ old('name', $data->name) }}" />
                             </div>
                             <div>
                                 <label for="email"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input type="email" id="email" name="email"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('email') }}" />
+                                    placeholder="" value="{{ old('email', $data->email) }}" disabled />
                             </div>
                             <div>
                                 <label for="jabatan"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                                 <input type="jabatan" id="jabatan" name="jabatan"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('jabatan') }}" />
+                                    placeholder="" value="{{ old('jabatan', $data->jabatan) }}" />
                             </div>
                             <div class="mb-4">
                                 <label for="role"
@@ -69,8 +69,10 @@
                                 <div class="relative">
                                     <select id="role" name="role"
                                         class="h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="admin">Admin</option>
-                                        <option value="staff">Pegawai</option>
+                                        <option value="admin" {{ $data->role == 'admin' ? 'selected' : '' }}>Admin
+                                        </option>
+                                        <option value="staff" {{ $data->role == 'staff' ? 'selected' : '' }}>Pegawai
+                                        </option>
                                     </select>
                                 </div>
                             </div>

@@ -73,4 +73,43 @@ class WebgisController extends Controller
     {
         return view('pages.webgis.addUser', ['title' => 'Tambah User']);
     }
+    public function addUserStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'nip' => 'required',
+            'email' => 'required',
+            'jabatan' => 'nullable',
+        ]);
+        $validatedData['password'] = bcrypt($request->nip);
+        User::create($validatedData);
+        return redirect()->route('dashboard.users')->with('success', 'User berhasil ditambahkan');
+    }
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        return view('pages.webgis.editUser', ['title' => 'Edit User', 'data' => $user]);
+    }
+    public function editUserStore(Request $request, $id)
+    {
+        $user = User::find($id);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'nip' => 'required',
+            'jabatan' => 'nullable',
+        ]);
+        $validatedData['password'] = bcrypt($request->nip);
+        $user->update($validatedData);
+        return redirect()->route('dashboard.users')->with('success', 'User berhasil ditambahkan');
+    }
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->route('dashboard.users')->with('error', 'User not found');
+        }
+
+        $user->delete();
+        return redirect()->route('dashboard.users')->with('success', 'User berhasil dihapus');
+    }
 }
