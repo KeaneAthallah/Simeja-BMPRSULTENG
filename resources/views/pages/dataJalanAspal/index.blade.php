@@ -99,9 +99,9 @@
                             @foreach ($datas as $data)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $data->asphaltStreet->roadInventory->noRuas }}
+                                        {{ $data->asphaltStreet->roadInventory->noRuas ?? '' }}
                                     </td>
-                                    <td>{{ $data->asphaltStreet->roadInventory->namaRuas }}</td>
+                                    <td>{{ $data->asphaltStreet->roadInventory->namaRuas ?? '' }}</td>
                                     <td>{{ $data->dariPatok }} - {{ $data->kePatok }}
                                     </td>
                                     <td>
