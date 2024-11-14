@@ -87,7 +87,7 @@
             var url = "{{ url('/') }}";
 
             // Fetch data from Laravel
-            fetch(`${url}/map-data`)
+            fetch(`https://simeja-bmprsulteng.com/webgis/map-data`)
                 .then(response => response.json())
                 .then(data => {
                     console.log('Fetched data:', data);
@@ -101,14 +101,14 @@
                                 color: color
                             }).bindPopup(
                                 `<b>${item.nama_ruas}</b><br>Kondisi Jalan: ${item.kondisiJalan}<br>Penanganan: ${item.penanganan}`
-                                );
+                            );
                             layers['Kondisi Jalan'][item.kondisiJalan].addLayer(polyline);
                             layers['Penanganan'][item.penanganan].addLayer(polyline);
                             layers['Jenis Perkerasan'][item.jenis_perkerasan].addLayer(polyline);
                         } else if (item.complain_id) {
                             var marker = L.marker([item.lat, item.long]).bindPopup(
                                 `<b>Status: ${item.status}</b><br>Description: ${item.description}<br><img src="${url}/storage/${item.image}" width="100">`
-                                );
+                            );
                             layers['Complaints'].addLayer(marker);
                         }
                     });
