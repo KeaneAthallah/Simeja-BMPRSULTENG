@@ -60,20 +60,34 @@
                         <div class="w-24 mx-auto my-auto col-span-6 flex justify-center">
                             <img src="{{ asset('assets/images/logo.png') }}" alt="">
                         </div>
+
+                        <!-- Email Field -->
                         <div class="col-span-6">
                             <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
-
                             <input type="email" id="Email" name="email"
-                                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm @error('email') border-red-500 @enderror"
+                                value="{{ old('email') }}" />
+
+                            <!-- Error message for email -->
+                            @error('email')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Password Field -->
                         <div class="col-span-6 ">
                             <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
-
                             <input type="password" id="Password" name="password"
-                                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm @error('password') border-red-500 @enderror"
+                                value="{{ old('password') }}" />
+
+                            <!-- Error message for password -->
+                            @error('password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Submit Button and Register Link -->
                         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
                             <button
                                 class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
@@ -81,8 +95,8 @@
                             </button>
 
                             <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                                Dont have an account?
-                                <a href="{{ route('register') }}" class="text-gray-700 underline">Register</a>.
+                                Don't have an account? ask Admin to register
+                                {{-- <a href="{{ route('register') }}" class="text-gray-700 underline">Register</a>. --}}
                             </p>
                         </div>
                     </form>

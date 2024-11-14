@@ -7,7 +7,7 @@
                 <!--Title-->
                 <h1
                     class="flex items-center font-sans font-bold break-normal text-nord0 dark:text-nord6 px-2 py-2 text-xl md:text-2xl">
-                    Tambah Pegawai
+                    Ubah Data Pegawai
                 </h1>
                 @if ($errors->any())
                     <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -54,7 +54,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                 <input type="email" id="email" name="email"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="" value="{{ old('email', $data->email) }}" disabled />
+                                    placeholder="" value="{{ old('email', $data->email) }}" readonly />
                             </div>
                             <div>
                                 <label for="jabatan"

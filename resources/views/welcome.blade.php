@@ -1,20 +1,15 @@
 <x-layout-homepage>
-    <!--Hero-->
-    <div class="">
-        <div class="container flex flex-wrap flex-col md:flex-row items-center">
-            <!--Left Col-->
-            {{-- <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                <a href="#pengaduan"
-                    class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                    Laporkan kerusakan jalan
-                </a>
-            </div> --}}
-            <!--Right Col with Hero Background-->
-            <div class="w-full text-center relative bg-cover bg-center h-screen rounded-md"
-                style="background-image: url('{{ asset('assets/images/home.jpg') }}');">
-                <!-- Content here will appear over the background image -->
-            </div>
-        </div>
+    <div class="relative h-screen hidden md:block">
+        <img src="{{ asset('assets/images/home.jpg') }}" alt="Cityscape"
+            class="absolute inset-0 w-full h-full object-cover object-right md:object-left lg:object-cover lg:object-center">
+    </div>
+    <div
+        class="lg:hidden container mx-auto flex flex-col items-center justify-center h-screen text-center bg-gradient-to-br from-yellow-400 via-amber-200 to-yellow-400">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Selamat Datang di SiMeja</h1>
+        <p class="text-base md:text-lg text-white mb-8">Your Gateway to Urban Living</p>
+        <a href="#pengaduan" class="bg-white text-black font-bold py-3 px-6 rounded-full hover:bg-gray-200">
+            Laporkan Kerusakan Jalan
+        </a>
     </div>
 
     <div class="relative -mt-12 lg:-mt-24">
@@ -235,17 +230,18 @@
     </svg>
     <section class="container mx-auto text-center py-6 mb-12">
         <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-nord6">
-            Call to Action
+            Jelajahi Kota Palu dan Laporkan Masalah Infrastruktur
         </h1>
         <div class="w-full mb-4">
             <div class="h-1 mx-auto bg-nord4 w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
         <h3 class="my-4 text-3xl leading-tight">
-            Main Hero Message to sell yourself!
+            Temukan peta interaktif kota Palu, pantau kondisi jalan, dan kirimkan laporan terkait perbaikan yang
+            dibutuhkan.
         </h3>
         <button
             class="mx-auto lg:mx-0 hover:underline bg-nord4 text-nord0 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Action!
+            <a href="{{ url('/webgis') }}">Jelajahi Kota Palu dan Laporkan Masalah</a>
         </button>
     </section>
     <script>

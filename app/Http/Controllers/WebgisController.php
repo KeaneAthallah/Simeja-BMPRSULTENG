@@ -66,7 +66,7 @@ class WebgisController extends Controller
     }
     public function users()
     {
-        $users = User::all();
+        $users = User::all()->where('role', '!=', 'admin');
         return view('pages.webgis.users', ['title' => 'Semua Users', 'datas' => $users]);
     }
     public function addUser()
@@ -93,14 +93,21 @@ class WebgisController extends Controller
     public function editUserStore(Request $request, $id)
     {
         $user = User::find($id);
+
         $validatedData = $request->validate([
             'name' => 'required',
             'nip' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id, // Allow the current email to be ignored in the validation
             'jabatan' => 'nullable',
         ]);
+
+        // If NIP (nip) changes, hash it as a password
         $validatedData['password'] = bcrypt($request->nip);
+
+        // Update the user data
         $user->update($validatedData);
-        return redirect()->route('dashboard.users')->with('success', 'User berhasil ditambahkan');
+
+        return redirect()->route('dashboard.users')->with('success', 'User berhasil diperbarui');
     }
     public function deleteUser($id)
     {
