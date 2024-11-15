@@ -17,11 +17,11 @@ class RoadInventoryData extends Model
     }
     public function asphaltStreet()
     {
-        return $this->hasMany(AsphaltStreetData::class, 'id', 'road_id')->cascadeOnDelete();
+        return $this->hasMany(AsphaltStreetData::class, 'id', 'road_id');
     }
 
     public function soilsStreet()
     {
-        return $this->hasMany(SoilsStreetData::class, 'id', 'road_id')->cascadeOnDelete();
+        return $this->hasMany(SoilsStreetData::class, 'id', 'road_id');
     }
 }
