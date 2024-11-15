@@ -23,8 +23,20 @@
             popupAnchor: [0, -41]
         });
 
-        var complaintIcon = L.icon({
+        var complaintIconNew = L.icon({
             iconUrl: `https://simeja-bmprsulteng.com/icons/red.png`, // Replace with the path to your custom complaint icon
+            iconSize: [25, 25], // Adjust size as needed
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41]
+        });
+        var complaintIconPending = L.icon({
+            iconUrl: `https://simeja-bmprsulteng.com/icons/blue.png`, // Replace with the path to your custom complaint icon
+            iconSize: [25, 25], // Adjust size as needed
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41]
+        });
+        var complaintIconCompleted = L.icon({
+            iconUrl: `https://simeja-bmprsulteng.com/icons/green.png`, // Replace with the path to your custom complaint icon
             iconSize: [25, 25], // Adjust size as needed
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
@@ -65,8 +77,11 @@
             .then(response => response.json())
             .then(data => {
                 data.forEach(item => {
+                    console.log(item);
+
                     var marker = L.marker([item.lat, item.long], {
-                        icon: complaintIcon
+                        icon: (item.status === 'Pending') ? complaintIconNew : (item.status ===
+                            'Completed') ? complaintIconCompleted : complaintIconPending
                     }).addTo(map);
                     marker.bindPopup(
                         `<div style="font-size: 14px; line-height: 1.5;">
