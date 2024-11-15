@@ -6,7 +6,7 @@
     <div
         class="md:hidden container mx-auto flex flex-col items-center justify-center h-screen text-center bg-gradient-to-br from-yellow-400 via-amber-200 to-yellow-400">
         <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Selamat Datang di SiMeja</h1>
-        <p class="text-base md:text-lg text-white mb-8">Your Gateway to Urban Living</p>
+        <p class="text-base md:text-lg text-white mb-8">Jelajahi Kota Palu dan Laporkan Masalah Infrastruktur</p>
         <a href="#pengaduan" class="bg-white text-black font-bold py-3 px-6 rounded-full hover:bg-gray-200">
             Laporkan Kerusakan Jalan
         </a>
