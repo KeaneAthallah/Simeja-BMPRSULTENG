@@ -75,7 +75,7 @@
         var url = "{{ url('/') }}";
 
         // Fetch data from Laravel
-        fetch(`https://simeja-bmprsulteng.com/webgis/map-data`)
+        fetch(`https://simeja-bmprsulteng.com/map-data`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);
