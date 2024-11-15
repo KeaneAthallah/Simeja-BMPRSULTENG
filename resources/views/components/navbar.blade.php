@@ -18,7 +18,7 @@
                                 class="relative flex max-w-xs items-center rounded-full bg-nord6 text-nord0 dark:text-nord6 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nord0 mr-3"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <div class="px-3 py-2 text-nord0">{{ auth()->user()->name }}</div>
+                                <div class="px-3 py-2 text-nord0 uppercase">{{ auth()->user()->name }}</div>
                             </button>
                             <button onclick="toggleDarkMode()"
                                 class="h-10 w-10 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
