@@ -125,15 +125,19 @@
                             icon: (item.status === 'Pending') ? newIcon : (item.status ===
                                 'Completed') ? completedIcon : pendingIcon
                         }).bindPopup(
-                            `<div style="font-size: 14px; line-height: 1.5;">
-                            <strong>Nama:</strong> ${item.name}<br>
-                            <strong>Alamat:</strong> ${item.address}<br>
-                            <strong>Status:</strong> ${item.status}<br>
-                            <strong>Aspirasi:</strong> ${item.description}<br>
-                            <div style="margin-top: 10px;">
-                                <img src="${url}/storage/${item.image}" alt="Complain Image" style="max-width: 100%; height: auto; border-radius: 5px;">
-                            </div>
-                        </div>`
+                            `
+                            <div style="border: 2px solid #ddd; padding: 20px; border-radius: 10px; background-color: #f3f3f3; font-family: Arial, sans-serif;">
+    <h3 style="color: #2980b9; font-size: 22px; margin-top: 0;">${item.name}</h3>
+    <p style="font-size: 16px; color: #34495e; line-height: 1.6; margin-bottom: 10px;">
+        <strong>Alamat:</strong> ${item.address}<br>
+        <strong>Status:</strong> <span style="color: #e74c3c;">${item.status}</span><br>
+        <strong>Aspirasi:</strong> ${item.description}
+    </p>
+    <div style="margin-top: 15px; text-align: center;">
+        <img src="${url}/storage/${item.image}" alt="Complain Image" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    </div>
+</div>
+`
                         );
                         layers['Complaints'].addLayer(marker);
                     }

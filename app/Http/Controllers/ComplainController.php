@@ -58,6 +58,8 @@ class ComplainController extends Controller
         foreach ($complaints as $complain) {
             $data[] = [
                 'complain_id' => $complain->id,
+                'name' => $complain->name,
+                'address' => $complain->address,
                 'description' => $complain->aspirasi,
                 'lat' => $complain->lat,
                 'long' => $complain->long,
