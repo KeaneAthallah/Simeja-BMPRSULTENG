@@ -46,7 +46,8 @@
                             </div>
                             <div>
                                 <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kota /
+                                    Kabupaten</label>
                                 <input type="text" id="kabupaten" name="kabupaten"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Sigi" value="{{ old('kabupaten', $data->kabupaten) }}" />
@@ -61,7 +62,7 @@
                             </div>
                             <div>
                                 <label for="DRP"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referensi
                                     Lokasi DRP (Optional)</label>
                                 <input type="number" id="DRP" name="DRP"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -77,7 +78,7 @@
                             </div>
                             <div>
                                 <label for="LRP"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referensi
                                     Lokasi LRP (Optional)</label>
                                 <input type="number" id="LRP" name="LRP"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -93,7 +94,7 @@
                             </div>
                             <div>
                                 <label for="CHN"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rererensi
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referensi
                                     Lokasi CHN (Optional)</label>
                                 <input type="number" id="CHN" name="CHN"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

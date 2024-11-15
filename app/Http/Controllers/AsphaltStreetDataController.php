@@ -189,8 +189,6 @@ class AsphaltStreetDataController extends Controller
             if ($request->hasFile('image')) {
                 // Process the file
                 $validatedData['image'] = $request->file('image')->store('asphalt_street_data_images');
-            } else {
-                dd('No file uploaded'); // Or log this message
             }
             $panjang =
                 intval(substr($request->kePatok, -3)) -

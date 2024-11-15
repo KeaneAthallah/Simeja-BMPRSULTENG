@@ -59,6 +59,12 @@
                             Webgis
                         </a>
                     </li>
+                    <li class="mr-6">
+                        <a href="#" id="nav-menu2"
+                            class="text-nord6 text-lg font-semibold hover:text-blue-300 transition duration-300 ease-in-out no-underline ">
+                            Kontak
+                        </a>
+                    </li>
 
 
                 </ul>
