@@ -4,7 +4,7 @@
     <script src="{{ asset('output/JP_Sulteng_2023.js') }}"></script>
     <script src="{{ asset('output/simpul_JPSulteng_fix.js') }}"></script>
     <div class="flex flex-col items-center m-5">
-        <div id="map" style="height: 60vh; width: 100%"
+        <div id="map" style="height: 80vh; width: 100%"
             class="relative w-full max-w-md md:max-w-xl lg:max-w-7xl bg-nord0 rounded-lg shadow-lg border-4 border-nord1 dark:border-nord5 dark:bg-nord4 my-4">
         </div>
     </div>
