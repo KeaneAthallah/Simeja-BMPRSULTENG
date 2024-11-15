@@ -36,7 +36,7 @@
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-75 transform"
                             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                            class="absolute right-0 z-10 mt-5 w-48 origin-top-right rounded-md bg-nord6 dark:bg-nord0 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            class="absolute right-0 z-10 mt-12 w-48 origin-top-right rounded-md bg-nord6 dark:bg-nord0 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
                             <a href="#" class="block px-4 py-2 text-sm text-nord0 dark:text-nord6" role="menuitem"
@@ -86,14 +86,67 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="md:hidden bg-nord4 dark:bg-nord3" id="mobile-menu" x-show="isOpen"
+    <div id="mobile-menu" class="md:hidden bg-nord4 dark:bg-nord3 py-4" x-show="isOpen"
         x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform"
         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <a href="#" class="block rounded-md bg-nord7 px-3 py-2 text-base font-medium text-white"
-                aria-current="page">Dashboard</a>
-            <!-- Add other mobile menu links here -->
+        <div class="space-y-1 px-2">
+            <a href="{{ route('dashboard') }}"
+                class="{{ request()->routeIs('dashboard') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} block rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
+            <a href="{{ route('aspirasi.index') }}"
+                class="{{ request()->routeIs('aspirasi.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} block rounded-md px-3 py-2 text-sm font-medium">Aspirasi</a>
+            <a href="{{ route('webgis.index') }}"
+                class="{{ request()->routeIs('webgis.index') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} block rounded-md px-3 py-2 text-sm font-medium">WebGis</a>
+
+            <!-- Admin Role Menu -->
+            @if (auth()->user()->role == 'admin')
+                <div class="relative">
+                    <button type="button" data-dropdown-toggle="mobileDropdownAdmin"
+                        class="block w-full text-left rounded-md bg-nord6 dark:bg-gray-700 px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6">
+                        Pengaturan
+                    </button>
+                    <div id="mobileDropdownAdmin"
+                        class="hidden bg-white dark:bg-gray-900 rounded-md shadow-md mt-5 z-50">
+                        <a href="{{ route('inventarisJalan.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Inventarisasi
+                            Jaringan</a>
+                        <a href="{{ route('jalanAspal.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Aspal</a>
+                        <a href="{{ route('jalanTanah.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Tanah/Kerikil</a>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Jembatan</a>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Admin or Staff Role Menu -->
+            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+                <div class="relative z-0">
+                    <button type="button" data-dropdown-toggle="mobileDropdownSurveyData"
+                        class="block w-full text-left rounded-md bg-nord6 dark:bg-gray-700 px-3 py-2 text-sm font-medium text-nord0 dark:text-nord6">
+                        Data Survey
+                    </button>
+                    <div id="mobileDropdownSurveyData"
+                        class="hidden bg-white dark:bg-gray-900 rounded-md shadow-md mt-1">
+                        <a href="{{ route('dataInventarisJalan.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Inventarisasi
+                            Jaringan</a>
+                        <a href="{{ route('dataJalanAspal.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Aspal</a>
+                        <a href="{{ route('dataJalanTanah.index') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Tanah/Kerikil</a>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Jembatan</a>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Users Link for Admin -->
+            @if (auth()->user()->role == 'admin')
+                <a href="{{ route('dashboard.users') }}"
+                    class="{{ request()->routeIs('dashboard.users') ? 'bg-nord7 text-nord0' : 'text-nord0 dark:text-nord6 hover:bg-nord9 hover:text-white' }} block rounded-md px-3 py-2 text-sm font-medium">Users</a>
+            @endif
         </div>
     </div>
 </nav>
