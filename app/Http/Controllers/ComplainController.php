@@ -49,6 +49,7 @@ class ComplainController extends Controller
                         'jenis_perkerasan' => $roadInventoryData->jenisPerkerasan,
                         'dari_patok' => $street->dariPatok,
                         'ke_patok' => $street->kePatok,
+                        'imageUrl' => $street->image,
                         // Add other fields as needed
                     ];
                 }

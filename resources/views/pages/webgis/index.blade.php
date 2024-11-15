@@ -25,6 +25,24 @@
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
         });
+        var newIcon = L.icon({
+            iconUrl: `${url}/icons/red.png`, // Replace with the path to your custom simpul icon
+            iconSize: [25, 25],
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41]
+        });
+        var pendingIcon = L.icon({
+            iconUrl: `${url}/icons/blue.png`, // Replace with the path to your custom simpul icon
+            iconSize: [25, 25],
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41]
+        });
+        var completedIcon = L.icon({
+            iconUrl: `${url}/icons/green.png`, // Replace with the path to your custom simpul icon
+            iconSize: [25, 25],
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -41]
+        });
 
         // Layer groups
         var layers = {
@@ -87,14 +105,41 @@
                         var polyline = L.polyline(latlngs, {
                             color: color
                         }).bindPopup(
-                            `<b>${item.nama_ruas}</b><br>Kondisi Jalan: ${item.kondisiJalan}<br>Penanganan: ${item.penanganan}`
+                            `<div style="border: 2px solid #ddd; padding: 15px; border-radius: 8px; background-color: #f9f9f9; font-family: Arial, sans-serif;">
+                                <img src="${url}/storage/${item.imageUrl}" alt="${item.nama_ruas}" style="width: 100%; border-radius: 5px; object-fit: cover; height: 200px;">
+                                <h3 style="color: #2c3e50; font-size: 24px; margin-top: 10px; text-align: center;"><b>${item.nama_ruas}</b></h3>
+                                <p style="font-size: 16px; color: #34495e; line-height: 1.6; margin: 15px 0;">
+                                    <strong>Kondisi Jalan:</strong> <span style="color: #e74c3c;">${item.kondisiJalan}</span><br>
+                                    <strong>Penanganan:</strong> ${item.penanganan}
+                                </p>
+                                <div style="text-align: center; margin-top: 10px;">
+                                    <button style="background-color: #2980b9; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Learn More</button>
+                                </div>
+                                </div>`
                         );
                         layers['Kondisi Jalan'][item.kondisiJalan].addLayer(polyline);
                         layers['Penanganan'][item.penanganan].addLayer(polyline);
                         layers['Jenis Perkerasan'][item.jenis_perkerasan].addLayer(polyline);
                     } else if (item.complain_id) {
-                        var marker = L.marker([item.lat, item.long]).bindPopup(
-                            `<b>Status: ${item.status}</b><br>Description: ${item.description}<br><img src="${url}/storage/${item.image}" width="100">`
+                        var marker = L.marker([item.lat, item.long], {
+                            icon: (item.status === 'Pending') ? newIcon : (item.status ===
+                                'Completed') ? completedIcon : pendingIcon
+                        }).bindPopup(
+                            `<div style="border: 2px solid #ddd; padding: 20px; border-radius: 10px; background-color: #f3f3f3; font-family: Arial, sans-serif;">
+                                <h3 style="color: #2980b9; font-size: 22px; margin-top: 0;">${item.name}</h3>
+                                <p style="font-size: 16px; color: #34495e; line-height: 1.6; margin-bottom: 10px;">
+                                    <strong>Alamat:</strong> ${item.address}<br>
+                                    <strong>Status:</strong> <span style="color: #e74c3c;">${item.status}</span><br>
+                                    <strong>Aspirasi:</strong> ${item.description}
+                                </p>
+                                <div style="margin-top: 15px; text-align: center;">
+                                    <img src="${url}/storage/${item.image}" alt="Complain Image" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                </div>
+                                <div style="text-align: center; margin-top: 15px;">
+                                    <button style="background-color: #2980b9; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">See More</button>
+                                </div>
+                            </div>
+                            `
                         );
                         layers['Complaints'].addLayer(marker);
                     }
