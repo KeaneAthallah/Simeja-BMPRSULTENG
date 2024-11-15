@@ -19,7 +19,7 @@
         }).addTo(map);
 
         var simpulIcon = L.icon({
-            iconUrl: `https://simeja-bmprsulteng.com/icons/marker.png`, // Replace with the path to your custom simpul icon
+            iconUrl: `${}/icons/marker.png`, // Replace with the path to your custom simpul icon
             iconSize: [25, 25],
             iconAnchor: [12, 41],
             popupAnchor: [0, -41]
@@ -75,7 +75,7 @@
         var url = "{{ url('/') }}";
 
         // Fetch data from Laravel
-        fetch(`https://simeja-bmprsulteng.com/map-data`)
+        fetch(`${url}/map-data`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched data:', data);
