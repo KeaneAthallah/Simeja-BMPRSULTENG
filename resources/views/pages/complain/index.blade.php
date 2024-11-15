@@ -92,32 +92,32 @@
                                             @endif
                                         </div>
                                     </td>
-                                    <>
-                                        <td>
-                                            <form action="{{ route('aspirasi.update', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT') <!-- Assuming you're using PUT method for update -->
 
-                                                <select name="status"
-                                                    class="form-select bg-white text-gray-900 rounded-md border-gray-300">
-                                                    <option value="Pending"
-                                                        {{ $data->status == 'Pending' ? 'selected' : '' }}>Baru
-                                                    </option>
-                                                    <option value="On Progress"
-                                                        {{ $data->status == 'On Progress' ? 'selected' : '' }}>
-                                                        Dikerjakan
-                                                    </option>
-                                                    <option value="Completed"
-                                                        {{ $data->status == 'Completed' ? 'selected' : '' }}>Selesai
-                                                    </option>
-                                                </select>
+                                    <td>
+                                        <form action="{{ route('aspirasi.update', $data->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT') <!-- Assuming you're using PUT method for update -->
 
-                                                <button type="submit"
-                                                    class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                                    Update
-                                                </button>
-                                            </form>
-                                        </td>
+                                            <select name="status"
+                                                class="form-select bg-white text-gray-900 rounded-md border-gray-300">
+                                                <option value="Pending"
+                                                    {{ $data->status == 'Pending' ? 'selected' : '' }}>Baru
+                                                </option>
+                                                <option value="On Progress"
+                                                    {{ $data->status == 'On Progress' ? 'selected' : '' }}>
+                                                    Dikerjakan
+                                                </option>
+                                                <option value="Completed"
+                                                    {{ $data->status == 'Completed' ? 'selected' : '' }}>Selesai
+                                                </option>
+                                            </select>
+
+                                            <button type="submit"
+                                                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                Update
+                                            </button>
+                                        </form>
+                                    </td>
 
                                 </tr>
                             @endforeach
