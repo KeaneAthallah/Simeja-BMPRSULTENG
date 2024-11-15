@@ -112,9 +112,6 @@
                                     <strong>Kondisi Jalan:</strong> <span style="color: #e74c3c;">${item.kondisiJalan}</span><br>
                                     <strong>Penanganan:</strong> ${item.penanganan}
                                 </p>
-                                <div style="text-align: center; margin-top: 10px;">
-                                    <button style="background-color: #2980b9; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Learn More</button>
-                                </div>
                                 </div>`
                         );
                         layers['Kondisi Jalan'][item.kondisiJalan].addLayer(polyline);
