@@ -84,10 +84,6 @@
                                         {{ $data->role }}
                                     </td>
                                     <td class="flex space-x-2">
-                                        <button
-                                            class="focus:outline-none text-white bg-nord8 hover:bg-nord8 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-nord8 dark:hover:bg-nord8 dark:focus:ring-nord8">
-                                            <a href="{{ route('dashboard.editUser', $data->id) }}">Ubah</a>
-                                        </button>
                                         <form action="{{ route('dashboard.deleteUser', $data->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf

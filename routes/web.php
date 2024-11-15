@@ -62,8 +62,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/users', [WebgisController::class, 'users'])->name('dashboard.users');
     Route::get('/dashboard/tambah-user', [WebgisController::class, 'addUser'])->name('dashboard.addUser');
     Route::post('/dashboard/tambah-user', [WebgisController::class, 'addUserStore'])->name('dashboard.addUserStore');
-    Route::get('/dashboard/edit-user/{id}', [WebgisController::class, 'editUser'])->name('dashboard.editUser');
-    Route::post('/dashboard/edit-user/{id}', [WebgisController::class, 'editUserStore'])->name('dashboard.editUserStore');
     Route::delete('/dashboard/user-delete/{id}', [WebgisController::class, 'deleteUser'])->name('dashboard.deleteUser');
 });
 

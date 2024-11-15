@@ -85,30 +85,6 @@ class WebgisController extends Controller
         User::create($validatedData);
         return redirect()->route('dashboard.users')->with('success', 'User berhasil ditambahkan');
     }
-    public function editUser($id)
-    {
-        $user = User::find($id);
-        return view('pages.webgis.editUser', ['title' => 'Edit User', 'data' => $user]);
-    }
-    public function editUserStore(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'nip' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id, // Allow the current email to be ignored in the validation
-            'jabatan' => 'nullable',
-        ]);
-
-        // If NIP (nip) changes, hash it as a password
-        $validatedData['password'] = bcrypt($request->nip);
-
-        // Update the user data
-        $user->update($validatedData);
-
-        return redirect()->route('dashboard.users')->with('success', 'User berhasil diperbarui');
-    }
     public function deleteUser($id)
     {
         $user = User::find($id);
